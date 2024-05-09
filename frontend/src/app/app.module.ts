@@ -9,6 +9,9 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { SceneryComponent } from './components/pages/scenery/scenery.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SigninComponent } from './components/pages/signin/signin.component';
+import { EnvironmentManagementComponent } from './components/pages/environment-management/environment-management.component';
+import { TeachersManagementComponent } from './components/pages/teachers-management/teachers-management.component';
+import { ProgramsManagementComponent } from './components/pages/programs-management/programs-management.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { SigninComponent } from './components/pages/signin/signin.component';
     LoginComponent,
     SceneryComponent,
     FooterComponent,
-    SigninComponent
+    SigninComponent,
+    EnvironmentManagementComponent,
+    TeachersManagementComponent,
+    ProgramsManagementComponent
   ],
   imports: [
     BrowserModule,
