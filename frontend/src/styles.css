@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    font-family: 'Onest', sans-serif;
+}
+
+body {
+    background-color: #d8dfe6;
+    color: #1a202c;
+    transition: background-color 0.6s ease;
+}
+
+body.dark-mode {
+    background-color: #10141c;
+    color: #fff;
+}
+
+input {
+    border-color: #1a202c;
+}
+
+body.dark-mode input {
+    border-color: #fff;
+}  
+
+#container-home {
+    background-color: #fff;
+    color: #1a202c;
+    transition: background-color 0.6s ease;
+}
+
+body.dark-mode #container-home {
+    background-color: #1a202c;
+    color: #fff;
+}
+
+body.dark-mode .login, body.dark-mode .signin {
+    background-color: #1f2634;
+    color: #fff;
+    transition: background-color 0.6s ease;
+}
+
+body.dark-mode .login input, body.dark-mode .signin input {
+    background-color: #10141c;
+    color: #fff;
+    transition: background-color 0.6s ease;
+}
+
+body.dark-mode .login button, body.dark-mode .signin button {
+    background-color: #6ebae9;
+    color: #10141c;
+    transition: background-color 0.6s ease;
+    transition: color 0.6s ease;
+}
+
+body.dark-mode .login button:hover, body.dark-mode .signin button:hover {
+    background-color: #4d9ccd;
+    transition: background-color 0.6s ease;
+}
+
+body .login .title_login, body .signin .title_signin {
+    color: rgb(29 78 216);
+    transition: color 0.6s ease;
+}
+
+body.dark-mode .login .title_login, body.dark-mode .signin .title_signin {
+    color: #6ebae9;
+    transition: color 0.6s ease;
+}
+
+body.dark-mode .login p, body.dark-mode .signin p {
+    color: #fff;
+    transition: color 0.6s ease;
+}
+
+body.dark-mode .login a, body.dark-mode .signin a {
+    color: #6ebae9;
+    transition: color 0.6s ease;
+}
+
+body .footer_principal {
+    background-color: rgb(29 78 216);
+    color: #fff;
+    font-weight: 500;
+    transition: background-color 0.6s ease;
+}
+
+body.dark-mode .footer_principal {
+    background-color: #6ebae9;
+    color: #10141c;
+    transition: background-color 0.6s ease;
+}   
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #d8dfe6;
+}
+
+.dark-mode::-webkit-scrollbar-track {
+    background: #10141c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(29 78 216);
+    border-radius: 50px;
+}
+
+.dark-mode::-webkit-scrollbar-thumb {
+    background: #6ebae9;
+}
