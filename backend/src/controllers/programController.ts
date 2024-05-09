@@ -12,7 +12,19 @@ class ProgramController{
                     resolve(rows); // Si no, resolvemos con el resultado
                 });
         });
-        res.json(programsList);
+        res.json(programsList[0]);
+    }
+
+    public async getProgram (req: Request,res: Response){
+        const sql=`CALL getProgram(?)`;
+        const programsList=await new Promise<any>((resolve, reject) => {
+            pool.query(sql, [req.params.id],
+                (err: any, rows: any, fields: any) => {
+                    if (err) reject(err); // En caso de error, resolvemos la Promise con error
+                    resolve(rows); // Si no, resolvemos con el resultado
+                });
+        });
+        res.json(programsList[0]);
     }
 
 }

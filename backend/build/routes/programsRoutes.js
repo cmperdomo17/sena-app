@@ -12,7 +12,7 @@ class ClientesRoutes {
     }
     config() {
         this.router.get('/', programController_1.default.ListPrograms);
-        //this.router.get('/:id', clientesController.getCliente);
+        this.router.get('/:id', programController_1.default.getProgram);
         //this.router.post('/', clientesController.create);
         //this.router.delete('/:id', clientesController.delete);
         //this.router.put('/:id', clientesController.update);

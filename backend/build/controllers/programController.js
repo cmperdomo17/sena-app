@@ -24,7 +24,20 @@ class ProgramController {
                     resolve(rows); // Si no, resolvemos con el resultado
                 });
             });
-            res.json(programsList);
+            res.json(programsList[0]);
+        });
+    }
+    getProgram(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sql = `CALL getProgram(?)`;
+            const programsList = yield new Promise((resolve, reject) => {
+                database_1.default.query(sql, [req.params.id], (err, rows, fields) => {
+                    if (err)
+                        reject(err); // En caso de error, resolvemos la Promise con error
+                    resolve(rows); // Si no, resolvemos con el resultado
+                });
+            });
+            res.json(programsList[0]);
         });
     }
 }

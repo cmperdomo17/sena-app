@@ -168,6 +168,11 @@ DELIMITER $$
 create procedure listPrograms()
 begin
 	select * from program;
+end;
+
+create procedure getProgram(in programid int)
+begin
+   select * from program where program_id=programid;
 end $$
 DELIMITER ;
 
