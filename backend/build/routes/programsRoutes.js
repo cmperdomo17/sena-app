@@ -13,9 +13,9 @@ class ClientesRoutes {
     config() {
         this.router.get('/', programController_1.default.ListPrograms);
         this.router.get('/:id', programController_1.default.getProgram);
-        //this.router.post('/', clientesController.create);
-        //this.router.delete('/:id', clientesController.delete);
-        //this.router.put('/:id', clientesController.update);
+        this.router.post('/', programController_1.default.create);
+        this.router.put('/:id', programController_1.default.update);
+        this.router.put('/:id/:state', programController_1.default.changeState);
     }
 }
 const clientesRoutes = new ClientesRoutes();

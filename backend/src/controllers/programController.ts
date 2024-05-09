@@ -17,14 +17,32 @@ class ProgramController{
 
     public async getProgram (req: Request,res: Response){
         const sql=`CALL getProgram(?)`;
-        const programsList=await new Promise<any>((resolve, reject) => {
+        const program=await new Promise<any>((resolve, reject) => {
             pool.query(sql, [req.params.id],
                 (err: any, rows: any, fields: any) => {
                     if (err) reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(rows); // Si no, resolvemos con el resultado
                 });
         });
-        res.json(programsList[0]);
+        res.json(program[0]);
+    }
+
+    public async create (req: Request,res: Response){
+        const sql=`CALL createProgram(?, ?)`;
+        await pool.query(sql, [req.body.program_id,req.body.program_name]);
+        res.json({message: 'Program saved!'});
+    }
+
+    public async update (req: Request,res: Response){
+        const sql=`CALL updateProgram(?, ?)`;
+        await pool.query(sql, [req.params.id,req.body.program_name]);
+        res.json({message: 'Program updated!'});
+    }
+
+    public async changeState (req: Request,res: Response){
+        const sql=`CALL changeStateProgram(?, ?)`;
+        await pool.query(sql, [req.params.id,req.params.state]);
+        res.json({message: 'Program state changed!'});
     }
 
 }

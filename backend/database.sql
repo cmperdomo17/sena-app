@@ -41,6 +41,7 @@ create table AMBIENT
    AMBIENT_LOCATION   varchar(100),
    AMBIENT_TYPE        varchar(50),
    AMBIENT_CAPACITY   numeric(8,0),
+   AMBIENT_STATE     numeric(4,0),
    primary key (AMBIENT_ID)
 );
 
@@ -61,7 +62,8 @@ create table COMPETENCE_SPECIFIC
 (
    COMPETENCESPC_ID    numeric(8,0) not null,
    PROGRAM_ID          numeric(8,0) not null,
-   COMPETENCEESP_NAME varchar(50),
+   COMPETENCESPC_NAME varchar(50),
+   COMPETENCESPC_STATE     numeric(4,0),
    primary key (COMPETENCESPC_ID)
 );
 
@@ -72,6 +74,7 @@ create table COMPETENCE_GENERIC
 (
    COMPETENCEGEN_ID    numeric(8,0) not null,
    COMPETENCEGEN_NAME varchar(50),
+   COMPETENCEGEN_STATE     numeric(4,0),
    primary key (COMPETENCEGEN_ID)
 );
 
@@ -88,6 +91,7 @@ create table TEACHER
    TEACHER_TYPE         varchar(30),
    TEACHER_CONTRACTTYPE varchar(30),
    TEACHER_AREA         varchar(100) not null,
+   TEACHER_STATE     numeric(4,0),
    primary key (TEACHER_ID)
 );
 
@@ -116,6 +120,7 @@ create table PERIOD
    PERIOD_START_DATE    varchar(40) not null,
    PERIOD_END_DATE    varchar(40),
    PERIOD_NAME       varchar(50) not null,
+   PERIOD_STATE     numeric(4,0),
    primary key (PERIOD_ID)
 );
 
@@ -126,6 +131,7 @@ create table PROGRAM
 (
    PROGRAM_ID          numeric(8,0) not null,
    PROGRAM_NAME      varchar(50),
+   PROGRAM_STATE     numeric(4,0),
    primary key (PROGRAM_ID)
 );
 
@@ -173,13 +179,30 @@ end;
 create procedure getProgram(in programid int)
 begin
    select * from program where program_id=programid;
-end $$
+end;
+
+create procedure createProgram(in programid int, in programname varchar(50))
+begin
+   insert into program (program_id, program_name, program_state) values (programid, programname, 1);
+end;
+
+create procedure updateProgram(in programid int, in programname varchar(50))
+begin
+   update program set program_name=programname where program_id=programid;
+end;
+
+create procedure changeStateProgram(in programid int, in programstate int)
+begin
+   update program set program_state = programstate where program_id=programid;
+end; 
+
+$$
 DELIMITER ;
 
 /*==============================================================*/
 /* Datos de prueba                                              */
 /*==============================================================*/
 
-insert into program (program_id, program_name) values (1,'Hola');
-insert into program (program_id, program_name) values (2,'Como');
-insert into program (program_id, program_name) values (3,'Estas?');
+insert into program (program_id, program_name, program_state) values (1,'Hola',1);
+insert into program (program_id, program_name, program_state) values (2,'Como',1);
+insert into program (program_id, program_name, program_state) values (3,'Estas?',1);

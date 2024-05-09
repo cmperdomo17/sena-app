@@ -30,14 +30,35 @@ class ProgramController {
     getProgram(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const sql = `CALL getProgram(?)`;
-            const programsList = yield new Promise((resolve, reject) => {
+            const program = yield new Promise((resolve, reject) => {
                 database_1.default.query(sql, [req.params.id], (err, rows, fields) => {
                     if (err)
                         reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(rows); // Si no, resolvemos con el resultado
                 });
             });
-            res.json(programsList[0]);
+            res.json(program[0]);
+        });
+    }
+    create(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sql = `CALL createProgram(?, ?)`;
+            yield database_1.default.query(sql, [req.body.program_id, req.body.program_name]);
+            res.json({ message: 'Program saved!' });
+        });
+    }
+    update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sql = `CALL updateProgram(?, ?)`;
+            yield database_1.default.query(sql, [req.params.id, req.body.program_name]);
+            res.json({ message: 'Program updated!' });
+        });
+    }
+    changeState(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sql = `CALL changeStateProgram(?, ?)`;
+            yield database_1.default.query(sql, [req.params.id, req.params.state]);
+            res.json({ message: 'Program state changed!' });
         });
     }
 }
