@@ -13,6 +13,7 @@ import { TeachersManagementComponent } from './components/pages/teachers-managem
 import { ProgramsManagementComponent } from './components/pages/programs-management/programs-management.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     EnvironmentManagementComponent,
     TeachersManagementComponent,
     ProgramsManagementComponent,
-    SidebarComponent
+    SidebarComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

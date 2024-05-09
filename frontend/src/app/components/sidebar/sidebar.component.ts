@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
+  @Output() closeSidebar = new EventEmitter<void>();
+
+  close() {
+    this.closeSidebar.emit();
+  }
 
 }

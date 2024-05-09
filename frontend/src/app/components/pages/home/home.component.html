@@ -1,8 +1,7 @@
-<div class="h-screen w-full">
-    <main class="w-full h-10">
-        <div class="flex items-center justify-start ml-2 h-full">
-            <svg id="svg-open-sidebar" xmlns="http://www.w3.org/2000/svg"  width="26"  height="26"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="3"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-baseline-density-medium"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h16" /><path d="M4 12h16" /><path d="M4 4h16" /></svg>
-        </div>
-    </main>
-    <app-sidebar></app-sidebar>
+<header class="relative z-10">
+    <app-header (toggleSidebarEvent)="toggleSidebar()"></app-header>
+</header>
+<div class="flex justify-center items-center z-0">
+    <h1>Home</h1>
 </div>
+<app-sidebar *ngIf="showSidebar" (closeSidebar)="toggleSidebar()"></app-sidebar>

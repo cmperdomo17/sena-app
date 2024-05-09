@@ -7,7 +7,12 @@ import { ProgramsService } from '../../../services/programs.service';
   styleUrl: './programs-management.component.css'
 })
 export class ProgramsManagementComponent implements OnInit{
+  isSidebarVisible: boolean = false;
 
+  toggleSidebar() {
+    this.isSidebarVisible = !this.isSidebarVisible;
+  }
+  
   listPrograms: any = [];
 
   constructor(private programsService: ProgramsService) {}
