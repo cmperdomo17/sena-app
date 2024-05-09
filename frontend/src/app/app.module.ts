@@ -12,6 +12,7 @@ import { EnvironmentManagementComponent } from './components/pages/environment-m
 import { TeachersManagementComponent } from './components/pages/teachers-management/teachers-management.component';
 import { ProgramsManagementComponent } from './components/pages/programs-management/programs-management.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
