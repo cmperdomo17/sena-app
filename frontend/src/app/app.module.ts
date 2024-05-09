@@ -11,6 +11,7 @@ import { SigninComponent } from './components/pages/signin/signin.component';
 import { EnvironmentManagementComponent } from './components/pages/environment-management/environment-management.component';
 import { TeachersManagementComponent } from './components/pages/teachers-management/teachers-management.component';
 import { ProgramsManagementComponent } from './components/pages/programs-management/programs-management.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ProgramsManagementComponent } from './components/pages/programs-managem
     SigninComponent,
     EnvironmentManagementComponent,
     TeachersManagementComponent,
-    ProgramsManagementComponent
+    ProgramsManagementComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
