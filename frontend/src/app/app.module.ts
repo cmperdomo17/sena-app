@@ -18,6 +18,8 @@ import { CompetencesManagementComponent } from './components/pages/competences-m
 import { FormAmbientComponent } from './components/pages/form-ambient/form-ambient.component';
 import { FormCompetenceComponent } from './components/pages/form-competence/form-competence.component';
 import { ControlSideBarComponent } from './components/control-side-bar/control-side-bar.component';
+import { InputComponent } from './components/input/input.component';
+import { ButtonSaveComponent } from './components/buttons/button-save/button-save.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { ControlSideBarComponent } from './components/control-side-bar/control-s
     CompetencesManagementComponent,
     FormAmbientComponent,
     FormCompetenceComponent,
-    ControlSideBarComponent
+    ControlSideBarComponent,
+    InputComponent,
+    ButtonSaveComponent
   ],
   imports: [
     BrowserModule,

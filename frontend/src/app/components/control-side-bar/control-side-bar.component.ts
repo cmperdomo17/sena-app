@@ -11,5 +11,4 @@ export class ControlSideBarComponent {
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
   }
-
 }

@@ -2,7 +2,9 @@
 
 <div class="flex justify-center items-center h-screen z-0 flex-col gap-6">
     <h1 class="text-2xl font-semibold">Formulario Ambientes</h1>
-    <button routerLink="/ambients" class="bg-blue-300 text-slate-950 rounded-xl p-2 text-xl font-bold">
-        Volver
-    </button>
+    <app-input label="ID"></app-input>
+    <app-input label="Nombre"></app-input>
+    <app-input label="Capacidad"></app-input>
+    <app-input label="Ubicación"></app-input>
+    <app-button-save routerLink="/ambients"></app-button-save>
 </div>
