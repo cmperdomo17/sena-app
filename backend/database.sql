@@ -200,9 +200,60 @@ $$
 DELIMITER ;
 
 /*==============================================================*/
+/* Procedures Ambients                                          */
+/*==============================================================*/
+DELIMITER $$ 
+create procedure listAmbients()
+begin
+	select * from ambient;
+end;
+
+create procedure getAmbient(in ambientid int)
+begin
+   select * from ambient where ambient_id=ambientid;
+end;
+
+create procedure createAmbient(in ambientid int, 
+                              in ambientname varchar(100), 
+                              in ambientlocation varchar(100), 
+                              in ambienttype varchar(50),
+                              in ambientcapacity int)
+begin
+   insert into ambient (ambient_id, ambient_name, ambient_location, ambient_type, ambient_capacity, ambient_state) 
+   values (ambientid,ambientname,ambientlocation,ambienttype,ambientcapacity, 1);
+end;
+
+create procedure updateAmbient(in ambientid int, 
+                              in ambientname varchar(100), 
+                              in ambientlocation varchar(100), 
+                              in ambienttype varchar(50),
+                              in ambientcapacity int)
+begin
+   update ambient 
+   set ambient_name=ambientname, 
+      ambient_location=ambientlocation,
+      ambient_type=ambienttype,
+      ambient_capacity=ambientcapacity
+   where ambient_id=ambientid;
+end;
+
+create procedure changeStateAmbient(in ambientid int, in ambientstate int)
+begin
+   update ambient set ambient_state = ambientstate where ambient_id=ambientid;
+end;  
+
+$$
+DELIMITER ;
+
+/*==============================================================*/
 /* Datos de prueba                                              */
 /*==============================================================*/
 
 insert into program (program_id, program_name, program_state) values (1,'Hola',1);
 insert into program (program_id, program_name, program_state) values (2,'Como',1);
 insert into program (program_id, program_name, program_state) values (3,'Estas?',1);
+
+insert into ambient (ambient_id,ambient_name,ambient_location,ambient_type,ambient_capacity,ambient_state)
+values (1,"Salon 111","Piso 1","Presencial",20,1);
+insert into ambient (ambient_id,ambient_name,ambient_location,ambient_type,ambient_capacity,ambient_state)
+values (2,"Salon 222","Piso 2","Virtual",25,1);

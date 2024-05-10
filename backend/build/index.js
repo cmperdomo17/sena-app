@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const programsRoutes_1 = __importDefault(require("./routes/programsRoutes"));
+const ambientsRoutes_1 = __importDefault(require("./routes/ambientsRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -22,9 +23,8 @@ class Server {
     }
     routes() {
         //Aqui es donde se colocan las rutas para las peticiones REST
-        //this.app.use(indexRoutes);
         this.app.use('/api/programs', programsRoutes_1.default);
-        //this.app.use('/api/comics',comicsRoutes);
+        this.app.use('/api/ambients', ambientsRoutes_1.default);
         //this.app.use('/api/compras',comprasRoutes)
     }
     start() {

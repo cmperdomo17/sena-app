@@ -1,7 +1,7 @@
 import {Router} from 'express';
 import programController from '../controllers/programController';
 
-class ClientesRoutes{
+class ProgramsRoutes{
 
     public router: Router=Router();
 
@@ -19,7 +19,7 @@ class ClientesRoutes{
 
 }
 
-const clientesRoutes = new ClientesRoutes();
+const programRoutes = new ProgramsRoutes();
 
 //Exportar unicamente el enrutador
-export default clientesRoutes.router;
+export default programRoutes.router;

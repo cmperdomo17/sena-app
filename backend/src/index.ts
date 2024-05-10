@@ -3,6 +3,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import programsRoutes from './routes/programsRoutes';
+import ambientsRoutes from './routes/ambientsRoutes';
 
 class Server{
 
@@ -24,9 +25,8 @@ class Server{
 
     routes(): void {
         //Aqui es donde se colocan las rutas para las peticiones REST
-        //this.app.use(indexRoutes);
         this.app.use('/api/programs',programsRoutes);
-        //this.app.use('/api/comics',comicsRoutes);
+        this.app.use('/api/ambients',ambientsRoutes);
         //this.app.use('/api/compras',comprasRoutes)
     }
 
