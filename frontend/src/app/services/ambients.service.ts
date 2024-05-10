@@ -28,7 +28,7 @@ export class AmbientsService {
     return this.http.put(`${this.API_URI}/ambients/${id}`, updatedAmbient);
   }
 
-  inativateAmbient(id: number, inactivatedAmbient: Ambient) {
-    return this.http.put(`${this.API_URI}/ambients/${id}`, inactivatedAmbient);
+  changeStateAmbient(id: number, state: number) {
+    return this.http.put(`${this.API_URI}/ambients/${id}`, state);
   }
 }

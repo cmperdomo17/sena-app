@@ -27,7 +27,7 @@ export class ProgramsService {
     return this.http.put(`${this.API_URI}/programs/${id}`, updatedProgram);
   }
 
-  inativateAmbient(id: number, inactivatedProgram: Program) {
-    return this.http.put(`${this.API_URI}/programs/${id}`, inactivatedProgram);
+  changeStateAmbient(id: number, state: number) {
+    return this.http.put(`${this.API_URI}/programs/${id}/${state}`, );
   }
 }

@@ -8,11 +8,12 @@ import { LoginComponent } from './components/pages/login/login.component';
 import { SceneryComponent } from './components/pages/scenery/scenery.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SigninComponent } from './components/pages/signin/signin.component';
-import { EnvironmentManagementComponent } from './components/pages/environment-management/environment-management.component';
+import { AmbientsManagementComponent } from './components/pages/ambients-management/ambients-management.component';
 import { TeachersManagementComponent } from './components/pages/teachers-management/teachers-management.component';
 import { ProgramsManagementComponent } from './components/pages/programs-management/programs-management.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CompetencesManagementComponent } from './components/pages/competences-management/competences-management.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +24,11 @@ import { HttpClientModule } from '@angular/common/http';
     SceneryComponent,
     FooterComponent,
     SigninComponent,
-    EnvironmentManagementComponent,
+    AmbientsManagementComponent,
     TeachersManagementComponent,
     ProgramsManagementComponent,
-    SidebarComponent
+    SidebarComponent,
+    CompetencesManagementComponent
   ],
   imports: [
     BrowserModule,
