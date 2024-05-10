@@ -7,7 +7,12 @@ import { CompetencesService } from '../../../services/competences.service';
   styleUrl: './competences-management.component.css'
 })
 export class CompetencesManagementComponent implements OnInit{
+  isSidebarVisible: boolean = false;
 
+  toggleSidebar() {
+    this.isSidebarVisible = !this.isSidebarVisible;
+  }
+  
   listCompetences: any = [];
 
   constructor(private competencesService: CompetencesService) {}
