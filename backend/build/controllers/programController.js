@@ -42,8 +42,8 @@ class ProgramController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL createProgram(?, ?)`;
-            yield database_1.default.query(sql, [req.body.program_id, req.body.program_name]);
+            const sql = `CALL createProgram(?)`;
+            yield database_1.default.query(sql, [req.body.program_name]);
             res.json({ message: 'Program saved!' });
         });
     }

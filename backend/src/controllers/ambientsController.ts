@@ -29,13 +29,21 @@ class AmbientController{
 
     public async create (req: Request,res: Response){
         const sql=`CALL createAmbient(?, ?, ?, ?, ?)`;
-        await pool.query(sql, [req.body.ambient_id,req.body.ambient_name,req.body.ambient_location,req.body.ambient_type,req.body.ambient_capacity]);
+        await pool.query(sql, [req.body.ambient_id,
+                                req.body.ambient_name,
+                                req.body.ambient_location,
+                                req.body.ambient_type,
+                                req.body.ambient_capacity]);
         res.json({message: 'Ambient saved!'});
     }
 
     public async update (req: Request,res: Response){
         const sql=`CALL updateAmbient(?, ?, ?, ?, ?)`;
-        await pool.query(sql, [req.params.id,req.body.ambient_name,req.body.ambient_location,req.body.ambient_type,req.body.ambient_capacity]);
+        await pool.query(sql, [req.params.id,
+                                req.body.ambient_name,
+                                req.body.ambient_location,
+                                req.body.ambient_type,
+                                req.body.ambient_capacity]);
         res.json({message: 'Ambient updated!'});
     }
 

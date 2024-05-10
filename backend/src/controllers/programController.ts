@@ -28,8 +28,8 @@ class ProgramController{
     }
 
     public async create (req: Request,res: Response){
-        const sql=`CALL createProgram(?, ?)`;
-        await pool.query(sql, [req.body.program_id,req.body.program_name]);
+        const sql=`CALL createProgram(?)`;
+        await pool.query(sql, [req.body.program_name]);
         res.json({message: 'Program saved!'});
     }
 

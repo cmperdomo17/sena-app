@@ -13,62 +13,67 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
-class AmbientController {
-    ListAmbients(req, res) {
+class TeacherController {
+    ListTeachers(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL listAmbients()`;
-            const ambientsList = yield new Promise((resolve, reject) => {
+            const sql = `CALL listTeachers()`;
+            const teachersList = yield new Promise((resolve, reject) => {
                 database_1.default.query(sql, (err, rows, fields) => {
                     if (err)
                         reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(rows); // Si no, resolvemos con el resultado
                 });
             });
-            res.json(ambientsList[0]);
+            res.json(teachersList[0]);
         });
     }
-    getAmbient(req, res) {
+    getTeacher(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL getAmbient(?)`;
-            const ambient = yield new Promise((resolve, reject) => {
+            const sql = `CALL getTeacher(?)`;
+            const teacher = yield new Promise((resolve, reject) => {
                 database_1.default.query(sql, [req.params.id], (err, rows, fields) => {
                     if (err)
                         reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(rows); // Si no, resolvemos con el resultado
                 });
             });
-            res.json(ambient[0]);
+            res.json(teacher[0]);
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL createAmbient(?, ?, ?, ?, ?)`;
-            yield database_1.default.query(sql, [req.body.ambient_id,
-                req.body.ambient_name,
-                req.body.ambient_location,
-                req.body.ambient_type,
-                req.body.ambient_capacity]);
-            res.json({ message: 'Ambient saved!' });
+            const sql = `CALL createTeacher(?, ?, ?, ?, ?, ?, ?)`;
+            yield database_1.default.query(sql, [req.body.teacher_name,
+                req.body.teacher_lastname,
+                req.body.teacher_dnitype,
+                req.body.teacher_dni,
+                req.body.teacher_type,
+                req.body.teacher_contracttype,
+                req.body.teacher_area]);
+            res.json({ message: 'Teacher saved!' });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL updateAmbient(?, ?, ?, ?, ?)`;
+            const sql = `CALL updateTeacher(?, ?, ?, ?, ?)`;
             yield database_1.default.query(sql, [req.params.id,
-                req.body.ambient_name,
-                req.body.ambient_location,
-                req.body.ambient_type,
-                req.body.ambient_capacity]);
-            res.json({ message: 'Ambient updated!' });
+                req.body.teacher_name,
+                req.body.teacher_lastname,
+                req.body.teacher_dnitype,
+                req.body.teacher_dni,
+                req.body.teacher_type,
+                req.body.teacher_contracttype,
+                req.body.teacher_area]);
+            res.json({ message: 'Teacher updated!' });
         });
     }
     changeState(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL changeStateAmbient(?, ?)`;
+            const sql = `CALL changeStateTeacher(?, ?)`;
             yield database_1.default.query(sql, [req.params.id, req.params.state]);
-            res.json({ message: 'Ambient state changed!' });
+            res.json({ message: 'Teacher state changed!' });
         });
     }
 }
-const ambientController = new AmbientController();
-exports.default = ambientController;
+const teacherController = new TeacherController();
+exports.default = teacherController;
