@@ -8,6 +8,12 @@ import { AmbientsService } from '../../../services/ambients.service';
 })
 
 export class EnvironmentManagementComponent implements OnInit{
+  isSidebarVisible: boolean = true;
+
+  toggleSidebar() {
+    this.isSidebarVisible = !this.isSidebarVisible;
+  }
+
   listAmbients: any = [];
 
   constructor(private ambientsService: AmbientsService) {}

@@ -8,7 +8,12 @@ import { TeachersService } from '../../../services/teachers.service';
 })
 
 export class TeachersManagementComponent implements OnInit{
+  isSidebarVisible: boolean = true;
 
+  toggleSidebar() {
+    this.isSidebarVisible = !this.isSidebarVisible;
+  }
+  
   listTeachers: any = [];
   
   constructor(private teachersService: TeachersService) {}
