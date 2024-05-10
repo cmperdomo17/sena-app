@@ -29,6 +29,6 @@ export class AmbientsService {
   }
 
   changeStateAmbient(id: number, state: number) {
-    return this.http.put(`${this.API_URI}/ambients/${id}`, state);
+    return this.http.put(`${this.API_URI}/ambients/${id}/${state}`, null);
   }
 }

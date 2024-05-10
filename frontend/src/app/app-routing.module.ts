@@ -8,6 +8,7 @@ import { TeachersManagementComponent } from './components/pages/teachers-managem
 import { ProgramsManagementComponent } from './components/pages/programs-management/programs-management.component';
 import { ScheduleManagementComponent } from './components/pages/schedule-management/schedule-management.component';
 import { PeriodManagementComponent } from './components/pages/period-management/period-management.component';
+import { CompetencesManagementComponent } from './components/pages/competences-management/competences-management.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'teachers', component: TeachersManagementComponent},
   {path: 'programs', component: ProgramsManagementComponent},
   {path: 'schedules', component: ScheduleManagementComponent},
-  {path: 'periods', component: PeriodManagementComponent}
+  {path: 'periods', component: PeriodManagementComponent},
+  {path: 'competences', component: CompetencesManagementComponent}
 ];
 
 @NgModule({

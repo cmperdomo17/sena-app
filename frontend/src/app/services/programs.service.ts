@@ -28,6 +28,6 @@ export class ProgramsService {
   }
 
   changeStateAmbient(id: number, state: number) {
-    return this.http.put(`${this.API_URI}/programs/${id}/${state}`, );
+    return this.http.put(`${this.API_URI}/programs/${id}/${state}`, null);
   }
 }

@@ -31,12 +31,27 @@ export class TeachersManagementComponent implements OnInit{
     )
   }
 
-  editAmbient(id: number) {
+  editTeacher(id: number) {
     console.log('Teacher to be edited: ' + id);
   }
 
-  inactivateAmbient(id: number) {
-    console.log('Teacher to be inactivated: ' + id);
+  changeStateTeacher(id: number, state: number) {
+    let message = '';
+    if(state == 1) {
+      message = '¿Estás seguro de que deseas inactivar el profesor?'
+    }
+    else {
+      message = '¿Estás seguro de que deseas activar el profesor?'
+    }
+    if(window.confirm(message)){
+      this.teachersService.changeStateTeacher(id, state).subscribe(
+        res => {
+          console.log(res);
+          this.getTeachers();
+        },
+        err => console.log(err)
+      )
+    }
   }
   
 
