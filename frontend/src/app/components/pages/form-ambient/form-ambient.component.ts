@@ -15,7 +15,7 @@ export class FormAmbientComponent implements OnInit {
   @HostBinding('class') classes = 'formulario1';
 
   ambient: Ambient = {
-    ambient_id: 0,
+    ambient_id: '',
     ambient_name: '',
     ambient_location: '',
     ambient_type: '',

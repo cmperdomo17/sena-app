@@ -16,7 +16,7 @@ export class AmbientsService {
     return this.http.get(`${this.API_URI}/ambients`);
   }
 
-  getAmbient(id: number) {
+  getAmbient(id: string) {
     return this.http.get(`${this.API_URI}/ambients/${id}`);
   }
 
@@ -24,11 +24,11 @@ export class AmbientsService {
     return this.http.post(`${this.API_URI}/ambients`, ambient);
   }
 
-  updateAmbient(id: number, updatedAmbient: Ambient) {
+  updateAmbient(id: string, updatedAmbient: Ambient) {
     return this.http.put(`${this.API_URI}/ambients/${id}`, updatedAmbient);
   }
 
-  changeStateAmbient(id: number, state: number) {
+  changeStateAmbient(id: string, state: number) {
     return this.http.put(`${this.API_URI}/ambients/${id}/${state}`, null);
   }
 }
