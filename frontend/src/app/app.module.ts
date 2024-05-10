@@ -6,7 +6,6 @@ import { ButtonDarkmodeComponent } from './components/buttons/button-darkmode/bu
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { SigninComponent } from './components/pages/signin/signin.component';
 import { AmbientsManagementComponent } from './components/pages/ambients-management/ambients-management.component';
 import { TeachersManagementComponent } from './components/pages/teachers-management/teachers-management.component';
 import { ProgramsManagementComponent } from './components/pages/programs-management/programs-management.component';
@@ -27,7 +26,6 @@ import { ControlSideBarComponent } from './components/control-side-bar/control-s
     HomeComponent,
     LoginComponent,
     FooterComponent,
-    SigninComponent,
     AmbientsManagementComponent,
     TeachersManagementComponent,
     ProgramsManagementComponent,

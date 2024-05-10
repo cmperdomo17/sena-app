@@ -23,51 +23,6 @@ input {
     color: #fff;
 }
 
-.login {
-    background-color: #1f2634;
-    color: #fff;
-    transition: background-color 0.6s ease;
-}
-
-.login input {
-    background-color: #10141c;
-    color: #fff;
-    transition: background-color 0.6s ease;
-}
-
-.login button {
-    background-color: #6ebae9;
-    color: #10141c;
-    transition: background-color 0.6s ease;
-    transition: color 0.6s ease;
-}
-
-.login button:hover {
-    background-color: #4d9ccd;
-    transition: background-color 0.6s ease;
-}
-
-.login .title_login {
-    color: #6ebae9;
-    transition: color 0.6s ease;
-}
-
-.login p {
-    color: #fff;
-    transition: color 0.6s ease;
-}
-
-.login a {
-    color: #6ebae9;
-    transition: color 0.6s ease;
-}
-
-.footer_principal {
-    background-color: #6ebae9;
-    color: #10141c;
-    transition: background-color 0.6s ease;
-}
-
 ::-webkit-scrollbar {
     width: 10px;
 }

@@ -6,9 +6,10 @@ import { Component } from '@angular/core';
   styleUrl: './control-side-bar.component.css'
 })
 export class ControlSideBarComponent {
-  isSidebarVisible: boolean = false;
+  isSidebarVisible: boolean = true;
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;
   }
+
 }
