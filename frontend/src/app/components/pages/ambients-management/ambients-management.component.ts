@@ -38,10 +38,10 @@ export class AmbientsManagementComponent implements OnInit{
   changeStateAmbient(id: number, state: number) {
     let message = '';
     if(state == 1) {
-      message = '¿Estás seguro que deseas inactivar el ambiente?'
+      message = '¿Estás seguro de que deseas inactivar el ambiente?'
     }
     else {
-      message = '¿Estás seguro que deseas activar el ambiente?'
+      message = '¿Estás seguro de que deseas activar el ambiente?'
     }
     if(window.confirm(message)){
       this.ambientsService.changeStateAmbient(id, state).subscribe(

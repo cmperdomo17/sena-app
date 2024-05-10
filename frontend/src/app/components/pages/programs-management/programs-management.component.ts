@@ -34,7 +34,22 @@ export class ProgramsManagementComponent implements OnInit{
     console.log('Program  to be edited: ' + id);
   }
 
-  inactivateProgram (id: number) {
-    console.log('Program  to be inactivated ' + id);
+  changeStateProgram (id: number, state: number) {
+    let message = '';
+    if(state == 1) {
+      message = '¿Estás seguro que deseas inactivar el programa?'
+    }
+    else {
+      message = '¿Estás seguro que deseas activar el programa?'
+    }
+    if(window.confirm(message)){
+      this.programsService.changeStateAmbient(id, state).subscribe(
+        res => {
+          console.log(res);
+          this.getPrograms();
+        },
+        err => console.log(err)
+      )
+    }
   }
 }

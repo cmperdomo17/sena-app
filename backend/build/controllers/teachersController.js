@@ -13,54 +13,67 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
-class ProgramController {
-    ListPrograms(req, res) {
+class TeacherController {
+    ListTeachers(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL listPrograms()`;
-            const programsList = yield new Promise((resolve, reject) => {
+            const sql = `CALL listTeachers()`;
+            const teachersList = yield new Promise((resolve, reject) => {
                 database_1.default.query(sql, (err, rows, fields) => {
                     if (err)
                         reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(rows); // Si no, resolvemos con el resultado
                 });
             });
-            res.json(programsList[0]);
+            res.json(teachersList[0]);
         });
     }
-    getProgram(req, res) {
+    getTeacher(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL getProgram(?)`;
-            const program = yield new Promise((resolve, reject) => {
+            const sql = `CALL getTeacher(?)`;
+            const teacher = yield new Promise((resolve, reject) => {
                 database_1.default.query(sql, [req.params.id], (err, rows, fields) => {
                     if (err)
                         reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(rows); // Si no, resolvemos con el resultado
                 });
             });
-            res.json(program[0]);
+            res.json(teacher[0]);
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL createProgram(?)`;
-            yield database_1.default.query(sql, [req.body.program_name]);
-            res.json({ message: 'Program saved!' });
+            const sql = `CALL createTeacher(?, ?, ?, ?, ?, ?, ?)`;
+            yield database_1.default.query(sql, [req.body.teacher_name,
+                req.body.teacher_lastname,
+                req.body.teacher_dnitype,
+                req.body.teacher_dni,
+                req.body.teacher_type,
+                req.body.teacher_contracttype,
+                req.body.teacher_area]);
+            res.json({ message: 'Teacher saved!' });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL updateProgram(?, ?)`;
-            yield database_1.default.query(sql, [req.params.id, req.body.program_name]);
-            res.json({ message: 'Program updated!' });
+            const sql = `CALL updateTeacher(?, ?, ?, ?, ?)`;
+            yield database_1.default.query(sql, [req.params.id,
+                req.body.teacher_name,
+                req.body.teacher_lastname,
+                req.body.teacher_dnitype,
+                req.body.teacher_dni,
+                req.body.teacher_type,
+                req.body.teacher_contracttype,
+                req.body.teacher_area]);
+            res.json({ message: 'Teacher updated!' });
         });
     }
     changeState(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL changeStateProgram(?, ?)`;
+            const sql = `CALL changeStateTeacher(?, ?)`;
             yield database_1.default.query(sql, [req.params.id, req.params.state]);
-            res.json({ message: 'Program state changed!' });
+            res.json({ message: 'Teacher state changed!' });
         });
     }
 }
-const programController = new ProgramController();
-exports.default = programController;
+const teacherController = new TeacherController();
+exports.default = teacherController;

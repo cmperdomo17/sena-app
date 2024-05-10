@@ -27,7 +27,7 @@ export class ProgramsService {
     return this.http.put(`${this.API_URI}/programs/${id}`, updatedProgram);
   }
 
-  // changeStateAmbient(id: number, state: number) {
-  //   return this.http.put(`${this.API_URI}/programs/${id}/${state}`, );
-  // }
+  changeStateAmbient(id: number, state: number) {
+    return this.http.put(`${this.API_URI}/programs/${id}/${state}`, null);
+  }
 }

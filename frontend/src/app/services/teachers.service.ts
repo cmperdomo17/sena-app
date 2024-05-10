@@ -28,8 +28,8 @@ export class TeachersService {
     return this.http.put(`${this.API_URI}/teachers/${id}`, updatedTeacher);
   }
 
-  inativateAmbient(id: number, inactivatedTeacher: Teacher) {
-    return this.http.put(`${this.API_URI}/teacher/${id}`, inactivatedTeacher);
+  changeStateTeacher(id: number, state: number) {
+    return this.http.put(`${this.API_URI}/teacher/${id}/${state}`, null);
   }
 
 }

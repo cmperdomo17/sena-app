@@ -29,7 +29,7 @@ export class CompetencesService {
   }
 
   changeStateCompetence(id: number, state: number) {
-    return this.http.put(`${this.API_URI}/competences/${id}`, state);
+    return this.http.put(`${this.API_URI}/competences/${id}/${state}`, null);
   }
 
 }
