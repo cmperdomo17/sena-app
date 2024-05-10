@@ -239,7 +239,7 @@ begin
    values (ambientid,ambientname,ambientlocation,ambienttype,ambientcapacity, 1);
 end;
 
-create procedure updateAmbient(in ambientid int, 
+create procedure updateAmbient(in ambientid varchar(6), 
                               in ambientname varchar(100), 
                               in ambientlocation varchar(100), 
                               in ambienttype varchar(50),
@@ -253,7 +253,7 @@ begin
    where ambient_id=ambientid;
 end;
 
-create procedure changeStateAmbient(in ambientid int, in ambientstate int)
+create procedure changeStateAmbient(in ambientid varchar(6), in ambientstate int)
 begin
    update ambient set ambient_state = ambientstate where ambient_id=ambientid;
 end;  
@@ -316,6 +316,46 @@ $$
 DELIMITER ;
 
 /*==============================================================*/
+/* Procedures Periods                                           */
+/*==============================================================*/
+DELIMITER $$
+create procedure listPeriods()
+begin
+   select * from `period`;
+end;
+
+create procedure getPeriod(in periodid int)
+begin
+   select * from `period` where period_id=periodid;
+end;
+
+create procedure createPeriod(in periodstartdate varchar(40),
+                              in periodenddate varchar(40),
+                              in periodname varchar(50))
+begin
+   insert into `period` (period_start_date,period_end_date,period_name, period_state)
+   values (periodstartdate,periodenddate,periodname,1);
+end;
+
+create procedure updatePeriod(in periodid int,
+                              in periodstartdate varchar(40),
+                              in periodenddate varchar(40),
+                              in periodname varchar(50))
+begin
+   update `period` set period_start_date=periodstartdate,
+   period_end_date=periodenddate,
+   period_name=periodname
+   where period_id=periodid;
+end;
+
+create procedure changeStatePeriod(in periodid int, in periodstate int)
+begin
+   update `period` set period_state=periodstate where period_id=periodid;
+end;
+
+$$
+DELIMITER ;
+/*==============================================================*/
 /* Datos de prueba                                              */
 /*==============================================================*/
 
@@ -332,3 +372,8 @@ insert into teacher (teacher_name,teacher_lastname,teacher_dnitype,teacher_dni,t
 values ("Francisco","Javier","CC","123456789","tecnico","PT","Software",1);
 insert into teacher (teacher_name,teacher_lastname,teacher_dnitype,teacher_dni,teacher_type,teacher_contracttype,teacher_area, teacher_state)
 values ("Ricardo","Zambrano","CC","987654321","profesional","CNT","Arquitectura de software",1);
+
+insert into `period` (period_start_date,period_end_date,period_name, period_state)
+values ("20/01/2024","20/06/2024","2024.1",1);
+insert into `period` (period_start_date,period_end_date,period_name, period_state)
+values ("20/07/2024","20/012/2024","2024.2",1);

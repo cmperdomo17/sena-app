@@ -40,7 +40,7 @@ class TeacherController{
     }
 
     public async update (req: Request,res: Response){
-        const sql=`CALL updateTeacher(?, ?, ?, ?, ?)`;
+        const sql=`CALL updateTeacher(?, ?, ?, ?, ?, ?, ?, ?)`;
         await pool.query(sql, [req.params.id,
                                 req.body.teacher_name,
                                 req.body.teacher_lastname,

@@ -5,6 +5,7 @@ import cors from 'cors';
 import programsRoutes from './routes/programsRoutes';
 import ambientsRoutes from './routes/ambientsRoutes';
 import teachersRoutes from './routes/teachersRoutes';
+import periodsRoutes from './routes/periodsRoutes';
 
 class Server{
 
@@ -29,6 +30,7 @@ class Server{
         this.app.use('/api/programs',programsRoutes);
         this.app.use('/api/ambients',ambientsRoutes);
         this.app.use('/api/teachers',teachersRoutes);
+        this.app.use('/api/periods',periodsRoutes);
     }
 
     start(): void{
