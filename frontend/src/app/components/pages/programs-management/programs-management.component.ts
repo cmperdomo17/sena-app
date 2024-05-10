@@ -7,7 +7,7 @@ import { ProgramsService } from '../../../services/programs.service';
   styleUrl: './programs-management.component.css'
 })
 export class ProgramsManagementComponent implements OnInit{
-  isSidebarVisible: boolean = false;
+  isSidebarVisible: boolean = true;
 
   toggleSidebar() {
     this.isSidebarVisible = !this.isSidebarVisible;

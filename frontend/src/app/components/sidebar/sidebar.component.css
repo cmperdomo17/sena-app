@@ -17,7 +17,7 @@
 
 .value {
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 500;
     background-color: transparent;
     border: none;
     padding: 10px;
@@ -38,13 +38,13 @@
     color: #fff;
 }
 
-.value:focus,
+/* .value:focus,
 .value:active {
     background-color: #1a1f24;
     outline: none;
     margin-left: 17px;
-}
-
+} */
+/* 
 .value::before {
     content: "";
     position: absolute;
@@ -56,7 +56,7 @@
     border-radius: 5px;
     opacity: 0;
     transition: 1s;
-}
+} */
 
 .value:focus::before,
 .value:active::before {
