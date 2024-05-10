@@ -31,11 +31,11 @@ export class AmbientsManagementComponent implements OnInit{
     )
   }
 
-  editAmbient(id: number) {
+  editAmbient(id: string) {
     console.log('Ambient to be edited: ' + id);
   }
 
-  changeStateAmbient(id: number, state: number) {
+  changeStateAmbient(id: string, state: number) {
     let message = '';
     if(state == 1) {
       message = '¿Estás seguro de que deseas inactivar el ambiente?'

@@ -17,6 +17,7 @@ import { PeriodManagementComponent } from './components/pages/period-management/
 import { ScheduleManagementComponent } from './components/pages/schedule-management/schedule-management.component';
 import { CompetencesManagementComponent } from './components/pages/competences-management/competences-management.component';
 import { FormAmbientComponent } from './components/pages/form-ambient/form-ambient.component';
+import { FormCompetenceComponent } from './components/pages/form-competence/form-competence.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FormAmbientComponent } from './components/pages/form-ambient/form-ambie
     PeriodManagementComponent,
     ScheduleManagementComponent,
     CompetencesManagementComponent,
-    FormAmbientComponent
+    FormAmbientComponent,
+    FormCompetenceComponent
   ],
   imports: [
     BrowserModule,
