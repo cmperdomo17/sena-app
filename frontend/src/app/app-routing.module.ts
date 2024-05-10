@@ -9,6 +9,7 @@ import { ProgramsManagementComponent } from './components/pages/programs-managem
 import { ScheduleManagementComponent } from './components/pages/schedule-management/schedule-management.component';
 import { PeriodManagementComponent } from './components/pages/period-management/period-management.component';
 import { CompetencesManagementComponent } from './components/pages/competences-management/competences-management.component';
+import { FormAmbientComponent } from './components/pages/form-ambient/form-ambient.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'programs', component: ProgramsManagementComponent},
   {path: 'schedules', component: ScheduleManagementComponent},
   {path: 'periods', component: PeriodManagementComponent},
-  {path: 'competences', component: CompetencesManagementComponent}
+  {path: 'competences', component: CompetencesManagementComponent},
+  {path: 'ambients/form', component: FormAmbientComponent},
 ];
 
 @NgModule({

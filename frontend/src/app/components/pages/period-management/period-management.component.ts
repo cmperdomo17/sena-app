@@ -6,9 +6,4 @@ import { Component } from '@angular/core';
   styleUrl: './period-management.component.css'
 })
 export class PeriodManagementComponent {
-  isSidebarVisible: boolean = false;
-
-  toggleSidebar() {
-    this.isSidebarVisible = !this.isSidebarVisible;
-  }
 }

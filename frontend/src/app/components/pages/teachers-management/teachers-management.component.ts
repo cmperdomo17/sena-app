@@ -8,11 +8,6 @@ import { TeachersService } from '../../../services/teachers.service';
 })
 
 export class TeachersManagementComponent implements OnInit{
-  isSidebarVisible: boolean = false;
-
-  toggleSidebar() {
-    this.isSidebarVisible = !this.isSidebarVisible;
-  }
   
   listTeachers: any = [];
   

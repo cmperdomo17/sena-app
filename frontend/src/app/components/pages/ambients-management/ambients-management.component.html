@@ -1,9 +1,8 @@
-<header class="fixed z-10">
-    <app-header (toggleSidebarEvent)="toggleSidebar()"></app-header>
-</header>
+<app-control-side-bar></app-control-side-bar>
 
-<div class="flex justify-center items-center h-screen z-0">
+<div class="flex justify-center items-center h-screen z-0 flex-col gap-6">
     <h1 class="text-2xl font-semibold">Ambientes</h1>
+    <button routerLink="/ambients/form" class="bg-blue-300 text-slate-950 rounded-xl p-2 text-xl font-bold">
+        Crear Ambiente
+    </button>
 </div>
-
-<app-sidebar *ngIf="isSidebarVisible"></app-sidebar>

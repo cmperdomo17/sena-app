@@ -6,9 +6,4 @@ import { Component } from '@angular/core';
   styleUrl: './schedule-management.component.css'
 })
 export class ScheduleManagementComponent {
-  isSidebarVisible: boolean = false;
-
-  toggleSidebar() {
-    this.isSidebarVisible = !this.isSidebarVisible;
-  }
 }

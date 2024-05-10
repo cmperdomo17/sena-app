@@ -1,0 +1,5 @@
+<header class="fixed z-10">
+    <app-header (toggleSidebarEvent)="toggleSidebar()"></app-header>
+</header>
+
+<app-sidebar *ngIf="isSidebarVisible"></app-sidebar>
