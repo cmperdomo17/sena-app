@@ -1,0 +1,4 @@
+<input [attr.list]="listId" [placeholder]="placeholder">
+<datalist [id]="listId">
+    <option *ngFor="let option of options" [value]="option"></option>
+</datalist>

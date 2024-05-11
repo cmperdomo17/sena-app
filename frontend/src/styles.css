@@ -32,6 +32,6 @@ input {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #6ebae9;
+    background: #fff;
     border-radius: 50px;
 }

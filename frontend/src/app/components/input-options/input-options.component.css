@@ -1,0 +1,17 @@
+input {
+    width: 100%;
+    border-radius: 1rem;
+    color: #fff;
+    padding-left: .8rem;
+    padding-right: .3rem;
+    padding-top: .3rem;
+    padding-bottom: .3rem;
+    background-color: transparent;
+    border: solid 1.5px #c8c8c8;
+    font-size: 1rem;
+}
+
+input:focus, input:not(:placeholder-shown) {
+    outline: none;
+    border: 1.5px solid #47a8f8;
+}

@@ -1,10 +1,17 @@
 <app-control-side-bar></app-control-side-bar>
 
 <div class="flex justify-center items-center h-screen z-0 flex-col gap-6">
+    <a routerLink="/ambients">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="36"  height="36"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l4 4" /><path d="M5 12l4 -4" /></svg>
+    </a>
     <h1 class="text-2xl font-semibold">Formulario Ambientes</h1>
     <app-input label="ID"></app-input>
     <app-input label="Nombre"></app-input>
     <app-input label="Capacidad"></app-input>
     <app-input label="Ubicación"></app-input>
+    <div class="flex justify-between items-center gap-4">
+        <p class="text-md font-semibold">Tipo:</p>
+        <app-input-radio label1="Presencial" label2="Virtual"></app-input-radio>
+    </div>
     <app-button-save routerLink="/ambients"></app-button-save>
 </div>

@@ -20,6 +20,11 @@ import { FormCompetenceComponent } from './components/pages/form-competence/form
 import { ControlSideBarComponent } from './components/control-side-bar/control-side-bar.component';
 import { InputComponent } from './components/input/input.component';
 import { ButtonSaveComponent } from './components/buttons/button-save/button-save.component';
+import { InputCheckboxComponent } from './components/input-checkbox/input-checkbox.component';
+import { InputRadioComponent } from './components/input-radio/input-radio.component';
+import { ButtonComponent } from './components/buttons/button/button.component';
+import { InputOptionsComponent } from './components/input-options/input-options.component';
+import { FormScheduleComponent } from './components/pages/form-schedule/form-schedule.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,12 @@ import { ButtonSaveComponent } from './components/buttons/button-save/button-sav
     FormCompetenceComponent,
     ControlSideBarComponent,
     InputComponent,
-    ButtonSaveComponent
+    ButtonSaveComponent,
+    InputCheckboxComponent,
+    InputRadioComponent,
+    ButtonComponent,
+    InputOptionsComponent,
+    FormScheduleComponent
   ],
   imports: [
     BrowserModule,

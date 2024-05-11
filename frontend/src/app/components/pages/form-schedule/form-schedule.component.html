@@ -4,13 +4,11 @@
     <a routerLink="/competences">
         <svg  xmlns="http://www.w3.org/2000/svg"  width="36"  height="36"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l4 4" /><path d="M5 12l4 -4" /></svg>
     </a>
-    <h1 class="text-2xl font-semibold">Formulario Competencias</h1>
-    <app-input label="ID"></app-input>
-    <app-input label="Nombre"></app-input>
-    <app-input-options listId="ProgramsList" [options]="['Programa 1', 'Programa 2', 'Programa 3']" placeholder="Programa"></app-input-options>
-    <div class="flex justify-between items-center gap-4">
-        <p class="text-md font-semibold">Tipo:</p>
-        <app-input-radio label1="Específica" label2="Genérica"></app-input-radio>
-    </div>
+    <h1 class="text-2xl font-semibold">Formulario Horarios</h1>
+    <app-input label="Periodo"></app-input>
+    <app-input label="Docente"></app-input>
+    <app-input label="Franja horaria"></app-input>
+    <app-input-options listId="competencesList" [options]="['Competencia 1', 'Competencia 2', 'Competencia 3']" placeholder="Competencia"></app-input-options>
+    <app-input-options listId="ambientsList" [options]="['Ambiente 1', 'Ambiente 2', 'Ambiente 3']" placeholder="Ambiente"></app-input-options>
     <app-button-save routerLink="/competences"></app-button-save>
 </div>
