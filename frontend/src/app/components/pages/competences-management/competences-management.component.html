@@ -1,6 +1,21 @@
 <app-control-side-bar></app-control-side-bar>
 
-<div class="flex justify-center items-center h-screen z-0 flex-col gap-6">
+<div class="flex justify-center items-center h-screen z-0 flex-col gap-6 py-10">
     <h1 class="text-2xl font-semibold">Competencias</h1>
-    <app-button routerLink="/competences/form">Crear Competencias</app-button>
+    <app-table-crud 
+        [headers]="['ID', 'Tipo', 'Programa', 'Nombre', 'Acciones']"
+        [rows]="[
+            ['1', 'Genérica', 'Ingeniería de Sistemas', 'Comunicación efectiva'],
+            ['2', 'Genérica', 'Ingeniería de Sistemas', 'Trabajo en equipo'],
+            ['3', 'Genérica', 'Ingeniería de Sistemas', 'Pensamiento crítico'],
+            ['4', 'Genérica', 'Ingeniería de Sistemas', 'Resolución de problemas'],
+            ['5', 'Genérica', 'Ingeniería de Sistemas', 'Creatividad'],
+            ['6', 'Genérica', 'Ingeniería de Sistemas', 'Ética'],
+            ['7', 'Genérica', 'Ingeniería de Sistemas', 'Responsabilidad'],
+            ['8', 'Genérica', 'Ingeniería de Sistemas', 'Innovación'],
+            ['9', 'Genérica', 'Ingeniería de Sistemas', 'Adaptabilidad'],
+            ['10', 'Genérica', 'Ingeniería de Sistemas', 'Liderazgo']
+        ]">
+    </app-table-crud>
+    <app-button routerLink="/competences/form">Crear Competencia</app-button>
 </div>

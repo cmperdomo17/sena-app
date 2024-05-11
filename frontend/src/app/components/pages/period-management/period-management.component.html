@@ -2,5 +2,21 @@
 
 <div class="flex justify-center items-center h-screen z-0 flex-col gap-6">
     <h1 class="text-2xl font-semibold">Periodos</h1>
-    <app-button routerLink="/periods/form">Crear Periodos</app-button>
+    <app-table-crud 
+        [headers]="['Nombre', 'Fecha de Inicio', 'Fecha de Fin', 'Acciones']"
+        [rows]="[
+            ['Periodo 1', '2021-01-01', '2021-06-30'],
+            ['Periodo 2', '2021-07-01', '2021-12-31'],
+            ['Periodo 3', '2022-01-01', '2022-06-30'],
+            ['Periodo 4', '2022-07-01', '2022-12-31'],
+            ['Periodo 5', '2023-01-01', '2023-06-30'],
+            ['Periodo 6', '2023-07-01', '2023-12-31'],
+            ['Periodo 7', '2024-01-01', '2024-06-30'],
+            ['Periodo 8', '2024-07-01', '2024-12-31'],
+            ['Periodo 9', '2025-01-01', '2025-06-30'],
+            ['Periodo 10', '2025-07-01', '2025-12-31']
+        ]">
+    </app-table-crud>
+    <app-button routerLink="/periods/form">Crear Periodo</app-button>
+
 </div>

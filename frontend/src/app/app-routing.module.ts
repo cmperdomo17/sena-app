@@ -12,6 +12,7 @@ import { CompetencesManagementComponent } from './components/pages/competences-m
 import { FormAmbientComponent } from './components/pages/form-ambient/form-ambient.component';
 import { FormCompetenceComponent } from './components/pages/form-competence/form-competence.component';
 import { FormScheduleComponent } from './components/pages/form-schedule/form-schedule.component';
+import { UserViewComponent } from './components/pages/user-view/user-view.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -24,8 +25,8 @@ const routes: Routes = [
   {path: 'competences', component: CompetencesManagementComponent},
   {path: 'ambients/form', component: FormAmbientComponent},
   {path: 'competences/form', component: FormCompetenceComponent},
-  {path: 'schedules/form', component: FormScheduleComponent}
-
+  {path: 'schedules/form', component: FormScheduleComponent},
+  {path: 'user', component: UserViewComponent}
 ];
 
 @NgModule({

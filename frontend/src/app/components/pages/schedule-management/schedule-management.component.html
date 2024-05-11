@@ -5,155 +5,25 @@
     <app-input-options listId="periodsList" [options]="['Periodo 1', 'Periodo 2', 'Periodo 3']" placeholder="Periodos"></app-input-options>
     <app-input-options listId="teachersList" [options]="['Docente 1', 'Docente 2', 'Docente 3']" placeholder="Docente"></app-input-options>
     <app-button-search></app-button-search>
-    <table>
-        <thead class="bg-white">
-            <tr class="text-slate-900">
-                <th>Hora</th>
-                <th>Lunes</th>
-                <th>Martes</th>
-                <th>Miercoles</th>
-                <th>Jueves</th>
-                <th>Viernes</th>
-                <th>Sabado</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>7:00</td>
-                <td>Clase</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>8:00</td>
-                <td></td>
-                <td>Clase</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>9:00</td>
-                <td></td>
-                <td></td>
-                <td>Clase</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>10:00</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Clase</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>11:00</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Clase</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>12:00</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Clase</td>
-            </tr>
-            <tr>
-                <td>13:00</td>
-                <td>Clase</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>14:00</td>
-                <td></td>
-                <td>Clase</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>15:00</td>
-                <td></td>
-                <td></td>
-                <td>Clase</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>16:00</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Clase</td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>17:00</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Clase</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>18:00</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Clase</td>
-            </tr>
-            <tr>
-                <td>19:00</td>
-                <td>Clase</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>20:00</td>
-                <td></td>
-                <td>Clase</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>21:00</td>
-                <td></td>
-                <td></td>
-                <td>Clase</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
-    <app-button routerLink="/schedules/form">Crear Horarios</app-button>
+    <app-table-schedule
+        [headers]="['Hora', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']"
+        [rows]="[
+            ['7:00', 'Clase', '', '', '', '', ''],
+            ['8:00', '', 'Clase', '', '', '', ''],
+            ['9:00', '', '', 'Clase', '', '', ''],
+            ['10:00', '', '', '', 'Clase', '', ''],
+            ['11:00', '', '', '', '', 'Clase', ''],
+            ['12:00', '', '', '', '', '', 'Clase'],
+            ['13:00', 'Clase', '', '', '', '', ''],
+            ['14:00', '', 'Clase', '', '', '', ''],
+            ['15:00', '', '', 'Clase', '', '', ''],
+            ['16:00', '', '', '', 'Clase', '', ''],
+            ['17:00', '', '', '', '', 'Clase', ''],
+            ['18:00', '', '', '', '', '', 'Clase'],
+            ['19:00', 'Clase', '', '', '', '', ''],
+            ['20:00', '', 'Clase', '', '', '', ''],
+            ['21:00', '', '', 'Clase', '', '', '']
+        ]">
+    </app-table-schedule>
+    <app-button routerLink="/schedules/form">Crear Horario</app-button>
 </div>

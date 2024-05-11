@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +7,14 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderComponent {
   @Output() toggleSidebarEvent = new EventEmitter<void>();
+  @Input() showSidebarToggle: boolean = true;
+  @Input() showProfileButton: boolean = true;
 
   toggleSidebar() {
     this.toggleSidebarEvent.emit();
+  }
+
+  confirmSignout() {
+    return window.confirm('¿Seguro que quieres cerrar sesión?');
   }
 }

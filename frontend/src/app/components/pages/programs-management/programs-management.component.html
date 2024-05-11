@@ -1,6 +1,21 @@
 <app-control-side-bar></app-control-side-bar>
 
-<div class="flex justify-center items-center h-screen z-0 flex-col gap-6">
+<div class="flex justify-center items-center h-screen z-0 flex-col gap-6 py-10">
     <h1 class="text-2xl font-semibold">Programas</h1>
-    <app-button routerLink="/programs/form">Crear Programas</app-button>
+    <app-table-crud 
+        [headers]="['Código', 'Nombre', 'Acciones']" 
+        [rows]="[
+            ['PG001', 'Ingeniería de Sistemas'],
+            ['PG002', 'Ingeniería Civil'],
+            ['PG003', 'Ingeniería Industrial'],
+            ['PG004', 'Ingeniería Electrónica'],
+            ['PG005', 'Ingeniería Ambiental'],
+            ['PG006', 'Ingeniería Mecánica'],
+            ['PG007', 'Ingeniería de Telecomunicaciones'],
+            ['PG008', 'Ingeniería de Software'],
+            ['PG009', 'Ingeniería Química'],
+            ['PG010', 'Ingeniería Biomédica']
+        ]">
+    </app-table-crud>
+    <app-button routerLink="/programs/form">Crear Programa</app-button>
 </div>

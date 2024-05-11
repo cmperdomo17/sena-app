@@ -1,0 +1,16 @@
+<header class="fixed z-10">
+    <app-header [showProfileButton]="false" [showSidebarToggle]="false"></app-header>
+</header>
+
+<div class="flex justify-center items-center h-screen z-0 flex-col gap-6 py-10">
+    <svg  xmlns="http://www.w3.org/2000/svg"  width="50"  height="50"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-user"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /><path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></svg>
+    <h1 class="text-2xl font-semibold">Datos Personales</h1>
+    <app-table-crud 
+        [headers]="['Nombre', 'Apellidos', 'Tipo de Documento', 'Número de Documento', 'Tipo Docente', 'Tipo Contrato', 'Area']"
+        [rows]="[
+            ['Juan', 'Perez', 'C.C', '123456789', 'Planta', 'Tiempo Completo', 'Ingeniería de Sistemas'],
+        ]"
+        [showActions]="false">
+    </app-table-crud>
+    <app-button routerLink="/home">Volver</app-button>
+</div>

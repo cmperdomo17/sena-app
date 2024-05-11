@@ -1,0 +1,16 @@
+<table>
+    <thead class="bg-white">
+        <tr class="text-slate-900">
+            <th *ngFor="let title of headers">{{ title }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of rows">
+            <td *ngFor="let cell of row">{{ cell }}</td>
+            <td class="flex gap-4" *ngIf="showActions">
+                <app-button-edit></app-button-edit>
+                <app-button-inactivate></app-button-inactivate>
+            </td>
+        </tr>
+    </tbody>
+</table>

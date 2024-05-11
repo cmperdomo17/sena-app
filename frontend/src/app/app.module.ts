@@ -26,6 +26,11 @@ import { ButtonComponent } from './components/buttons/button/button.component';
 import { InputOptionsComponent } from './components/input-options/input-options.component';
 import { FormScheduleComponent } from './components/pages/form-schedule/form-schedule.component';
 import { ButtonSearchComponent } from './components/buttons/button-search/button-search.component';
+import { TableCrudComponent } from './components/table-crud/table-crud.component';
+import { TableScheduleComponent } from './components/table-schedule/table-schedule.component';
+import { ButtonInactivateComponent } from './components/buttons/button-inactivate/button-inactivate.component';
+import { ButtonEditComponent } from './components/buttons/button-edit/button-edit.component';
+import { UserViewComponent } from './components/pages/user-view/user-view.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +57,12 @@ import { ButtonSearchComponent } from './components/buttons/button-search/button
     ButtonComponent,
     InputOptionsComponent,
     FormScheduleComponent,
-    ButtonSearchComponent
+    ButtonSearchComponent,
+    TableCrudComponent,
+    TableScheduleComponent,
+    ButtonInactivateComponent,
+    ButtonEditComponent,
+    UserViewComponent
   ],
   imports: [
     BrowserModule,
