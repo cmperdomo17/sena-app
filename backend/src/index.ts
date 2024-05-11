@@ -6,6 +6,7 @@ import programsRoutes from './routes/programsRoutes';
 import ambientsRoutes from './routes/ambientsRoutes';
 import teachersRoutes from './routes/teachersRoutes';
 import periodsRoutes from './routes/periodsRoutes';
+import competenceRoutes from './routes/competenceRoutes';
 
 class Server{
 
@@ -31,6 +32,7 @@ class Server{
         this.app.use('/api/ambients',ambientsRoutes);
         this.app.use('/api/teachers',teachersRoutes);
         this.app.use('/api/periods',periodsRoutes);
+        this.app.use('/api/competencies',competenceRoutes);
     }
 
     start(): void{

@@ -355,13 +355,85 @@ end;
 
 $$
 DELIMITER ;
+
+/*==============================================================*/
+/* Procedures Competencies                                      */
+/*==============================================================*/
+DELIMITER $$
+create procedure listCompetencies()
+begin
+   select
+    cs.competencespc_id as competence_id,
+    cs.program_id as program_id,
+    cs.competencespc_name as competence_name,
+    cs.competencespc_state as competence_state
+   from competence_specific cs
+
+   union all
+
+   select
+      cg.competencegen_id as competence_id,
+      null as program_id,
+      cg.competencegen_name as competence_name,
+      cg.competencegen_state as competence_state
+   from competence_generic cg;
+end;
+
+create procedure getCompetence(in competenceid int, in competencetype int)
+begin
+   if competencetype=0 then
+      select * from competence_generic where competencegen_id=competenceid;
+   else 
+      select * from competence_specific where competencespc_id=competenceid;
+   end if;
+end;
+
+create procedure createCompetence(in competencename varchar(50),
+                                 in programid int)
+begin
+   if programid is null then
+      insert into competence_generic (competencegen_name, competencegen_state)
+      values (competencename,1);
+   else 
+      insert into competence_specific (program_id, competencespc_name, competencespc_state)
+      values (programid,competencename,1);
+   end if;
+end;
+
+create procedure updateCompetence(in competenceid int,
+                                 in programid int,
+                                 in competencename varchar(50))
+begin
+   if programid is null then
+      update competence_generic set competencegen_name=competencename
+      where competencegen_id=competenceid;
+   else
+      update competence_specific set program_id=programid, competencespc_name=competencename
+      where competencespc_id=competenceid;
+   end if;
+end;
+
+create procedure changeStateCompetence(in competenceid int,
+                                       in competencetype int,
+                                       in competencestate int)
+begin
+   if competencetype=0 then
+      update competence_generic set competencegen_state=competencestate where competencegen_id=competenceid;
+   else 
+      update competence_specific set competencespc_state=competencestate where competencespc_id=competenceid;
+   end if;
+end;
+
+$$
+DELIMITER ;
+
 /*==============================================================*/
 /* Datos de prueba                                              */
 /*==============================================================*/
 
-insert into program (program_name, program_state) values ('Hola',1);
-insert into program (program_name, program_state) values ('Como',1);
-insert into program (program_name, program_state) values ('Estas?',1);
+insert into program (program_name, program_state) values ("Sistemas",1);
+insert into program (program_name, program_state) values ("Medicina",1);
+insert into program (program_name, program_state) values ("Derecho",1);
 
 insert into ambient (ambient_id, ambient_name,ambient_location,ambient_type,ambient_capacity,ambient_state)
 values ("1A1A1","Salon 111","Piso 1","Presencial",20,1);
@@ -377,3 +449,11 @@ insert into `period` (period_start_date,period_end_date,period_name, period_stat
 values ("20/01/2024","20/06/2024","2024.1",1);
 insert into `period` (period_start_date,period_end_date,period_name, period_state)
 values ("20/07/2024","20/012/2024","2024.2",1);
+
+insert into competence_generic (competencegen_name, competencegen_state)
+values ("Calculo 1",1);
+
+insert into competence_specific (program_id, competencespc_name, competencespc_state)
+values (1,"Software 3",1);
+insert into competence_specific (program_id, competencespc_name, competencespc_state)
+values (2,"Anatomia",1);

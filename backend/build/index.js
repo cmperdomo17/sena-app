@@ -10,6 +10,7 @@ const programsRoutes_1 = __importDefault(require("./routes/programsRoutes"));
 const ambientsRoutes_1 = __importDefault(require("./routes/ambientsRoutes"));
 const teachersRoutes_1 = __importDefault(require("./routes/teachersRoutes"));
 const periodsRoutes_1 = __importDefault(require("./routes/periodsRoutes"));
+const competenceRoutes_1 = __importDefault(require("./routes/competenceRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -29,6 +30,7 @@ class Server {
         this.app.use('/api/ambients', ambientsRoutes_1.default);
         this.app.use('/api/teachers', teachersRoutes_1.default);
         this.app.use('/api/periods', periodsRoutes_1.default);
+        this.app.use('/api/competencies', competenceRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {
