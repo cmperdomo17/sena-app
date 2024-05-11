@@ -25,6 +25,7 @@ import { InputRadioComponent } from './components/input-radio/input-radio.compon
 import { ButtonComponent } from './components/buttons/button/button.component';
 import { InputOptionsComponent } from './components/input-options/input-options.component';
 import { FormScheduleComponent } from './components/pages/form-schedule/form-schedule.component';
+import { ButtonSearchComponent } from './components/buttons/button-search/button-search.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { FormScheduleComponent } from './components/pages/form-schedule/form-sch
     InputRadioComponent,
     ButtonComponent,
     InputOptionsComponent,
-    FormScheduleComponent
+    FormScheduleComponent,
+    ButtonSearchComponent
   ],
   imports: [
     BrowserModule,
