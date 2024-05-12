@@ -21,7 +21,7 @@ class CompetenceController {
                 database_1.default.query(sql, (err, rows, fields) => {
                     if (err)
                         reject(err); // En caso de error, resolvemos la Promise con error
-                    resolve(rows); // Si no, resolvemos con el resultado
+                    resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
                 });
             });
             res.json(competenciesList[0]);
@@ -34,7 +34,7 @@ class CompetenceController {
                 database_1.default.query(sql, [req.params.id, req.params.type], (err, rows, fields) => {
                     if (err)
                         reject(err); // En caso de error, resolvemos la Promise con error
-                    resolve(rows); // Si no, resolvemos con el resultado
+                    resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
                 });
             });
             res.json(competence[0]);
