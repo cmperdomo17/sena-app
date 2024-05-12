@@ -7,7 +7,7 @@
     <tbody>
         <tr *ngFor="let row of rows">
             <td *ngFor="let cell of row">{{ cell }}</td>
-            <td class="flex gap-4" *ngIf="showActions">
+            <td class="flex gap-4 td-actions" *ngIf="showActions">
                 <app-button-edit></app-button-edit>
                 <app-button-inactivate></app-button-inactivate>
             </td>
