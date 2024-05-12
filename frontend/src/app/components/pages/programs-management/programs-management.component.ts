@@ -10,6 +10,8 @@ export class ProgramsManagementComponent implements OnInit{
 
   listPrograms: any = [];
 
+  attributes = ['PROGRAM_ID', 'PROGRAM_NAME', 'PROGRAM_STATE'];
+  
   constructor(private programsService: ProgramsService) {}
 
   ngOnInit() {
@@ -19,7 +21,7 @@ export class ProgramsManagementComponent implements OnInit{
   getPrograms() {
     this.programsService.listPrograms().subscribe(
       res => {
-        this.listPrograms=res;
+        this.listPrograms = res;
       },
       err => console.log(err)
     )

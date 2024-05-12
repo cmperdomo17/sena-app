@@ -2,16 +2,10 @@
 
 <div class="flex justify-center items-center h-screen z-0 flex-col gap-6 py-10">
     <h1 class="text-2xl font-semibold">Docentes</h1>
-    <app-table-crud
-        [headers]="['Tipo Documento', 'Número Documento', 'Nombre', 'Apellido', 'Tipo Docente', 'Tipo Contrato', 'Acciones']"
-        [rows]="[
-            ['CC', '123456789', 'Juan', 'Perez', 'Tiempo Completo', 'Termino Indefinido'],
-            ['CC', '987654321', 'Maria', 'Rodriguez', 'Medio Tiempo', 'Termino Fijo'],
-            ['CC', '123456789', 'Juan', 'Perez', 'Tiempo Completo', 'Termino Indefinido'],
-            ['CC', '987654321', 'Maria', 'Rodriguez', 'Medio Tiempo', 'Termino Fijo'],
-            ['CC', '123456789', 'Juan', 'Perez', 'Tiempo Completo', 'Termino Indefinido'],
-            ['CC', '987654321', 'Maria', 'Rodriguez', 'Medio Tiempo', 'Termino Fijo']
-        ]">
-        </app-table-crud>
+    <app-table-crud 
+        [headers]="['ID', 'Nombre', 'Apellido', 'Tipo de Documento', 'Documento', 'Tipo', 'Tipo de Contrato', 'Área', 'Estado']"
+        [attributes]="['TEACHER_ID', 'TEACHER_NAME', 'TEACHER_LASTNAME', 'TEACHER_DNITYPE', 'TEACHER_DNI', 'TEACHER_TYPE', 'TEACHER_CONTRACTTYPE', 'TEACHER_AREA', 'TEACHER_STATE']"
+        [list]="listTeachers">
+    </app-table-crud>
     <app-button routerLink="/teachers/form">Crear Docente</app-button>
 </div>

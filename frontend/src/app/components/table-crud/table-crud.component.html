@@ -5,8 +5,8 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let row of rows">
-            <td *ngFor="let cell of row">{{ cell }}</td>
+        <tr *ngFor="let row of list">
+            <td *ngFor="let atribute of attributes">{{ row[atribute] }}</td>
             <td class="flex gap-1 md:gap-3 td-actions" *ngIf="showActions">
                 <app-button-edit></app-button-edit>
                 <app-button-inactivate></app-button-inactivate>

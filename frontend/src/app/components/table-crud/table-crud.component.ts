@@ -8,5 +8,6 @@ import { Component, Input } from '@angular/core';
 export class TableCrudComponent {
   @Input() showActions: boolean = true;
   @Input() headers: string[] = [];
-  @Input() rows: any[] = [];
+  @Input() attributes: any[] = [];
+  @Input() list: any[] = [];
 }

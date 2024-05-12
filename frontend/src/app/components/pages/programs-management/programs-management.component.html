@@ -1,36 +1,10 @@
 <app-control-side-bar></app-control-side-bar>
 
 <div class="flex justify-center items-center h-screen z-0 flex-col gap-6 py-10">
-    <h1 class="text-2xl font-semibold">Programas</h1>
-    <!-- <app-table-crud 
-        [headers]="['Código', 'Nombre', 'Acciones']" 
-        [rows]="listPrograms">
-    </app-table-crud> -->
-
-    <table class="text-center">
-        <thead>
-            <tr>
-                <th class="px-10 py-2 border-2 border-gray-600">ID</th>
-                <th class="px-10 py-2 border-2 border-gray-600">Nombre</th>
-                <th class="px-10 py-2 border-2 border-gray-600">Estado</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="border-2 border-gray-600" *ngFor="let program of listPrograms">
-                <td class="border-2 border-gray-600">
-                    {{program.PROGRAM_ID}}
-                </td>
-                <td class="border-2 border-gray-600">
-                    {{program.PROGRAM_NAME}}    
-                </td>
-                <td class="border-2 border-gray-600">
-                    {{program.PROGRAM_STATE}}
-                </td>
-            </tr>
-        </tbody>
-    </table>
-
-
-
+    <app-table-crud 
+        [headers]="['Código', 'Nombre', 'Estado', 'Acciones']" 
+        [attributes]="['PROGRAM_ID', 'PROGRAM_NAME', 'PROGRAM_STATE']"
+        [list]="listPrograms">
+    </app-table-crud>
     <app-button routerLink="/programs/form">Crear Programa</app-button>
 </div>
