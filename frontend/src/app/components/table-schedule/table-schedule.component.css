@@ -12,3 +12,20 @@ th {
 tr {
     border-bottom: 1px solid #f2f2f2;
 }
+
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+    }
+    td, th, tr {
+        font-size: 10px
+    }
+
+    th {
+        padding-inline: 5px;
+    }
+
+    td {
+        padding: 2px;
+    }
+}

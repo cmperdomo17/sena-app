@@ -9,9 +9,23 @@ td {
 }
 
 th, td  {
-    padding-inline: 20px;
+    padding-inline: 15px;
 }
 
 tr {
     border-bottom: 1px solid #f2f2f2;
+}
+
+@media (max-width: 768px) {
+    td, th, tr {
+        font-size: 9px
+    }
+
+    th {
+        padding-inline: 5px;
+    }
+
+    td {
+        padding: 2px;
+    }
 }
