@@ -1,11 +1,11 @@
-<div class="flex justify-center items-center h-svh">
+<div class="formularioLogin flex justify-center items-center h-svh">
     <div class="login flex flex-col items-center w-80 pt-6 pb-10 px-4 rounded-3xl bg-white text-black text-center gap-5 shadow-2xl drop-shadow-2xl">
         <img src="./assets/logo.png" alt="logo" class="w-24">
         <h2 class="title_login text-2xl font-bold">Bienvenido</h2>
         <form class="flex flex-col items-center gap-4">
-            <input class="bg-gray-200 text-center rounded-2xl py-1 px-6" type="email" name="" id="" placeholder="Usuario">
-            <input class="bg-gray-200 text-center rounded-2xl py-1 px-6" type="password" name="" id="" placeholder="Contraseña">
-            <button routerLink="home" class=" text-white rounded-2xl py-1 px-24 font-semibold" type="submit">Ingresar</button>
+            <input class="bg-gray-200 text-center rounded-2xl py-1 px-6" type="text" name="usr" id="" placeholder="Usuario" [(ngModel)]="userAux.user_login">
+            <input class="bg-gray-200 text-center rounded-2xl py-1 px-6" type="password" name="pwd" id="" placeholder="Contraseña" [(ngModel)]="userAux.user_pwd">
+            <button (click)="login()" routerLink="home" class=" text-white rounded-2xl py-1 px-24 font-semibold" type="submit">Ingresar</button>
         </form>
         <footer class="flex flex-col gap-2">
             <a class="underline font-bold text-sm" href="#">Olvidaste tu contraseña?</a>

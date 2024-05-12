@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Program } from '../models/Program';
+import { AppToken } from '../models/AppToken';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,14 @@ export class ProgramsService {
   
   API_URI = 'http://localhost:3000/api';
 
+  token = AppToken.getInstance();
+
   constructor(private http: HttpClient) { }
 
   listPrograms() {
-    return this.http.get(`${this.API_URI}/programs`);
+    const auxToken = this.token.getToken();
+
+    return this.http.get(`${this.API_URI}/programs/`, {headers: {auth: auxToken}});
   }
 
   getProgram(id: number) {

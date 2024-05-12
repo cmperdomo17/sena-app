@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Ambient } from '../models/Ambient';
+import { AppToken } from '../models/AppToken';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,8 @@ import { Ambient } from '../models/Ambient';
 export class AmbientsService {
 
   API_URI = 'http://localhost:3000/api';
+
+  token = AppToken.getInstance();
 
   constructor(private http: HttpClient) { }
 

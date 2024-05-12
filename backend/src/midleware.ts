@@ -11,7 +11,10 @@ export async function isAdmin(req: Request, res: Response, next: NextFunction) {
     //Si el usuario ya ha sido identificado como admin
     if(req.headers['auth']){
         //Se verifica que posea el token de admin
-        const token = JSON.stringify(req.headers['auth']);
+        const token = Array.isArray(req.headers['auth']) ? req.headers['auth'][0] : req.headers['auth'];
+
+        // const token = JSON.stringify(req.headers['auth']);
+        // console.log('midelguartoken:',token);
         try {
             const decoded = jwt.verify(token, secretKey);
             next();
@@ -22,7 +25,6 @@ export async function isAdmin(req: Request, res: Response, next: NextFunction) {
     else{
         // Obtener el admin de la base de datos
         const admin = await usersController.getUser(1);
-        console.log("hola");
         if (admin == null || admin === undefined) {
             return res.json({ mensaje: 'Admin no encontrado' });
         }
@@ -33,16 +35,17 @@ export async function isAdmin(req: Request, res: Response, next: NextFunction) {
         }
         
         const logUser: userModel = {
-            user_login: req.body.USER_LOGIN,
-            user_pwd: req.body.USER_PWD
+            user_login: req.body.user_login,
+            user_pwd: req.body.user_pwd
         }
         
         // Comparar la información del login con la obtenida de la base de datos
         if (_.isEqual(adminUser,logUser)) {
             // Si el usuario es el admin se le da acceso a las rutas
             const token = generateToken(logUser);
+            console.log('token:',token);
             // Se le da un token con una duracion de 3h
-            res.set('auth',token);
+            res.json({token: token});
             next();
         } else {
             return res.status(401).json({ mensaje: 'Usuario no autorizado' });

@@ -31,6 +31,8 @@ import { TableScheduleComponent } from './components/table-schedule/table-schedu
 import { ButtonInactivateComponent } from './components/buttons/button-inactivate/button-inactivate.component';
 import { ButtonEditComponent } from './components/buttons/button-edit/button-edit.component';
 import { UserViewComponent } from './components/pages/user-view/user-view.component';
+import { FormsModule } from '@angular/forms';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -67,9 +69,12 @@ import { UserViewComponent } from './components/pages/user-view/user-view.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

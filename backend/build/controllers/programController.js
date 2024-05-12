@@ -21,10 +21,11 @@ class ProgramController {
                 database_1.default.query(sql, (err, rows, fields) => {
                     if (err)
                         reject(err); // En caso de error, resolvemos la Promise con error
-                    resolve(rows); // Si no, resolvemos con el resultado
+                    resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
                 });
             });
             res.json(programsList[0]);
+            console.log(programsList[0]);
         });
     }
     getProgram(req, res) {

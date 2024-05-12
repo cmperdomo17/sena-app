@@ -9,10 +9,11 @@ class ProgramController{
             pool.query(sql,
                 (err: any, rows: any, fields: any) => {
                     if (err) reject(err); // En caso de error, resolvemos la Promise con error
-                    resolve(rows); // Si no, resolvemos con el resultado
+                    resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
                 });
         });
         res.json(programsList[0]);
+        console.log(programsList[0]);
     }
 
     public async getProgram (req: Request,res: Response){
