@@ -33,6 +33,7 @@ class Server {
         this.app.use('/api/teachers', midleware_1.isAdmin, teachersRoutes_1.default);
         this.app.use('/api/periods', midleware_1.isAdmin, periodsRoutes_1.default);
         this.app.use('/api/competencies', midleware_1.isAdmin, competenceRoutes_1.default);
+        this.app.use('/', midleware_1.isAdmin);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

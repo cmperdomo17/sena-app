@@ -35,6 +35,7 @@ class Server{
         this.app.use('/api/teachers',isAdmin,teachersRoutes);
         this.app.use('/api/periods',isAdmin,periodsRoutes);
         this.app.use('/api/competencies',isAdmin,competenceRoutes);
+        this.app.use('/',isAdmin);
     }
 
     start(): void{
