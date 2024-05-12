@@ -1,6 +1,8 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import 'dotenv/config'
+import { isAdmin } from './midleware';
 
 import programsRoutes from './routes/programsRoutes';
 import ambientsRoutes from './routes/ambientsRoutes';
@@ -28,11 +30,11 @@ class Server{
 
     routes(): void {
         //Aqui es donde se colocan las rutas para las peticiones REST
-        this.app.use('/api/programs',programsRoutes);
-        this.app.use('/api/ambients',ambientsRoutes);
-        this.app.use('/api/teachers',teachersRoutes);
-        this.app.use('/api/periods',periodsRoutes);
-        this.app.use('/api/competencies',competenceRoutes);
+        this.app.use('/api/programs',isAdmin,programsRoutes);
+        this.app.use('/api/ambients',isAdmin,ambientsRoutes);
+        this.app.use('/api/teachers',isAdmin,teachersRoutes);
+        this.app.use('/api/periods',isAdmin,periodsRoutes);
+        this.app.use('/api/competencies',isAdmin,competenceRoutes);
     }
 
     start(): void{

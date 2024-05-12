@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
+require("dotenv/config");
+const midleware_1 = require("./midleware");
 const programsRoutes_1 = __importDefault(require("./routes/programsRoutes"));
 const ambientsRoutes_1 = __importDefault(require("./routes/ambientsRoutes"));
 const teachersRoutes_1 = __importDefault(require("./routes/teachersRoutes"));
@@ -26,11 +28,11 @@ class Server {
     }
     routes() {
         //Aqui es donde se colocan las rutas para las peticiones REST
-        this.app.use('/api/programs', programsRoutes_1.default);
-        this.app.use('/api/ambients', ambientsRoutes_1.default);
-        this.app.use('/api/teachers', teachersRoutes_1.default);
-        this.app.use('/api/periods', periodsRoutes_1.default);
-        this.app.use('/api/competencies', competenceRoutes_1.default);
+        this.app.use('/api/programs', midleware_1.isAdmin, programsRoutes_1.default);
+        this.app.use('/api/ambients', midleware_1.isAdmin, ambientsRoutes_1.default);
+        this.app.use('/api/teachers', midleware_1.isAdmin, teachersRoutes_1.default);
+        this.app.use('/api/periods', midleware_1.isAdmin, periodsRoutes_1.default);
+        this.app.use('/api/competencies', midleware_1.isAdmin, competenceRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

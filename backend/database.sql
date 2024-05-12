@@ -156,9 +156,10 @@ create table PROGRAM
 /*==============================================================*/
 create table `USER`
 (
-   USER_ID               numeric(8,0) not null,
+   USER_ID               int not null AUTO_INCREMENT,
    USER_LOGIN            varchar(100) not null,
    USER_PWD              varchar(50) not null,
+   USER_STATE            numeric(4,0),
    primary key (USER_ID)
 );
 
@@ -428,6 +429,42 @@ $$
 DELIMITER ;
 
 /*==============================================================*/
+/* Procedures Users                                             */
+/*==============================================================*/
+DELIMITER $$
+
+create procedure listUsers()
+begin
+   select * from user;
+end;
+
+create procedure getUser(in userid int)
+begin
+   select * from user where user_id=userid;
+end;
+
+create procedure createUser(in userlogin varchar(100), in userpwd varchar(50))
+begin
+   insert into user (user_login,user_pwd,user_state)
+   values (userlogin,userpwd,1);
+end;
+
+create procedure updateUser(in userid int,
+                           in userlogin varchar(100),
+                           in userpwd varchar(50))
+begin
+   update user set user_login=userlogin, user_pwd=userpwd where user_id=userid;
+end;
+
+create procedure changeStateUser(in userid int, in userstate int)
+begin
+   update user set user_state=userstate where user_id=userid;
+end;
+
+$$
+DELIMITER ;
+
+/*==============================================================*/
 /* Datos de prueba                                              */
 /*==============================================================*/
 
@@ -457,3 +494,6 @@ insert into competence_specific (program_id, competencespc_name, competencespc_s
 values (1,"Software 3",1);
 insert into competence_specific (program_id, competencespc_name, competencespc_state)
 values (2,"Anatomia",1);
+
+insert into `user` (user_login, user_pwd, user_state) 
+values ("coordinador","HolaComoTeLlamas",1);
