@@ -8,6 +8,10 @@ td {
     border-right: 1px solid #f2f2f2;
 }
 
+td:last-child {
+    border-right: 1px solid #f2f2f2;
+}
+
 th, td  {
     padding-inline: 15px;
 }
