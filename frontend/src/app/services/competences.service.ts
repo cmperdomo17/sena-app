@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Competence } from '../models/Compentence';
+import { AppToken } from '../models/AppToken';
 
 @Injectable({
   providedIn: 'root'
@@ -9,27 +10,29 @@ import { Competence } from '../models/Compentence';
 export class CompetencesService {
 
   API_URI = 'http://localhost:3000/api';
+  token = AppToken.getInstance();
+  auxToken = this.token.getToken();
 
   constructor(private http: HttpClient) { }
 
   listCompetences() {
-    return this.http.get(`${this.API_URI}/competences`);
+    return this.http.get(`${this.API_URI}/competencies`, {headers: {auth: this.auxToken}});
   }
 
   getCompetence(id: number) {
-    return this.http.get(`${this.API_URI}/competences/${id}`);
+    return this.http.get(`${this.API_URI}/competencies/${id}`, {headers: {auth: this.auxToken}});
   }
 
   createCompetence(competence: Competence) {
-    return this.http.post(`${this.API_URI}/competences`, competence);
+    return this.http.post(`${this.API_URI}/competencies`, competence, {headers: {auth: this.auxToken}});
   }
 
   updateCompetence(id: number, updatedCompetence: Competence) {
-    return this.http.put(`${this.API_URI}/competences/${id}`, updatedCompetence);
+    return this.http.put(`${this.API_URI}/competencies/${id}`, updatedCompetence, {headers: {auth: this.auxToken}});
   }
 
   changeStateCompetence(id: number, state: number) {
-    return this.http.put(`${this.API_URI}/competences/${id}/${state}`, null);
+    return this.http.put(`${this.API_URI}/competencies/${id}/${state}`, null, {headers: {auth: this.auxToken}});
   }
 
 }

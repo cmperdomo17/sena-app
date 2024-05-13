@@ -12,26 +12,27 @@ export class AmbientsService {
   API_URI = 'http://localhost:3000/api';
 
   token = AppToken.getInstance();
+  auxToken = this.token.getToken();
 
   constructor(private http: HttpClient) { }
 
   listAmbients() {
-    return this.http.get(`${this.API_URI}/ambients`);
+    return this.http.get(`${this.API_URI}/ambients`, {headers: {auth: this.auxToken}});
   }
 
   getAmbient(id: string) {
-    return this.http.get(`${this.API_URI}/ambients/${id}`);
+    return this.http.get(`${this.API_URI}/ambients/${id}`, {headers: {auth: this.auxToken}});
   }
 
   createAmbient(ambient: Ambient) {
-    return this.http.post(`${this.API_URI}/ambients`, ambient);
+    return this.http.post(`${this.API_URI}/ambients`, ambient, {headers: {auth: this.auxToken}});
   }
 
   updateAmbient(id: string, updatedAmbient: Ambient) {
-    return this.http.put(`${this.API_URI}/ambients/${id}`, updatedAmbient);
+    return this.http.put(`${this.API_URI}/ambients/${id}`, updatedAmbient, {headers: {auth: this.auxToken}});
   }
 
   changeStateAmbient(id: string, state: number) {
-    return this.http.put(`${this.API_URI}/ambients/${id}/${state}`, null);
+    return this.http.put(`${this.API_URI}/ambients/${id}/${state}`, null, {headers: {auth: this.auxToken}});
   }
 }
