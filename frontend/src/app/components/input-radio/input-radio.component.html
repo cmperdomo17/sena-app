@@ -1,14 +1,14 @@
 <div class="radio-button-container">
     <div class="radio-button">
-        <input type="radio" class="radio-button__input" id="radio1" name="radio-group" value="{{label1}}" (change)="onSelectionChange(label1)" [(ngModel)]="defaultSelection">
-        <label class="radio-button__label" for="radio1">
+        <input type="radio" class="radio-button__input" id="{{radioGroupId+'1'}}" name="{{radioName}}" value="{{label1}}" (change)="onSelectionChange(label1)" [(ngModel)]="defaultSelection">
+        <label class="radio-button__label" for="{{radioGroupId+'1'}}">
             <span class="radio-button__custom"></span>
             {{label1}}
         </label>
     </div>
     <div class="radio-button">
-        <input type="radio" class="radio-button__input" id="radio2" name="radio-group" value="{{label2}}" (change)="onSelectionChange(label2)">
-        <label class="radio-button__label" for="radio2">
+        <input type="radio" class="radio-button__input" id="{{radioGroupId+'2'}}" name="{{radioName}}" value="{{label2}}" (change)="onSelectionChange(label2)"  [(ngModel)]="defaultSelection">
+        <label class="radio-button__label" for="{{radioGroupId+'2'}}">
             <span class="radio-button__custom"></span>
             {{label2}}
         </label>

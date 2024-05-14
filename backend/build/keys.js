@@ -4,7 +4,7 @@ exports.default = {
     database: {
         host: 'localhost',
         user: 'root',
-        password: 'admin',
+        password: 'Dafesor3_',
         database: 'sena_db'
     }
 };

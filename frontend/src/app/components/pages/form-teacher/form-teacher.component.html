@@ -1,0 +1,24 @@
+<app-control-side-bar></app-control-side-bar>
+
+<div class="flex justify-center items-center h-screen z-0 flex-col gap-6">
+    <a routerLink="/teachers">
+        <svg  xmlns="http://www.w3.org/2000/svg"  width="36"  height="36"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l4 4" /><path d="M5 12l4 -4" /></svg>
+    </a>
+    <h1 class="text-2xl font-semibold">Formulario Docentes</h1>
+    <app-input label="Nombre" ngDefaultControl [(ngModel)]="teacher.teacher_name"></app-input>
+    <app-input label="Apellidos" ngDefaultControl [(ngModel)]="teacher.teacher_lastname"></app-input>
+    <app-input-options listId="DniTypesList" [options]="dniTypes" [attributes]="['typeName']" placeholder="Tipo DNI" ngDefaultControl [(ngModel)]="teacher.teacher_dniType"></app-input-options>
+    <app-input label="Identificación" ngDefaultControl [(ngModel)]="teacher.teacher_dni"></app-input>
+    <div class="flex justify-between items-center gap-4">
+        <p class="text-md font-semibold">Tipo de docente:</p>
+        <app-input-radio label1="Técnico" label2="Profesional" [defaultSelection]="'Técnico'" [radioName]="'radio1'" [radioGroupId]="'1'" ngDefaultControl [(ngModel)]="teacher.teacher_type" (selectionChange)="onSelectionChangeType($event)"></app-input-radio>
+    </div>
+    <div class="flex justify-between items-center gap-4">
+        <p class="text-md font-semibold">Tipo de contrato:</p>
+        <app-input-radio label1="PT" label2="CNT" [defaultSelection]="'PT'" [radioName]="'radio2'" [radioGroupId]="'2'"  ngDefaultControl [(ngModel)]="teacher.teacher_contractType" (selectionChange)="onSelectionChangeCType($event)"></app-input-radio>
+    </div>
+    <app-input label="Área" ngDefaultControl [(ngModel)]="teacher.teacher_area"></app-input>
+    <app-input label="Usuario" ngDefaultControl [(ngModel)]="teacher.user_login"></app-input>
+    <app-input label="Contraseña" ngDefaultControl [(ngModel)]="teacher.user_pwd"></app-input>
+    <app-button-save routerLink="/teachers" (click)="createTeacher()"></app-button-save>
+</div>

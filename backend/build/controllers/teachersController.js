@@ -42,14 +42,16 @@ class TeacherController {
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL createTeacher(?, ?, ?, ?, ?, ?, ?)`;
+            const sql = `CALL createTeacher(?, ?, ?, ?, ?, ?, ?, ?, ?)`;
             yield database_1.default.query(sql, [req.body.teacher_name,
                 req.body.teacher_lastname,
                 req.body.teacher_dnitype,
                 req.body.teacher_dni,
                 req.body.teacher_type,
                 req.body.teacher_contracttype,
-                req.body.teacher_area]);
+                req.body.teacher_area,
+                req.body.user_login,
+                req.body.user_pwd]);
             res.json({ message: 'Teacher saved!' });
         });
     }

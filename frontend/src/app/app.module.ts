@@ -33,6 +33,7 @@ import { UserViewComponent } from './components/pages/user-view/user-view.compon
 import { FormsModule } from '@angular/forms';
 import { LoginService } from './services/login.service';
 import { CompetenciesManagementComponent } from './components/pages/competencies-management/competencies-management.component';
+import { FormTeacherComponent } from './components/pages/form-teacher/form-teacher.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { CompetenciesManagementComponent } from './components/pages/competencies
     TableScheduleComponent,
     ButtonInactivateComponent,
     ButtonEditComponent,
-    UserViewComponent
+    UserViewComponent,
+    FormTeacherComponent
   ],
   imports: [
     BrowserModule,

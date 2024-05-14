@@ -108,6 +108,7 @@ create table TEACHER
    TEACHER_CONTRACTTYPE varchar(30),
    TEACHER_AREA         varchar(100) not null,
    TEACHER_STATE     numeric(4,0),
+   USER_ID        int not null,
    primary key (TEACHER_ID)
 );
 
@@ -162,6 +163,9 @@ create table `USER`
    USER_STATE            numeric(4,0),
    primary key (USER_ID)
 );
+
+alter table TEACHER add constraint FK_USER_TO_PROGRAM foreign key (USER_ID)
+      references USER (USER_ID) on delete restrict on update restrict;
 
 alter table COMPETENCEGEN_PROGRAM add constraint FK_COMPETENCEGEN_PROGRAM foreign key (PROGRAM_ID)
       references PROGRAM (PROGRAM_ID) on delete restrict on update restrict;
@@ -283,10 +287,25 @@ create procedure createTeacher(in teachername varchar(100),
                               in teacherdni varchar(10),
                               in teachertype varchar(30),
                               in teachercontracttype varchar(30),
-                              in teacherarea varchar(100))
+                              in teacherarea varchar(100),
+                              in userlogin varchar(100),
+                              in userpwd varchar(50))
 begin
-   insert into teacher (teacher_name,teacher_lastname,teacher_dnitype,teacher_dni,teacher_type,teacher_contracttype,teacher_area, teacher_state) 
-   values (teachername,teacherlastname,teacherdnitype,teacherdni,teachertype,teachercontracttype,teacherarea,1);
+
+   insert into user (user_login, user_pwd) values (userlogin,userpwd);
+
+   set @userid = last_insert_id();
+
+   insert into teacher (teacher_name,
+                        teacher_lastname,
+                        teacher_dnitype,
+                        teacher_dni,
+                        teacher_type,
+                        teacher_contracttype,
+                        teacher_area, 
+                        teacher_state,
+                        user_id) 
+   values (teachername,teacherlastname,teacherdnitype,teacherdni,teachertype,teachercontracttype,teacherarea,1,@userid);
 end;
 
 create procedure updateTeacher(in teacherid int, 
@@ -468,6 +487,13 @@ DELIMITER ;
 /* Datos de prueba                                              */
 /*==============================================================*/
 
+insert into `user` (user_login, user_pwd, user_state) 
+values ("coordinador","HolaComoTeLlamas",1);
+insert into `user` (user_login, user_pwd, user_state) 
+values ("francisco","BienYTu",1);
+insert into `user` (user_login, user_pwd, user_state) 
+values ("zambrano","ComoEstas",1);
+
 insert into program (program_name, program_state) values ("Sistemas",1);
 insert into program (program_name, program_state) values ("Medicina",1);
 insert into program (program_name, program_state) values ("Derecho",1);
@@ -477,10 +503,10 @@ values ("1A1A1","Salon 111","Piso 1","Presencial",20,1);
 insert into ambient (ambient_id, ambient_name,ambient_location,ambient_type,ambient_capacity,ambient_state)
 values ("2B2B2B","Salon 222","Piso 2","Virtual",25,1);
 
-insert into teacher (teacher_name,teacher_lastname,teacher_dnitype,teacher_dni,teacher_type,teacher_contracttype,teacher_area, teacher_state)
-values ("Francisco","Javier","CC","123456789","tecnico","PT","Software",1);
-insert into teacher (teacher_name,teacher_lastname,teacher_dnitype,teacher_dni,teacher_type,teacher_contracttype,teacher_area, teacher_state)
-values ("Ricardo","Zambrano","CC","987654321","profesional","CNT","Arquitectura de software",1);
+insert into teacher (teacher_name,teacher_lastname,teacher_dnitype,teacher_dni,teacher_type,teacher_contracttype,teacher_area, teacher_state, user_id)
+values ("Francisco","Javier","CC","123456789","tecnico","PT","Software",1,2);
+insert into teacher (teacher_name,teacher_lastname,teacher_dnitype,teacher_dni,teacher_type,teacher_contracttype,teacher_area, teacher_state, user_id)
+values ("Ricardo","Zambrano","CC","987654321","profesional","CNT","Arquitectura de software",1,3);
 
 insert into `period` (period_start_date,period_end_date,period_name, period_state)
 values ("20/01/2024","20/06/2024","2024.1",1);
@@ -495,5 +521,3 @@ values (1,"Software 3",1);
 insert into competence_specific (program_id, competencespc_name, competencespc_state)
 values (2,"Anatomia",1);
 
-insert into `user` (user_login, user_pwd, user_state) 
-values ("coordinador","HolaComoTeLlamas",1);

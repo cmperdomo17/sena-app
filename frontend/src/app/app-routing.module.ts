@@ -13,6 +13,7 @@ import { FormAmbientComponent } from './components/pages/form-ambient/form-ambie
 import { FormCompetenceComponent } from './components/pages/form-competence/form-competence.component';
 import { FormScheduleComponent } from './components/pages/form-schedule/form-schedule.component';
 import { UserViewComponent } from './components/pages/user-view/user-view.component';
+import { FormTeacherComponent } from './components/pages/form-teacher/form-teacher.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'ambients/form', component: FormAmbientComponent},
   {path: 'competencies/form', component: FormCompetenceComponent},
   {path: 'schedules/form', component: FormScheduleComponent},
+  {path: 'teachers/form', component: FormTeacherComponent},
   {path: 'user', component: UserViewComponent}
 ];
 

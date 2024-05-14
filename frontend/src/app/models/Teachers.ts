@@ -7,4 +7,6 @@ export interface Teacher {
     teacher_type: string;
     teacher_contractType: string;
     teacher_area: string;
+    user_login: string;
+    user_pwd: string;
 }
