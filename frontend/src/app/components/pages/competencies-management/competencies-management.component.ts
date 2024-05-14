@@ -6,6 +6,7 @@ import { CompetenciesService } from '../../../services/competencies.service';
   templateUrl: './competencies-management.component.html',
   styleUrl: './competencies-management.component.css'
 })
+
 export class CompetenciesManagementComponent implements OnInit{
 
   listCompetencies: any = [];
