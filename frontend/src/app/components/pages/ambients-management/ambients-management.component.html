@@ -1,21 +1,10 @@
 <app-control-side-bar></app-control-side-bar>
 
 <div class="flex justify-center items-center h-screen z-0 flex-col gap-6 py-10">
-    <h1 class="text-2xl font-semibold">Ambientes</h1>
-    <!-- <app-table-crud 
-        [headers]="['Código', 'Nombre', 'Tipo', 'Capacidad', 'Ubicación', 'Acciones']"
-        [rows]="[
-            ['AM001', 'Laboratorio de Computación', 'Laboratorio', '30', 'Bloque 1, Piso 2'],
-            ['AM002', 'Laboratorio de Electrónica', 'Laboratorio', '25', 'Bloque 2, Piso 3'],
-            ['AM003', 'Laboratorio de Química', 'Laboratorio', '20', 'Bloque 3, Piso 1'],
-            ['AM004', 'Laboratorio de Física', 'Laboratorio', '15', 'Bloque 4, Piso 2'],
-            ['AM005', 'Laboratorio de Biología', 'Laboratorio', '10', 'Bloque 5, Piso 3'],
-            ['AM006', 'Laboratorio de Mecánica', 'Laboratorio', '5', 'Bloque 6, Piso 1'],
-            ['AM007', 'Laboratorio de Ingeniería', 'Laboratorio', '30', 'Bloque 7, Piso 2'],
-            ['AM008', 'Laboratorio de Sistemas', 'Laboratorio', '25', 'Bloque 8, Piso 3'],
-            ['AM009', 'Laboratorio de Software', 'Laboratorio', '20', 'Bloque 9, Piso 1'],
-            ['AM010', 'Laboratorio de Redes', 'Laboratorio', '15', 'Bloque 10, Piso 2']
-        ]">
-    </app-table-crud> -->
-    <app-button routerLink="/ambients/form">Crear Ambiente</app-button>
+    <app-table-crud 
+        [headers]="['Código', 'Nombre', 'Ubicación', 'Tipo', 'Capacidad', 'Estado', 'Acciones']" 
+        [attributes]="['AMBIENT_ID', 'AMBIENT_NAME', 'AMBIENT_LOCATION', 'AMBIENT_TYPE', 'AMBIENT_CAPACITY', 'AMBIENT_STATE']"
+        [list]="listAmbients">
+    </app-table-crud>
+    <app-button routerLink="/programs/form">Crear Ambiente</app-button>
 </div>

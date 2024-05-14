@@ -1,0 +1,11 @@
+<app-control-side-bar></app-control-side-bar>
+
+<div class="flex justify-center items-center h-screen z-0 flex-col gap-6 py-10">
+    <app-table-crud 
+        [headers]="['Código', 'Código Programa', 'Nombre','Estado', 'Acciones']" 
+        [attributes]="['competence_id', 'program_id', 'competence_name', 'competence_state']"
+        [list]="listCompetencies">
+    </app-table-crud>
+    <app-button routerLink="/competencies/form">Crear Competencia</app-button>
+</div>
+

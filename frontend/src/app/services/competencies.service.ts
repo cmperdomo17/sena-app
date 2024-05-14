@@ -7,7 +7,7 @@ import { AppToken } from '../models/AppToken';
   providedIn: 'root'
 })
 
-export class CompetencesService {
+export class CompetenciesService {
 
   API_URI = 'http://localhost:3000/api';
   token = AppToken.getInstance();
@@ -15,7 +15,7 @@ export class CompetencesService {
 
   constructor(private http: HttpClient) { }
 
-  listCompetences() {
+  listCompetencies() {
     return this.http.get(`${this.API_URI}/competencies`, {headers: {auth: this.auxToken}});
   }
 

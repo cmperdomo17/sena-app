@@ -14,7 +14,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { PeriodManagementComponent } from './components/pages/period-management/period-management.component';
 import { ScheduleManagementComponent } from './components/pages/schedule-management/schedule-management.component';
-import { CompetencesManagementComponent } from './components/pages/competences-management/competences-management.component';
 import { FormAmbientComponent } from './components/pages/form-ambient/form-ambient.component';
 import { FormCompetenceComponent } from './components/pages/form-competence/form-competence.component';
 import { ControlSideBarComponent } from './components/control-side-bar/control-side-bar.component';
@@ -33,6 +32,7 @@ import { ButtonEditComponent } from './components/buttons/button-edit/button-edi
 import { UserViewComponent } from './components/pages/user-view/user-view.component';
 import { FormsModule } from '@angular/forms';
 import { LoginService } from './services/login.service';
+import { CompetenciesManagementComponent } from './components/pages/competencies-management/competencies-management.component';
 
 @NgModule({
   declarations: [
@@ -44,11 +44,11 @@ import { LoginService } from './services/login.service';
     AmbientsManagementComponent,
     TeachersManagementComponent,
     ProgramsManagementComponent,
+    CompetenciesManagementComponent,
     SidebarComponent,
     HeaderComponent,
     PeriodManagementComponent,
     ScheduleManagementComponent,
-    CompetencesManagementComponent,
     FormAmbientComponent,
     FormCompetenceComponent,
     ControlSideBarComponent,

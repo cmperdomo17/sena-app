@@ -2,11 +2,11 @@
 
 <div class="flex justify-center items-center h-screen z-0 flex-col gap-6">
     <h1 class="text-2xl font-semibold">Periodos</h1>
-    <!-- <app-table-crud 
-        [headers]="['Código', 'Nombre', 'Estado', 'Acciones']" 
-        [attributes]="['PROGRAM_ID', 'PROGRAM_NAME', 'PROGRAM_STATE']"
+    <app-table-crud 
+        [headers]="['Código', 'Fecha Inicio', 'Fecha Final', 'Nombre', 'Estado', 'Acciones']" 
+        [attributes]="['PERIOD_ID', 'PERIOD_START_DATE', 'PERIOD_END_DATE', 'PERIOD_NAME', 'PERIOD_STATE']"
         [list]="listPeriods">
-    </app-table-crud> -->
+    </app-table-crud>
     <app-button routerLink="/periods/form">Crear Periodo</app-button>
 
 </div>
