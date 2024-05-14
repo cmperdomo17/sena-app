@@ -14,11 +14,12 @@ export class AppToken {
 
     public setToken(token: string | null) {
         if(token) {
-            this.token = token;
+            localStorage.setItem("token", JSON.stringify(token));
         }
     }
 
-    public getToken() {
-        return this.token;
+    public getToken(){
+        const tokenLocal = localStorage.getItem("token");
+        return tokenLocal ? JSON.parse(tokenLocal) as string : "";
     }
 }

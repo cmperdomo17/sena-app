@@ -25,7 +25,6 @@ class ProgramController {
                 });
             });
             res.json(programsList[0]);
-            console.log(programsList[0]);
         });
     }
     getProgram(req, res) {

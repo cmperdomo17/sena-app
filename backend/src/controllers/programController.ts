@@ -13,7 +13,6 @@ class ProgramController{
                 });
         });
         res.json(programsList[0]);
-        console.log(programsList[0]);
     }
 
     public async getProgram (req: Request,res: Response){
