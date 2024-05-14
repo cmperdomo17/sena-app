@@ -6,7 +6,8 @@ import { Component, Input} from '@angular/core';
   styleUrl: './input-options.component.css'
 })
 export class InputOptionsComponent {
-  @Input() options: string[] = [];
+  @Input() attributes: any = {};
+  @Input() options: any[] = [];
   @Input() placeholder: string = '';
   @Input() listId: string = '';
 }

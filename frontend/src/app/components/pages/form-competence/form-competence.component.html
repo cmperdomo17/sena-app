@@ -7,7 +7,7 @@
     <h1 class="text-2xl font-semibold">Formulario Competencias</h1>
     <app-input label="ID"></app-input>
     <app-input label="Nombre"></app-input>
-    <app-input-options listId="ProgramsList" [options]="['Programa 1', 'Programa 2', 'Programa 3']" placeholder="Programa"></app-input-options>
+    <app-input-options listId="ProgramsList" [options]="ProgramsList" [attributes]="['PROGRAM_NAME']" placeholder="Programa"></app-input-options>
     <div class="flex justify-between items-center gap-4">
         <p class="text-md font-semibold">Tipo:</p>
         <app-input-radio label1="Específica" label2="Genérica"></app-input-radio>

@@ -25,7 +25,6 @@ export class CompetenciesManagementComponent implements OnInit{
         this.listCompetencies = res;
         this.listSpecificCompetencies = this.listCompetencies.filter((competence: any) => competence.program_id);
         this.listGenericCompetencies = this.listCompetencies.filter((competence: any) => !competence.program_id);
-        console.log('Lista de competencias:',this.listCompetencies);
       },
       err => console.log(err)
     )
