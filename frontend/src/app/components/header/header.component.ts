@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -10,11 +11,26 @@ export class HeaderComponent {
   @Input() showSidebarToggle: boolean = true;
   @Input() showProfileButton: boolean = true;
 
+  showSignoutMessage: boolean = false;
+
   toggleSidebar() {
     this.toggleSidebarEvent.emit();
   }
 
+  constructor(private loginService: LoginService) {}
+
   confirmSignout() {
-    return window.confirm('¿Seguro que quieres cerrar sesión?');
+    this.showSignoutMessage = true;
   }
+
+  signout() {
+    this.loginService.logout();
+    this.showSignoutMessage = false;
+  }
+
+  cancelSignout() {
+    this.showSignoutMessage = false;
+  }
+
+  
 }

@@ -1,10 +1,17 @@
 <app-control-side-bar></app-control-side-bar>
 
 <div class="flex justify-center items-center h-screen z-0 flex-col gap-6 py-10">
+    <h1 class="text-2xl font-semibold">Competencias Especificas</h1>
     <app-table-crud 
         [headers]="['Código', 'Código Programa', 'Nombre','Estado', 'Acciones']" 
         [attributes]="['competence_id', 'program_id', 'competence_name', 'competence_state']"
-        [list]="listCompetencies">
+        [list]="listSpecificCompetencies">
+    </app-table-crud>
+    <h1 class="text-2xl font-semibold">Competencias Genéricas</h1>
+    <app-table-crud 
+        [headers]="['Código', 'Nombre','Estado', 'Acciones']" 
+        [attributes]="['competence_id', 'competence_name', 'competence_state']"
+        [list]="listGenericCompetencies">
     </app-table-crud>
     <app-button routerLink="/competencies/form">Crear Competencia</app-button>
 </div>

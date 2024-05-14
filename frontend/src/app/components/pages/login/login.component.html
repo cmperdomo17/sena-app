@@ -1,16 +1,24 @@
 <div class="formularioLogin flex justify-center items-center h-svh flex-col gap-5">
-    <div class="login flex flex-col items-center w-80 pt-6 pb-10 px-4 rounded-3xl bg-white text-black text-center gap-5 shadow-2xl drop-shadow-2xl">
+    <div class="login flex flex-col items-center w-80 pt-6 pb-4 px-4 rounded-3xl bg-white text-black text-center gap-5 shadow-2xl drop-shadow-2xl">
         <img src="./assets/logo.png" alt="logo" class="w-24">
         <h2 class="title_login text-2xl font-bold">Bienvenido</h2>
         <form class="flex flex-col items-center gap-4">
             <input class="bg-gray-200 text-center rounded-2xl py-1 px-6" type="text" name="usr" id="" placeholder="Usuario" [(ngModel)]="userAux.user_login">
-            <input class="bg-gray-200 text-center rounded-2xl py-1 px-6" type="password" name="pwd" id="" placeholder="Contraseña" [(ngModel)]="userAux.user_pwd">
+            <div class="relative">
+                <input [type]="showPassword ? 'text' : 'password'" class="bg-gray-200 text-center rounded-2xl py-1 px-6" name="pwd" id="input_pwd" placeholder="Contraseña" [(ngModel)]="userAux.user_pwd">
+                <a class="cursor-pointer absolute right-2 top-1 items-center" *ngIf="!showPassword" (click)="showPassword = !showPassword">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-eye"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path><path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"></path></svg>
+                </a>
+                <a class="cursor-pointer absolute items-center right-2 top-1" *ngIf="showPassword" (click)="showPassword = !showPassword">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-eye-off"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /><path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /><path d="M3 3l18 18" /></svg>
+                </a>
+            </div>
             <button (click)="login()" class=" rounded-2xl py-1 px-24 font-semibold" type="submit">Ingresar</button>
         </form>
         <footer class="flex flex-col gap-2">
             <p id="error_message" *ngIf="error">{{ error }}</p>
-            <a class="underline font-bold text-sm" href="#">Olvidaste tu contraseña?</a>
-            <p class="text-sm">No tienes una cuenta? Registrate <a class="underline text-white font-bold" href="#">aquí</a></p>
+            <!-- <a class="underline font-bold text-sm" href="#">Olvidaste tu contraseña?</a>
+            <p class="text-sm">No tienes una cuenta? Registrate <a class="underline text-white font-bold" href="#">aquí</a></p> -->
         </footer>
     </div>
 

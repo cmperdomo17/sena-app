@@ -36,6 +36,11 @@ export class LoginService {
       }
     );
   }
+
+  logout() {
+    this.token.setToken(null);
+    this.router.navigate(['']);
+  }
 }
 
 

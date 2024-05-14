@@ -22,11 +22,20 @@ export class LoginComponent {
   };
 
   error: string = '';
+  showPassword: boolean = false;
 
   constructor(private loginService: LoginService) {}
   
   login() {
-    this.loginService.validateLogin(this.userAux);
+    if (!this.userAux.user_login || !this.userAux.user_pwd) {
+      this.error = 'Por favor rellena todos los campos!';
+      return;
+    }
     this.error = this.loginService.error_message;
+    this.loginService.validateLogin(this.userAux);
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 }

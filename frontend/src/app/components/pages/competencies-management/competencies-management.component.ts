@@ -10,6 +10,8 @@ import { CompetenciesService } from '../../../services/competencies.service';
 export class CompetenciesManagementComponent implements OnInit{
 
   listCompetencies: any = [];
+  listSpecificCompetencies: any = [];
+  listGenericCompetencies: any = [];
 
   constructor(private competenciesService: CompetenciesService) {}
 
@@ -20,7 +22,9 @@ export class CompetenciesManagementComponent implements OnInit{
   getCompetencies() {
     this.competenciesService.listCompetencies().subscribe(
       res => {
-        this.listCompetencies=res;
+        this.listCompetencies = res;
+        this.listSpecificCompetencies = this.listCompetencies.filter((competence: any) => competence.program_id);
+        this.listGenericCompetencies = this.listCompetencies.filter((competence: any) => !competence.program_id);
         console.log('Lista de competencias:',this.listCompetencies);
       },
       err => console.log(err)

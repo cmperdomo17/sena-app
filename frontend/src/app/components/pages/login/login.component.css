@@ -41,8 +41,12 @@
     transition: color 0.6s ease;
 }
 
+/* #input_pwd::placeholder {
+    padding-left: 25px;
+} */
+
 #error_message {
-    color: #ff3e3e;
+    color: #f64c4c;
     font-weight: bold;
     transition: color 0.6s ease;
 }
