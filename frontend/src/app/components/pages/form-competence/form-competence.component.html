@@ -5,13 +5,12 @@
         <svg  xmlns="http://www.w3.org/2000/svg"  width="36"  height="36"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l4 4" /><path d="M5 12l4 -4" /></svg>
     </a>
     <h1 class="text-2xl font-semibold">Formulario Competencias</h1>
-    <!-- <app-input label="ID"></app-input> -->
-    <app-input label="Nombre"></app-input>
-    <app-input-options listId="ProgramsList" [options]="ProgramsList" [attributes]="['PROGRAM_NAME']" placeholder="Programa" *ngIf="selectedOption !== 'Genérica'"></app-input-options>
+    <app-input [ngModel]="competence.competence_name" label="Nombre"></app-input>
+    <app-input-options [ngModel]="competence.program_id" listId="ProgramsList" [options]="ProgramsList" [attributes]="['PROGRAM_ID']" placeholder="Programa" *ngIf="selectedOption !== 'Genérica'"></app-input-options>
     <div class="flex justify-between items-center gap-4">
         <p class="text-md font-semibold">Tipo:</p>
         <app-input-radio label1="Específica" label2="Genérica" [defaultSelection]="'Específica'" (selectionChange)="onSelectionChange($event)"></app-input-radio>
     </div>
-    <app-button-save (click)="createCompetence()" routerLink="/competences"></app-button-save>
+    <app-button-save (click)="createCompetence()"></app-button-save>
     <p class="text-md font-bold text-red-500" *ngIf="errorMessage">{{ errorMessage }}</p>
 </div>
