@@ -10,8 +10,6 @@ export class ProgramsManagementComponent implements OnInit{
 
   listPrograms: any = [];
 
-  attributes = ['PROGRAM_ID', 'PROGRAM_NAME', 'PROGRAM_STATE'];
-  
   constructor(private programsService: ProgramsService) {}
 
   ngOnInit() {
@@ -28,7 +26,7 @@ export class ProgramsManagementComponent implements OnInit{
   }
 
   editProgram (id: number) {
-    console.log('Program  to be edited: ' + id);
+    console.log('Program to be edited:',id);
   }
 
   changeStateProgram (id: number, state: number) {

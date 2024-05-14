@@ -8,7 +8,7 @@ import { TeachersManagementComponent } from './components/pages/teachers-managem
 import { ProgramsManagementComponent } from './components/pages/programs-management/programs-management.component';
 import { ScheduleManagementComponent } from './components/pages/schedule-management/schedule-management.component';
 import { PeriodManagementComponent } from './components/pages/period-management/period-management.component';
-import { CompetencesManagementComponent } from './components/pages/competences-management/competences-management.component';
+import { CompetenciesManagementComponent } from './components/pages/competencies-management/competencies-management.component';
 import { FormAmbientComponent } from './components/pages/form-ambient/form-ambient.component';
 import { FormCompetenceComponent } from './components/pages/form-competence/form-competence.component';
 import { FormScheduleComponent } from './components/pages/form-schedule/form-schedule.component';
@@ -22,9 +22,9 @@ const routes: Routes = [
   {path: 'programs', component: ProgramsManagementComponent},
   {path: 'schedules', component: ScheduleManagementComponent},
   {path: 'periods', component: PeriodManagementComponent},
-  {path: 'competences', component: CompetencesManagementComponent},
+  {path: 'competencies', component: CompetenciesManagementComponent},
   {path: 'ambients/form', component: FormAmbientComponent},
-  {path: 'competences/form', component: FormCompetenceComponent},
+  {path: 'competencies/form', component: FormCompetenceComponent},
   {path: 'schedules/form', component: FormScheduleComponent},
   {path: 'user', component: UserViewComponent}
 ];
