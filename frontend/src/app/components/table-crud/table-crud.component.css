@@ -4,6 +4,10 @@ td {
     border-left: 1px solid #f2f2f2;
 }
 
+td, th, tr {
+    font-size: 15px;
+}
+
 .td-actions {
     border-right: 1px solid #f2f2f2;
 }
@@ -13,7 +17,7 @@ td:last-child {
 }
 
 th, td  {
-    padding-inline: 15px;
+    padding-inline: 8px;
 }
 
 tr {

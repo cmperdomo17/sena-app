@@ -3,7 +3,7 @@
 <div class="flex justify-center items-center h-screen z-0 flex-col gap-6 py-10">
     <h1 class="text-2xl font-semibold">Docentes</h1>
     <app-table-crud 
-        [headers]="['ID', 'Nombre', 'Apellido', 'Tipo de Documento', 'Documento', 'Tipo', 'Tipo de Contrato', 'Área', 'Estado']"
+        [headers]="['ID', 'Nombre', 'Apellido', 'Tipo de Documento', 'Documento', 'Tipo', 'Tipo de Contrato', 'Área', 'Estado', 'Acciones']"
         [attributes]="['TEACHER_ID', 'TEACHER_NAME', 'TEACHER_LASTNAME', 'TEACHER_DNITYPE', 'TEACHER_DNI', 'TEACHER_TYPE', 'TEACHER_CONTRACTTYPE', 'TEACHER_AREA', 'TEACHER_STATE']"
         [list]="listTeachers">
     </app-table-crud>

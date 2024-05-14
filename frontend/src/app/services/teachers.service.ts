@@ -16,15 +16,15 @@ export class TeachersService {
   constructor(private http: HttpClient) { }
 
   listTeachers() {
-    return this.http.get(`${this.API_URI}/teachers`, {headers: {auth: this.auxToken}});
+    return this.http.get(`${this.API_URI}/teachers/`, {headers: {auth: this.auxToken}});
   }
 
   getTeacher(id: number) {
-    return this.http.get(`${this.API_URI}/'teachers'/${id}`, {headers: {auth: this.auxToken}});
+    return this.http.get(`${this.API_URI}/teachers/${id}`, {headers: {auth: this.auxToken}});
   }
 
   createTeacher(teacher: Teacher) {
-    return this.http.post(`${this.API_URI}/teachers`, teacher, {headers: {auth: this.auxToken}});
+    return this.http.post(`${this.API_URI}/teachers/`, teacher, {headers: {auth: this.auxToken}});
   }
 
   updateTeacher(id: number, updatedTeacher: Teacher) {
@@ -32,7 +32,7 @@ export class TeachersService {
   }
 
   changeStateTeacher(id: number, state: number) {
-    return this.http.put(`${this.API_URI}/teacher/${id}/${state}`, null, {headers: {auth: this.auxToken}});
+    return this.http.put(`${this.API_URI}/teachers/${id}/${state}`, null, {headers: {auth: this.auxToken}});
   }
 
 }
