@@ -25,13 +25,17 @@ export class FormCompetenceComponent implements OnInit{
   };
 
   ProgramsList: any = [];
+  selectedOption: string = '';
+  errorMessage: string = '';
+
+  onSelectionChange(selection: string): void {
+    this.selectedOption = selection;
+  }
 
   listPrograms(): void {
     this.programsService.listPrograms().subscribe(
       res => {
-        this.ProgramsList = res;
-        console.log(res);
-        
+        this.ProgramsList = res;    
       },
       err => {
         console.log(err);
@@ -40,16 +44,21 @@ export class FormCompetenceComponent implements OnInit{
   }
 
   createCompetence(): void {
-    this.competenciesService.createCompetence(this.competence).subscribe(
-      res => {
-        this.router.navigate(['/competencies']);
-        console.log(res);
-        
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    if (!(this.competence.competence_name && this.selectedOption !== '')) {
+      this.errorMessage = 'Por favor, completa todos los campos';
+    } else {
+      this.errorMessage = '';
+      this.competence.competence_state = 1;
+      this.competenciesService.createCompetence(this.competence).subscribe(
+        res => {
+          this.router.navigate(['/competencies']);
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
   }
 
 }
