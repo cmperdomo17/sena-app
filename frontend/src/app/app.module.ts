@@ -35,6 +35,7 @@ import { LoginService } from './services/login.service';
 import { CompetenciesManagementComponent } from './components/pages/competencies-management/competencies-management.component';
 import { FormTeacherComponent } from './components/pages/form-teacher/form-teacher.component';
 import { FormProgramComponent } from './components/pages/form-program/form-program.component';
+import { FormPeriodComponent } from './components/pages/form-period/form-period.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { FormProgramComponent } from './components/pages/form-program/form-progr
     ButtonEditComponent,
     UserViewComponent,
     FormTeacherComponent,
-    FormProgramComponent
+    FormProgramComponent,
+    FormPeriodComponent
   ],
   imports: [
     BrowserModule,

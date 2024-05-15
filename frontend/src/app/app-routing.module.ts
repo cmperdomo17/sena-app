@@ -15,6 +15,7 @@ import { FormScheduleComponent } from './components/pages/form-schedule/form-sch
 import { UserViewComponent } from './components/pages/user-view/user-view.component';
 import { FormTeacherComponent } from './components/pages/form-teacher/form-teacher.component';
 import { FormProgramComponent } from './components/pages/form-program/form-program.component';
+import { FormPeriodComponent } from './components/pages/form-period/form-period.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -33,6 +34,8 @@ const routes: Routes = [
   {path: 'teachers/form/:id', component: FormTeacherComponent},
   {path: 'programs/form', component: FormProgramComponent},
   {path: 'programs/form/:id', component: FormProgramComponent},
+  {path: 'periods/form', component: FormPeriodComponent},
+  {path: 'periods/form/:id', component: FormPeriodComponent},
   {path: 'user', component: UserViewComponent}
 ];
 
