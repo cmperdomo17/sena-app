@@ -5,7 +5,8 @@
     <app-table-crud 
         [headers]="['ID', 'Nombre', 'Apellido', 'Tipo de Documento', 'Documento', 'Tipo', 'Tipo de Contrato', 'Área', 'Estado', 'Acciones']"
         [attributes]="['TEACHER_ID', 'TEACHER_NAME', 'TEACHER_LASTNAME', 'TEACHER_DNITYPE', 'TEACHER_DNI', 'TEACHER_TYPE', 'TEACHER_CONTRACTTYPE', 'TEACHER_AREA', 'TEACHER_STATE']"
-        [list]="listTeachers">
+        [list]="listTeachers"
+        [editRoute]="'/teachers/form/'">
     </app-table-crud>
     <app-button routerLink="/teachers/form">Crear Docente</app-button>
 </div>

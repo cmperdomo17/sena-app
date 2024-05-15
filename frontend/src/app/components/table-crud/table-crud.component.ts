@@ -10,4 +10,5 @@ export class TableCrudComponent {
   @Input() headers: string[] = [];
   @Input() attributes: any[] = [];
   @Input() list: any[] = [];
+  @Input() editRoute: string= '';
 }

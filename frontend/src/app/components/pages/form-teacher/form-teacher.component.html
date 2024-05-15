@@ -7,7 +7,7 @@
     <h1 class="text-2xl font-semibold">Formulario Docentes</h1>
     <app-input label="Nombre" ngDefaultControl [(ngModel)]="teacher.teacher_name"></app-input>
     <app-input label="Apellidos" ngDefaultControl [(ngModel)]="teacher.teacher_lastname"></app-input>
-    <app-input-options listId="DniTypesList" [options]="dniTypes" [attributes]="['typeName']" placeholder="Tipo DNI" ngDefaultControl [(ngModel)]="teacher.teacher_dniType"></app-input-options>
+    <app-input-options listId="DniTypesList" [options]="dniTypes" [attributes]="['typeName']" placeholder="Tipo DNI" ngDefaultControl [(ngModel)]="teacher.teacher_dnitype"></app-input-options>
     <app-input label="Identificación" ngDefaultControl [(ngModel)]="teacher.teacher_dni"></app-input>
     <div class="flex justify-between items-center gap-4">
         <p class="text-md font-semibold">Tipo de docente:</p>
@@ -15,10 +15,10 @@
     </div>
     <div class="flex justify-between items-center gap-4">
         <p class="text-md font-semibold">Tipo de contrato:</p>
-        <app-input-radio label1="PT" label2="CNT" [defaultSelection]="'PT'" [radioName]="'radio2'" [radioGroupId]="'2'"  ngDefaultControl [(ngModel)]="teacher.teacher_contractType" (selectionChange)="onSelectionChangeCType($event)"></app-input-radio>
+        <app-input-radio label1="PT" label2="CNT" [defaultSelection]="'PT'" [radioName]="'radio2'" [radioGroupId]="'2'"  ngDefaultControl [(ngModel)]="teacher.teacher_contracttype" (selectionChange)="onSelectionChangeCType($event)"></app-input-radio>
     </div>
     <app-input label="Área" ngDefaultControl [(ngModel)]="teacher.teacher_area"></app-input>
     <app-input label="Usuario" ngDefaultControl [(ngModel)]="teacher.user_login"></app-input>
     <app-input label="Contraseña" ngDefaultControl [(ngModel)]="teacher.user_pwd"></app-input>
-    <app-button-save routerLink="/teachers" (click)="createTeacher()"></app-button-save>
+    <app-button-save routerLink="/teachers" (click)="edit ? updateTeacher() : saveNewTeacher()"></app-button-save>
 </div>
