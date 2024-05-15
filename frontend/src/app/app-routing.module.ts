@@ -26,6 +26,7 @@ const routes: Routes = [
   {path: 'periods', component: PeriodManagementComponent},
   {path: 'competencies', component: CompetenciesManagementComponent},
   {path: 'ambients/form', component: FormAmbientComponent},
+  {path: 'ambients/form/:id',component: FormAmbientComponent},
   {path: 'competencies/form', component: FormCompetenceComponent},
   {path: 'schedules/form', component: FormScheduleComponent},
   {path: 'teachers/form', component: FormTeacherComponent},

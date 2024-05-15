@@ -11,9 +11,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export class FormAmbientComponent implements OnInit {
 
-  // !!!!!!!!!!!! AQUI SE CAMBIA??? HOLA BUENAS TARDES
-  @HostBinding('class') classes = 'formulario1';
-
   ambient: Ambient = {
     ambient_id: '',
     ambient_name: '',
@@ -32,13 +29,16 @@ export class FormAmbientComponent implements OnInit {
       this.ambientsService.getAmbient(params['id'])
       .subscribe(
         (res: any) => {
-          console.log(res);
           this.ambient = res[0];
           this.edit = true;
         },
         err => console.error(err)
       )
     }
+  }
+
+  onSelectionChangeType(selection: string): void{
+    this.ambient.ambient_type=selection;
   }
 
   saveNewAmbient() {
@@ -50,26 +50,26 @@ export class FormAmbientComponent implements OnInit {
       alert('La capacidad del ambiente debe ser un número entero');
       return;
     }
-
+    
     this.ambientsService.createAmbient(this.ambient)
     .subscribe(
       res => {
         console.log(res)
-        this.router.navigate(['/ambient']);
+        this.router.navigate(['/ambients']);
       },
       err => console.log(err)
     )
   }
 
   updateAmbient() {
-    if(!this.ambient.ambient_name || !this.ambient.ambient_location || !this.ambient.ambient_type || !this.ambient.ambient_capacity) {
+    /*if(!this.ambient.ambient_name || !this.ambient.ambient_location || !this.ambient.ambient_type || !this.ambient.ambient_capacity) {
       alert('Por favor ingresa todos los campos');
       return;
     }
     if (isNaN(this.ambient.ambient_capacity)){
       alert('La capacidad del ambiente debe ser un número entero');
       return;
-    }
+    }*/
 
     this.ambientsService.updateAmbient(this.ambient.ambient_id, this.ambient)
     .subscribe(
