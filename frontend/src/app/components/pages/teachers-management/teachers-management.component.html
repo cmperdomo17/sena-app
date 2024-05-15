@@ -4,7 +4,7 @@
     <h1 class="text-2xl font-semibold">Docentes</h1>
     <app-table-crud 
         [headers]="['ID', 'Nombre', 'Apellido', 'Tipo de Documento', 'Documento', 'Tipo', 'Tipo de Contrato', 'Área', 'Estado', 'Acciones']"
-        [attributes]="['TEACHER_ID', 'TEACHER_NAME', 'TEACHER_LASTNAME', 'TEACHER_DNITYPE', 'TEACHER_DNI', 'TEACHER_TYPE', 'TEACHER_CONTRACTTYPE', 'TEACHER_AREA', 'TEACHER_STATE']"
+        [attributes]="['teacher_id', 'teacher_name', 'teacher_lastname', 'teacher_dnitype', 'teacher_dni', 'teacher_type', 'teacher_contracttype', 'teacher_area', 'teacher_state']"
         [list]="listTeachers"
         [editRoute]="'/teachers/form/'">
     </app-table-crud>

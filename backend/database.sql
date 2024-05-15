@@ -48,145 +48,145 @@ drop procedure if exists updateTeacher;
 drop procedure if exists changeStateTeacher;
 
 /*==============================================================*/
-/* Table: AMBIENTE                                              */
+/* Table: ambiente                                              */
 /*==============================================================*/
-create table AMBIENT
+create table ambient
 (
-   AMBIENT_ID          varchar(6) not null,
-   AMBIENT_NAME      varchar(100),
-   AMBIENT_LOCATION   varchar(100),
-   AMBIENT_TYPE        varchar(50),
-   AMBIENT_CAPACITY   numeric(8,0),
-   AMBIENT_STATE     numeric(4,0),
-   primary key (AMBIENT_ID)
+   ambient_id          varchar(6) not null,
+   ambient_name      varchar(100),
+   ambient_location   varchar(100),
+   ambient_type        varchar(50),
+   ambient_capacity   numeric(8,0),
+   ambient_state     numeric(4,0),
+   primary key (ambient_id)
 );
 
 /*==============================================================*/
-/* Table: COMPETENCIAGEN_PROGRAMA                               */
+/* Table: competenciagen_programa                               */
 /*==============================================================*/
-create table COMPETENCEGEN_PROGRAM
+create table competencegen_program
 (
-   PROGRAM_ID          int not null,
-   COMPETENCEGEN_ID   int not null,
-   primary key (PROGRAM_ID, COMPETENCEGEN_ID)
+   program_id          int not null,
+   competencegen_id   int not null,
+   primary key (program_id, competencegen_id)
 );
 
 /*==============================================================*/
-/* Table: COMPETENCIA_ESPECIFICA                                */
+/* Table: competencia_especifica                                */
 /*==============================================================*/
-create table COMPETENCE_SPECIFIC
+create table competence_specific
 (
-   COMPETENCESPC_ID    int not null AUTO_INCREMENT,
-   PROGRAM_ID          int not null,
-   COMPETENCESPC_NAME varchar(50),
-   COMPETENCESPC_STATE     numeric(4,0),
-   primary key (COMPETENCESPC_ID)
+   competencespc_id    int not null AUTO_INCREMENT,
+   program_id          int not null,
+   competencespc_name varchar(50),
+   competencespc_state     numeric(4,0),
+   primary key (competencespc_id)
 );
 
 /*==============================================================*/
-/* Table: COMPETENCIA_GENERICA                                  */
+/* Table: competencia_generica                                  */
 /*==============================================================*/
-create table COMPETENCE_GENERIC
+create table competence_generic
 (
-   COMPETENCEGEN_ID    int not null AUTO_INCREMENT,
-   COMPETENCEGEN_NAME varchar(50),
-   COMPETENCEGEN_STATE     numeric(4,0),
-   primary key (COMPETENCEGEN_ID)
+   competencegen_id    int not null AUTO_INCREMENT,
+   competencegen_name varchar(50),
+   competencegen_state     numeric(4,0),
+   primary key (competencegen_id)
+);
+/*==============================================================*/
+/* Table: teacher                                               */
+/*==============================================================*/
+create table teacher
+(
+   teacher_id           int not null AUTO_INCREMENT,
+   teacher_name      varchar(100) not null,
+   teacher_lastname    varchar(100),
+   teacher_dnitype varchar(30) default '1',
+   teacher_dni varchar(10) not null,
+   teacher_type         varchar(30),
+   teacher_contracttype varchar(30),
+   teacher_area         varchar(100) not null,
+   teacher_state     numeric(4,0),
+   user_id        int not null,
+   primary key (teacher_id)
 );
 
 /*==============================================================*/
-/* Table: DOCENTE                                               */
+/* Table: schedule                                               */
 /*==============================================================*/
-create table TEACHER
+create table schedule
 (
-   TEACHER_ID           int not null AUTO_INCREMENT,
-   TEACHER_NAME      varchar(100) not null,
-   TEACHER_LASTNAME    varchar(100),
-   TEACHER_DNITYPE varchar(30) default '1',
-   TEACHER_DNI varchar(10) not null,
-   TEACHER_TYPE         varchar(30),
-   TEACHER_CONTRACTTYPE varchar(30),
-   TEACHER_AREA         varchar(100) not null,
-   TEACHER_STATE     numeric(4,0),
-   USER_ID        int not null,
-   primary key (TEACHER_ID)
+   ambient_id          varchar(6) not null,
+   teacher_id           int not null,
+   period_id           int not null,
+   program_id          int not null,
+   schedule_day          varchar(10),
+   schedule_start_hour  numeric(8,0),
+   schedule_end_hour     numeric(8,0),
+   schedule_duration     numeric(8,0),
+   primary key (ambient_id, teacher_id, period_id, program_id)
 );
 
 /*==============================================================*/
-/* Table: HORARIO                                               */
+/* Table: periodo_academico                                     */
 /*==============================================================*/
-create table `SCHEDULE`
+create table period
 (
-   AMBIENT_ID          varchar(6) not null,
-   TEACHER_ID           int not null,
-   PERIOD_ID           int not null,
-   PROGRAM_ID          int not null,
-   SCHEDULE_DAY          varchar(10),
-   SCHEDULE_START_HOUR  numeric(8,0),
-   SCHEDULE_END_HOUR     numeric(8,0),
-   SCHEDULE_DURATION     numeric(8,0),
-   primary key (AMBIENT_ID, TEACHER_ID, PERIOD_ID, PROGRAM_ID)
+   period_id           int not null AUTO_INCREMENT,
+   period_start_date    varchar(40) not null,
+   period_end_date    varchar(40),
+   period_name       varchar(50) not null,
+   period_state     numeric(4,0),
+   primary key (period_id)
 );
 
 /*==============================================================*/
-/* Table: PERIODO_ACADEMICO                                     */
+/* Table: programa                                              */
 /*==============================================================*/
-create table PERIOD
+create table program
 (
-   PERIOD_ID           int not null AUTO_INCREMENT,
-   PERIOD_START_DATE    varchar(40) not null,
-   PERIOD_END_DATE    varchar(40),
-   PERIOD_NAME       varchar(50) not null,
-   PERIOD_STATE     numeric(4,0),
-   primary key (PERIOD_ID)
+   program_id          int not null AUTO_INCREMENT,
+   program_name      varchar(50),
+   program_state     numeric(4,0),
+   primary key (program_id)
 );
 
 /*==============================================================*/
-/* Table: PROGRAMA                                              */
+/* Table: usuario                                               */
 /*==============================================================*/
-create table PROGRAM
+create table user
 (
-   PROGRAM_ID          int not null AUTO_INCREMENT,
-   PROGRAM_NAME      varchar(50),
-   PROGRAM_STATE     numeric(4,0),
-   primary key (PROGRAM_ID)
+   user_id               int not null AUTO_INCREMENT,
+   user_login            varchar(100) not null,
+   user_pwd              varchar(50) not null,
+   user_state            numeric(4,0),
+   primary key (user_id)
 );
 
-/*==============================================================*/
-/* Table: USUARIO                                               */
-/*==============================================================*/
-create table `USER`
-(
-   USER_ID               int not null AUTO_INCREMENT,
-   USER_LOGIN            varchar(100) not null,
-   USER_PWD              varchar(50) not null,
-   USER_STATE            numeric(4,0),
-   primary key (USER_ID)
-);
+alter table teacher add constraint fk_user_to_program foreign key (user_id)
+      references user (user_id) on delete restrict on update restrict;
 
-alter table TEACHER add constraint FK_USER_TO_PROGRAM foreign key (USER_ID)
-      references USER (USER_ID) on delete restrict on update restrict;
+alter table competencegen_program add constraint fk_competencegen_program foreign key (program_id)
+      references program (program_id) on delete restrict on update restrict;
 
-alter table COMPETENCEGEN_PROGRAM add constraint FK_COMPETENCEGEN_PROGRAM foreign key (PROGRAM_ID)
-      references PROGRAM (PROGRAM_ID) on delete restrict on update restrict;
+alter table competencegen_program add constraint fk_competencegen_program2 foreign key (competencegen_id)
+      references competence_generic (competencegen_id) on delete restrict on update restrict;
 
-alter table COMPETENCEGEN_PROGRAM add constraint FK_COMPETENCEGEN_PROGRAM2 foreign key (COMPETENCEGEN_ID)
-      references COMPETENCE_GENERIC (COMPETENCEGEN_ID) on delete restrict on update restrict;
+alter table competence_specific add constraint fk_competencesp_program foreign key (program_id)
+      references program (program_id) on delete restrict on update restrict;
 
-alter table COMPETENCE_SPECIFIC add constraint FK_COMPETENCESP_PROGRAM foreign key (PROGRAM_ID)
-      references PROGRAM (PROGRAM_ID) on delete restrict on update restrict;
+alter table schedule add constraint fk_schedule foreign key (program_id)
+      references program (program_id) on delete restrict on update restrict;
 
-alter table `SCHEDULE` add constraint FK_SCHEDULE foreign key (PROGRAM_ID)
-      references PROGRAM (PROGRAM_ID) on delete restrict on update restrict;
+alter table schedule add constraint fk_schedule2 foreign key (ambient_id)
+      references ambient (ambient_id) on delete restrict on update restrict;
 
-alter table `SCHEDULE` add constraint FK_SCHEDULE2 foreign key (AMBIENT_ID)
-      references AMBIENT (AMBIENT_ID) on delete restrict on update restrict;
+alter table schedule add constraint fk_schedule3 foreign key (teacher_id)
+      references teacher (teacher_id) on delete restrict on update restrict;
 
-alter table `SCHEDULE` add constraint FK_SCHEDULE3 foreign key (TEACHER_ID)
-      references TEACHER (TEACHER_ID) on delete restrict on update restrict;
+alter table schedule add constraint fk_schedule4 foreign key (period_id)
+      references period (period_id) on delete restrict on update restrict;
 
-alter table `SCHEDULE` add constraint FK_SCHEDULE4 foreign key (PERIOD_ID)
-      references PERIOD (PERIOD_ID) on delete restrict on update restrict;
 
 /*==============================================================*/
 /* Procedures Programs                                          */

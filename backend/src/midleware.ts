@@ -30,8 +30,8 @@ export async function isAdmin(req: Request, res: Response, next: NextFunction) {
         }
 
         const adminUser: userModel = {
-            user_login: admin[0].USER_LOGIN,
-            user_pwd: admin[0].USER_PWD
+            user_login: admin[0].user_login,
+            user_pwd: admin[0].user_pwd
         }
         
         const logUser: userModel = {

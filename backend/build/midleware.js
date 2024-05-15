@@ -40,8 +40,8 @@ function isAdmin(req, res, next) {
                 return res.json({ mensaje: 'Admin no encontrado' });
             }
             const adminUser = {
-                user_login: admin[0].USER_LOGIN,
-                user_pwd: admin[0].USER_PWD
+                user_login: admin[0].user_login,
+                user_pwd: admin[0].user_pwd
             };
             const logUser = {
                 user_login: req.body.user_login,
