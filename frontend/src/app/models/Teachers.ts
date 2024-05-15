@@ -1,12 +1,12 @@
 export interface Teacher {
-    teacher_id: number;
-    teacher_name: string;
-    teacher_lastname: string;
-    teacher_dnitype: string;
-    teacher_dni: string;
-    teacher_type: string;
-    teacher_contracttype: string;
-    teacher_area: string;
-    user_login: string;
-    user_pwd: string;
+    TEACHER_ID: number;
+    TEACHER_NAME: string;
+    TEACHER_LASTNAME: string;
+    TEACHER_DNITYPE: string;
+    TEACHER_DNI: string;
+    TEACHER_TYPE: string;
+    TEACHER_CONTRACTTYPE: string;
+    TEACHER_AREA: string;
+    USER_LOGIN: string;
+    USER_PWD: string;
 }

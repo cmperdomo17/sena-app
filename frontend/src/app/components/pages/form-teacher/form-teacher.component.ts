@@ -3,27 +3,28 @@ import { Teacher } from '../../../models/Teachers';
 import { TeachersService } from '../../../services/teachers.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-form-teacher',
   templateUrl: './form-teacher.component.html',
   styleUrl: './form-teacher.component.css'
 })
 export class FormTeacherComponent implements OnInit{
-
+  
   edit: boolean=false;
   dniTypes:any=[];
 
   teacher: Teacher = {
-    teacher_id:0,
-    teacher_name:'',
-    teacher_lastname:'',
-    teacher_dnitype:'',
-    teacher_dni:'',
-    teacher_type:'',
-    teacher_contracttype:'',
-    teacher_area:'',
-    user_login:'',
-    user_pwd:''
+    TEACHER_ID: 0,
+    TEACHER_NAME: '',
+    TEACHER_LASTNAME: '',
+    TEACHER_DNITYPE: '',
+    TEACHER_DNI: '',
+    TEACHER_TYPE: '',
+    TEACHER_CONTRACTTYPE: '',
+    TEACHER_AREA: '',
+    USER_LOGIN: '',
+    USER_PWD: ''
   }
 
   constructor(private teacherService: TeachersService, private router: Router, private activatedRoute: ActivatedRoute){
@@ -47,11 +48,11 @@ export class FormTeacherComponent implements OnInit{
   }
 
   onSelectionChangeType(selection: string): void {
-    this.teacher.teacher_type = selection;
+    this.teacher.TEACHER_TYPE = selection;
   }
 
   onSelectionChangeCType(selection: string):void{
-    this.teacher.teacher_contracttype = selection;
+    this.teacher.TEACHER_CONTRACTTYPE = selection;
   }
 
   listDniTypes(){
@@ -69,15 +70,15 @@ export class FormTeacherComponent implements OnInit{
   }
 
   saveNewTeacher(){
-    if(this.teacher.teacher_name=='' ||
-       this.teacher.teacher_lastname=='' || 
-       this.teacher.teacher_dnitype=='' ||
-       this.teacher.teacher_dni=='' ||
-       this.teacher.teacher_type=='' ||
-       this.teacher.teacher_contracttype=='' ||
-       this.teacher.teacher_area=='' ||
-       this.teacher.user_login=='' ||
-       this.teacher.user_pwd==''
+    if(this.teacher.TEACHER_NAME=='' ||
+       this.teacher.TEACHER_LASTNAME=='' || 
+       this.teacher.TEACHER_DNITYPE=='' ||
+       this.teacher.TEACHER_DNI=='' ||
+       this.teacher.TEACHER_TYPE=='' ||
+       this.teacher.TEACHER_CONTRACTTYPE=='' ||
+       this.teacher.TEACHER_AREA=='' ||
+       this.teacher.USER_LOGIN=='' ||
+       this.teacher.USER_PWD==''
     ){
       alert('Por favor ingresa todos los campos');
       return;
@@ -91,7 +92,7 @@ export class FormTeacherComponent implements OnInit{
   }
 
   updateTeacher(){
-    this.teacherService.updateTeacher(this.teacher.teacher_id,this.teacher).subscribe(
+    this.teacherService.updateTeacher(this.teacher.TEACHER_ID,this.teacher).subscribe(
       res=>{
         console.log(res);
       },
