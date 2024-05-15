@@ -8,6 +8,7 @@ import { Component, Input} from '@angular/core';
 export class InputOptionsComponent {
   @Input() attributes: any = {};
   @Input() options: any[] = [];
+  @Input() value: string = '';
   @Input() placeholder: string = '';
   @Input() listId: string = '';
 }

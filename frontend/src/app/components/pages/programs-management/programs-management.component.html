@@ -5,7 +5,7 @@
     <app-table-crud 
         [headers]="['Código', 'Nombre', 'Estado', 'Acciones']" 
         [attributes]="['PROGRAM_ID', 'PROGRAM_NAME', 'PROGRAM_STATE']"
-        [list]="listPrograms">
+        [list]="listPrograms" [editRoute]="'/programs/form/'">
     </app-table-crud>
     <app-button routerLink="/programs/form">Crear Programa</app-button>
 </div>

@@ -5,7 +5,7 @@
     <app-table-crud 
         [headers]="['Código', 'Fecha Inicio', 'Fecha Final', 'Nombre', 'Estado', 'Acciones']" 
         [attributes]="['PERIOD_ID', 'PERIOD_START_DATE', 'PERIOD_END_DATE', 'PERIOD_NAME', 'PERIOD_STATE']"
-        [list]="listPeriods">
+        [list]="listPeriods" [editRoute]="'/periods/form/'">
     </app-table-crud>
     <app-button routerLink="/periods/form">Crear Periodo</app-button>
 

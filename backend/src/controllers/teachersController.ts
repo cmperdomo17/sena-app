@@ -7,7 +7,7 @@ class TeacherController{
         const sql=`CALL listTeachers()`;
         const teachersList=await new Promise<any>((resolve, reject) => {
             pool.query(sql,
-                (err: any, rows: any, fields: any) => {
+                (err: any, rows: any) => {
                     if (err) reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
                 });
@@ -19,7 +19,7 @@ class TeacherController{
         const sql=`CALL getTeacher(?)`;
         const teacher=await new Promise<any>((resolve, reject) => {
             pool.query(sql, [req.params.id],
-                (err: any, rows: any, fields: any) => {
+                (err: any, rows: any) => {
                     if (err) reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
                 });

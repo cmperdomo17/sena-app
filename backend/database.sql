@@ -504,9 +504,9 @@ insert into ambient (ambient_id, ambient_name,ambient_location,ambient_type,ambi
 values ("2B2B2B","Salon 222","Piso 2","Virtual",25,1);
 
 insert into teacher (teacher_name,teacher_lastname,teacher_dnitype,teacher_dni,teacher_type,teacher_contracttype,teacher_area, teacher_state, user_id)
-values ("Francisco","Javier","CC","123456789","tecnico","PT","Software",1,2);
+values ("Francisco","Javier","CC","123456789","Tecnico","PT","Software",1,2);
 insert into teacher (teacher_name,teacher_lastname,teacher_dnitype,teacher_dni,teacher_type,teacher_contracttype,teacher_area, teacher_state, user_id)
-values ("Ricardo","Zambrano","CC","987654321","profesional","CNT","Arquitectura de software",1,3);
+values ("Ricardo","Zambrano","CC","987654321","Profesional","CNT","Arquitectura de software",1,3);
 
 insert into `period` (period_start_date,period_end_date,period_name, period_state)
 values ("20/01/2024","20/06/2024","2024.1",1);
