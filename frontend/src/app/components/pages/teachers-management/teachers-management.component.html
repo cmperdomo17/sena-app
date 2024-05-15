@@ -7,8 +7,7 @@
         [attributes]="['teacher_id', 'teacher_name', 'teacher_lastname', 'teacher_dnitype', 'teacher_dni', 'teacher_type', 'teacher_contracttype', 'teacher_area', 'teacher_state']"
         [list]="listTeachers"
         [editRoute]="'/teachers/form/'"
-        [inactivateRoute]="'/teachers/'"
-        [function]="changeStateTeacher">
+        (parentFunction)="changeStateTeacher($event)">
     </app-table-crud>
     <app-button routerLink="/teachers/form">Crear Docente</app-button>
 </div>

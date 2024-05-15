@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-table-crud',
@@ -11,7 +11,9 @@ export class TableCrudComponent {
   @Input() attributes: any[] = [];
   @Input() list: any[] = [];
   @Input() editRoute: string= '';
-  @Input() inactivateRoute: string= '';
-  @Input() function: any;
+  @Output() parentFunction = new EventEmitter<{id: number, state: number}>();
 
+  childFunction(id: number, state: number){
+    this.parentFunction.emit({id,state});
+  }
 }

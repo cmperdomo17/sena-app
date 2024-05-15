@@ -9,7 +9,7 @@
             <td *ngFor="let atribute of attributes">{{ row[atribute] }}</td>
             <td class="flex gap-1 md:gap-3 td-actions" *ngIf="showActions">
                 <app-button-edit [routerLink]="[editRoute, row[attributes[0]]]"></app-button-edit>
-                <app-button-inactivate (click)="function(row[attributes[0]], row[attributes[attributes.length - 1]] == 0 ? 1 : 0)"></app-button-inactivate>
+                <app-button-inactivate (click)="childFunction(row[attributes[0]], row[attributes[attributes.length - 1]] == 0 ? 1 : 0)"></app-button-inactivate>
             </td>
         </tr>
     </tbody>

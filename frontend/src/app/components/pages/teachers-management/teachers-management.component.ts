@@ -31,16 +31,16 @@ export class TeachersManagementComponent implements OnInit {
     console.log('Teacher to be edited: ' + id);
   }
 
-  changeStateTeacher(id: number, state: number) {
+  changeStateTeacher(event: {id: number, state: number}) {
     let message = '';
-    if(state == 1) {
+    if(event.state == 1) {
       message = '¿Estás seguro de que deseas inactivar el profesor?'
     }
     else {
       message = '¿Estás seguro de que deseas activar el profesor?'
     }
     if(window.confirm(message)){
-      this.teachersService.changeStateTeacher(id, state).subscribe(
+      this.teachersService.changeStateTeacher(event.id, event.state).subscribe(
         res => {
           console.log(res);
           this.getTeachers();
