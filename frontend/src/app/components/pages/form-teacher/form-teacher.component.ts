@@ -13,6 +13,8 @@ export class FormTeacherComponent implements OnInit{
   
   edit: boolean=false;
   dniTypes:any=[];
+  defaultTeacherType: string = '';
+  defaultTeacherContractType: string = '';
 
   teacher: Teacher = {
     teacher_id:0,
@@ -27,7 +29,7 @@ export class FormTeacherComponent implements OnInit{
     user_pwd:''
   }
 
-  constructor(private teacherService: TeachersService, private activatedRoute: ActivatedRoute){
+  constructor(private teacherService: TeachersService, private router: Router, private activatedRoute: ActivatedRoute){
   }
 
   ngOnInit(): void {
@@ -87,6 +89,7 @@ export class FormTeacherComponent implements OnInit{
     this.teacherService.createTeacher(this.teacher).subscribe(
       res=>{
         console.log(res);
+        this.router.navigate(['/teachers']);
       },
       err=>console.log(err)
     )

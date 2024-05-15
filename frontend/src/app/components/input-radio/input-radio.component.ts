@@ -13,6 +13,7 @@ export class InputRadioComponent implements OnInit{
   @Input() radioValue2: string = '';
   @Input() radioName: string = '';
   @Input() radioGroupId: string = '';
+
   @Output() selectionChange = new EventEmitter<string>();
 
   ngOnInit(){

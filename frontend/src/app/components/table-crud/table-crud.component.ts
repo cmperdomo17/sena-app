@@ -11,4 +11,7 @@ export class TableCrudComponent {
   @Input() attributes: any[] = [];
   @Input() list: any[] = [];
   @Input() editRoute: string= '';
+  @Input() inactivateRoute: string= '';
+  @Input() function: any;
+
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeachersService } from '../../../services/teachers.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-teachers-management',
@@ -7,11 +8,11 @@ import { TeachersService } from '../../../services/teachers.service';
   styleUrl: './teachers-management.component.css'
 })
 
-export class TeachersManagementComponent implements OnInit{
+export class TeachersManagementComponent implements OnInit {
   
   listTeachers: any = [];
   
-  constructor(private teachersService: TeachersService) {}
+  constructor(private teachersService: TeachersService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit() {
     this.getTeachers();
@@ -44,10 +45,9 @@ export class TeachersManagementComponent implements OnInit{
           console.log(res);
           this.getTeachers();
         },
-        err => console.log(err)
+        err => console.log(err)   
       )
     }
   }
-  
 
 }
