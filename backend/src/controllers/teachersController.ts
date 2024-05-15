@@ -29,15 +29,15 @@ class TeacherController{
 
     public async create (req: Request,res: Response){
         const sql=`CALL createTeacher(?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-        await pool.query(sql, [req.body.TEACHER_NAME,
-                                req.body.TEACHER_LASTNAME,
-                                req.body.TEACHER_DNITYPE,
-                                req.body.TEACHER_DNI,
-                                req.body.TEACHER_TYPE,
-                                req.body.TEACHER_CONTRACTTYPE,
-                                req.body.TEACHER_AREA,
-                                req.body.USER_LOGIN,
-                                req.body.USER_PWD]);
+        await pool.query(sql, [req.body.teacher_name,
+                                req.body.teacher_lastname,
+                                req.body.teacher_dnitype,
+                                req.body.teacher_dni,
+                                req.body.teacher_type,
+                                req.body.teacher_contracttype,
+                                req.body.teacher_area,
+                                req.body.user_login,
+                                req.body.user_pwd]);
         res.json({message: 'Teacher saved!'});
     }
 

@@ -5,20 +5,20 @@
         <svg  xmlns="http://www.w3.org/2000/svg"  width="36"  height="36"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l4 4" /><path d="M5 12l4 -4" /></svg>
     </a>
     <h1 class="text-2xl font-semibold">Formulario Docentes</h1>
-    <app-input label="Nombre" ngDefaultControl [(ngModel)]="teacher.TEACHER_NAME" [value]="teacher" [atribute]="'TEACHER_NAME'"></app-input>
-    <app-input label="Apellidos" ngDefaultControl [(ngModel)]="teacher.TEACHER_LASTNAME" [value]="teacher" [atribute]="'TEACHER_LASTNAME'"></app-input>
-    <app-input-options listId="DniTypesList" [options]="dniTypes" [attributes]="['typeName']" placeholder="Tipo DNI" ngDefaultControl [(ngModel)]="teacher.TEACHER_DNITYPE"></app-input-options>
-    <app-input label="Identificación" ngDefaultControl [(ngModel)]="teacher.TEACHER_DNI" [value]="teacher" [atribute]="'TEACHER_DNI'"></app-input>
+    <app-input label="Nombre" ngDefaultControl [(ngModel)]="teacher.teacher_name" [value]="teacher" [atribute]="'TEACHER_NAME'"></app-input>
+    <app-input label="Apellidos" ngDefaultControl [(ngModel)]="teacher.teacher_lastname" [value]="teacher" [atribute]="'TEACHER_LASTNAME'"></app-input>
+    <app-input-options listId="DniTypesList" [options]="dniTypes" [attributes]="['typeName']" placeholder="Tipo DNI" ngDefaultControl [(ngModel)]="teacher.teacher_dnitype"></app-input-options>
+    <app-input label="Identificación" ngDefaultControl [(ngModel)]="teacher.teacher_dni" [value]="teacher" [atribute]="'TEACHER_DNI'"></app-input>
     <div class="flex justify-between items-center gap-4">
         <p class="text-md font-semibold">Tipo de docente:</p>
-        <app-input-radio label1="Técnico" label2="Profesional" [defaultSelection]="'Técnico'" [radioName]="'radio1'" [radioGroupId]="'1'" ngDefaultControl [(ngModel)]="teacher.TEACHER_TYPE" (selectionChange)="onSelectionChangeType($event)"></app-input-radio>
+        <app-input-radio label1="Técnico" label2="Profesional" [defaultSelection]="'Técnico'" [radioName]="'radio1'" [radioGroupId]="'1'" ngDefaultControl [(ngModel)]="teacher.teacher_type" (selectionChange)="onSelectionChangeType($event)"></app-input-radio>
     </div>
     <div class="flex justify-between items-center gap-4">
         <p class="text-md font-semibold">Tipo de contrato:</p>
-        <app-input-radio label1="PT" label2="CNT" [defaultSelection]="'PT'" [radioName]="'radio2'" [radioGroupId]="'2'"  ngDefaultControl [(ngModel)]="teacher.TEACHER_CONTRACTTYPE" (selectionChange)="onSelectionChangeCType($event)"></app-input-radio>
+        <app-input-radio label1="PT" label2="CNT" [defaultSelection]="'PT'" [radioName]="'radio2'" [radioGroupId]="'2'"  ngDefaultControl [(ngModel)]="teacher.teacher_contracttype" (selectionChange)="onSelectionChangeCType($event)"></app-input-radio>
     </div>
-    <app-input label="Área" ngDefaultControl [(ngModel)]="teacher.TEACHER_AREA" [value]="teacher" [atribute]="'TEACHER_AREA'"></app-input>
-    <app-input label="Usuario" ngDefaultControl [(ngModel)]="teacher.USER_LOGIN"></app-input>
-    <app-input label="Contraseña" ngDefaultControl [(ngModel)]="teacher.USER_PWD"></app-input>
+    <app-input label="Área" ngDefaultControl [(ngModel)]="teacher.teacher_area" [value]="teacher" [atribute]="'TEACHER_AREA'"></app-input>
+    <app-input label="Usuario" ngDefaultControl [(ngModel)]="teacher.user_login"></app-input>
+    <app-input label="Contraseña" ngDefaultControl [(ngModel)]="teacher.user_pwd"></app-input>
     <app-button-save routerLink="/teachers" (click)="edit ? updateTeacher() : saveNewTeacher()"></app-button-save>
 </div>
