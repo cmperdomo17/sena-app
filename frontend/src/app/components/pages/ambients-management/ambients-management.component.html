@@ -5,7 +5,8 @@
     <app-table-crud 
         [headers]="['Código', 'Nombre', 'Ubicación', 'Tipo', 'Capacidad', 'Estado', 'Acciones']" 
         [attributes]="['AMBIENT_ID', 'AMBIENT_NAME', 'AMBIENT_LOCATION', 'AMBIENT_TYPE', 'AMBIENT_CAPACITY', 'AMBIENT_STATE']"
-        [list]="listAmbients">
+        [list]="listAmbients"
+        [editRoute]="'/ambients/form'">
     </app-table-crud>
     <app-button routerLink="/ambients/form">Crear Ambiente</app-button>
 </div>
