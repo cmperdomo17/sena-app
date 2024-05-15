@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-input-radio',
@@ -9,6 +9,8 @@ export class InputRadioComponent implements OnInit{
   @Input() label1: string = '';
   @Input() label2: string = '';
   @Input() defaultSelection: string = '';
+  @Input() radioValue1: string = '';
+  @Input() radioValue2: string = '';
   @Input() radioName: string = '';
   @Input() radioGroupId: string = '';
   @Output() selectionChange = new EventEmitter<string>();

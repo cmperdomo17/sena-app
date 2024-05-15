@@ -1,4 +1,4 @@
-<input [attr.list]="listId" [placeholder]="placeholder">
+<input [attr.list]="listId" [placeholder]="placeholder" [value]="value">
 <datalist [id]="listId">
     <option *ngFor="let option of options">{{ option[attributes] }}</option>
 </datalist>

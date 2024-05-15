@@ -27,8 +27,7 @@ export class FormTeacherComponent implements OnInit{
     user_pwd:''
   }
 
-  constructor(private teacherService: TeachersService, private router: Router, private activatedRoute: ActivatedRoute){
-
+  constructor(private teacherService: TeachersService, private activatedRoute: ActivatedRoute){
   }
 
   ngOnInit(): void {
@@ -38,8 +37,7 @@ export class FormTeacherComponent implements OnInit{
       this.teacherService.getTeacher(params['id'])
         .subscribe(
           (res: any) => {
-            this.teacher = res[0];
-            console.log("Profesor: ",this.teacher);
+            this.teacher = res[0];            
             this.edit = true;
           },
           err => console.error(err)
@@ -47,7 +45,7 @@ export class FormTeacherComponent implements OnInit{
     }
   }
 
-  onSelectionChangeType(selection: string): void {
+  onSelectionChangeType(selection: string) {
     this.teacher.teacher_type = selection;
   }
 
@@ -57,28 +55,31 @@ export class FormTeacherComponent implements OnInit{
 
   listDniTypes(){
     this.dniTypes=[{typeName: "RC"}, 
-                   {typeName: "TI"},
-                   {typeName: "CC"},
-                   {typeName: "TE"},
-                   {typeName: "CE"},
-                   {typeName: "NIT"},
-                   {typeName: "PP"},
-                   {typeName: "PEP"},
-                   {typeName: "DIE"},
-                   {typeName: "NUIP"},
-                   {typeName: "FOREIGN_NIT"}];
+                  {typeName: "TI"},
+                  {typeName: "CC"},
+                  {typeName: "TE"},
+                  {typeName: "CE"},
+                  {typeName: "NIT"},
+                  {typeName: "PP"},
+                  {typeName: "PEP"},
+                  {typeName: "DIE"},
+                  {typeName: "NUIP"},
+                  {typeName: "FOREIGN_NIT"}];
   }
 
   saveNewTeacher(){
+    console.log(this.teacher.teacher_type);
+    console.log(this.teacher.teacher_contracttype);
+    
     if(this.teacher.teacher_name=='' ||
-       this.teacher.teacher_lastname=='' || 
-       this.teacher.teacher_dnitype=='' ||
-       this.teacher.teacher_dni=='' ||
-       this.teacher.teacher_type=='' ||
-       this.teacher.teacher_contracttype=='' ||
-       this.teacher.teacher_area=='' ||
-       this.teacher.user_login=='' ||
-       this.teacher.user_pwd==''
+      this.teacher.teacher_lastname=='' || 
+      this.teacher.teacher_dnitype=='' ||
+      this.teacher.teacher_dni=='' ||
+      this.teacher.teacher_type=='' ||
+      this.teacher.teacher_contracttype=='' ||
+      this.teacher.teacher_area=='' ||
+      this.teacher.user_login=='' ||
+      this.teacher.user_pwd==''
     ){
       alert('Por favor ingresa todos los campos');
       return;
@@ -99,4 +100,5 @@ export class FormTeacherComponent implements OnInit{
       err=>console.log(err)
     )
   }
+
 }
