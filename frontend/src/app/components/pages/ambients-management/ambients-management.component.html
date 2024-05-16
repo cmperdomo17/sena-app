@@ -4,7 +4,7 @@
     <h1 class="text-2xl font-semibold">Ambientes</h1>
     <app-table-crud 
         [headers]="['Código', 'Nombre', 'Ubicación', 'Tipo', 'Capacidad', 'Estado', 'Acciones']" 
-        [attributes]="['AMBIENT_ID', 'AMBIENT_NAME', 'AMBIENT_LOCATION', 'AMBIENT_TYPE', 'AMBIENT_CAPACITY', 'AMBIENT_STATE']"
+        [attributes]="['ambient_id', 'ambient_name', 'ambient_location', 'ambient_type', 'ambient_capacity', 'ambient_state']"
         [list]="listAmbients"
         [editRoute]="'/ambients/form'">
     </app-table-crud>

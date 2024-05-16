@@ -36,6 +36,7 @@ import { CompetenciesManagementComponent } from './components/pages/competencies
 import { FormTeacherComponent } from './components/pages/form-teacher/form-teacher.component';
 import { FormProgramComponent } from './components/pages/form-program/form-program.component';
 import { FormPeriodComponent } from './components/pages/form-period/form-period.component';
+import { InputDateComponent } from './components/input-date/input-date.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { FormPeriodComponent } from './components/pages/form-period/form-period.
     UserViewComponent,
     FormTeacherComponent,
     FormProgramComponent,
-    FormPeriodComponent
+    FormPeriodComponent,
+    InputDateComponent
   ],
   imports: [
     BrowserModule,

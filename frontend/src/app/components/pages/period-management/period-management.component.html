@@ -4,8 +4,10 @@
     <h1 class="text-2xl font-semibold">Periodos</h1>
     <app-table-crud 
         [headers]="['Código', 'Fecha Inicio', 'Fecha Final', 'Nombre', 'Estado', 'Acciones']" 
-        [attributes]="['PERIOD_ID', 'PERIOD_START_DATE', 'PERIOD_END_DATE', 'PERIOD_NAME', 'PERIOD_STATE']"
-        [list]="listPeriods" [editRoute]="'/periods/form/'">
+        [attributes]="['period_id', 'period_start_date', 'period_end_date', 'period_name', 'period_state']"
+        [list]="listPeriods" [editRoute]="'/periods/form/'"
+        [editRoute]="'/periods/form/'"
+        (parentFunction)="changeStatePeriod($event)">
     </app-table-crud>
     <app-button routerLink="/periods/form">Crear Periodo</app-button>
 

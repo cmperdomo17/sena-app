@@ -18,7 +18,7 @@ class TeacherController {
         return __awaiter(this, void 0, void 0, function* () {
             const sql = `CALL listTeachers()`;
             const teachersList = yield new Promise((resolve, reject) => {
-                database_1.default.query(sql, (err, rows, fields) => {
+                database_1.default.query(sql, (err, rows) => {
                     if (err)
                         reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
@@ -31,7 +31,7 @@ class TeacherController {
         return __awaiter(this, void 0, void 0, function* () {
             const sql = `CALL getTeacher(?)`;
             const teacher = yield new Promise((resolve, reject) => {
-                database_1.default.query(sql, [req.params.id], (err, rows, fields) => {
+                database_1.default.query(sql, [req.params.id], (err, rows) => {
                     if (err)
                         reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado

@@ -511,7 +511,7 @@ values ("Ricardo","Zambrano","CC","987654321","Profesional","CNT","Arquitectura 
 insert into `period` (period_start_date,period_end_date,period_name, period_state)
 values ("20/01/2024","20/06/2024","2024.1",1);
 insert into `period` (period_start_date,period_end_date,period_name, period_state)
-values ("20/07/2024","20/012/2024","2024.2",1);
+values ("20/07/2024","20/12/2024","2024.2",1);
 
 insert into competence_generic (competencegen_name, competencegen_state)
 values ("Calculo 1",1);
@@ -521,3 +521,4 @@ values (1,"Software 3",1);
 insert into competence_specific (program_id, competencespc_name, competencespc_state)
 values (2,"Anatomia",1);
 
+alter table `period` AUTO_INCREMENT = 1;

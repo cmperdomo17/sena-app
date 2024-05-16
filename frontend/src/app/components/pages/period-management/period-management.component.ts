@@ -30,16 +30,16 @@ export class PeriodManagementComponent implements OnInit{
     console.log('Period to be edited:',id);
   }
 
-  changeStatePeriod (id: number, state: number) {
+  changeStatePeriod (event: {id: number, state: number}) {
     let message = '';
-    if(state == 1) {
+    if(event.state == 1) {
       message = '¿Estás seguro que deseas inactivar el periodo?'
     }
     else {
       message = '¿Estás seguro que deseas activar el periodo?'
     }
     if(window.confirm(message)){
-      this.periodsService.changeStatetPeriod(id, state).subscribe(
+      this.periodsService.changeStatetPeriod(event.id, event.state).subscribe(
         res => {
           console.log(res);
           this.getPeriods();
