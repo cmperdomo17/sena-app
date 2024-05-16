@@ -30,16 +30,16 @@ export class AmbientsManagementComponent implements OnInit{
     console.log('Ambient to be edited: ' + id);
   }
 
-  changeStateAmbient(id: string, state: number) {
+  changeStateAmbient(event: {id: string, state: number}) {
     let message = '';
-    if(state == 1) {
+    if(event.state == 1) {
       message = '¿Estás seguro de que deseas inactivar el ambiente?'
     }
     else {
       message = '¿Estás seguro de que deseas activar el ambiente?'
     }
     if(window.confirm(message)){
-      this.ambientsService.changeStateAmbient(id, state).subscribe(
+      this.ambientsService.changeStateAmbient(event.id, event.state).subscribe(
         res => {
           console.log(res);
           this.getAmbients();

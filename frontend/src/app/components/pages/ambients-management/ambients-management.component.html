@@ -6,7 +6,8 @@
         [headers]="['Código', 'Nombre', 'Ubicación', 'Tipo', 'Capacidad', 'Estado', 'Acciones']" 
         [attributes]="['ambient_id', 'ambient_name', 'ambient_location', 'ambient_type', 'ambient_capacity', 'ambient_state']"
         [list]="listAmbients"
-        [editRoute]="'/ambients/form'">
+        [editRoute]="'/ambients/form'"
+        (parentFunction)="changeStateAmbient($event)">
     </app-table-crud>
     <app-button routerLink="/ambients/form">Crear Ambiente</app-button>
 </div>
