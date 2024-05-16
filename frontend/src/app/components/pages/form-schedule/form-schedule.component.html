@@ -5,10 +5,14 @@
         <svg  xmlns="http://www.w3.org/2000/svg"  width="36"  height="36"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l4 4" /><path d="M5 12l4 -4" /></svg>
     </a>
     <h1 class="text-2xl font-semibold">Formulario Horarios</h1>
-    <h1 class="text-lg">Periodo: <span>2021-2</span></h1>
-    <h1 class="text-lg">Docente: <span>Docente 1</span></h1>
+    <h1 class="text-lg">Periodo: <span>{{selectedTeacher.teacher_fullname}}</span></h1>
+    <h1 class="text-lg">Docente: <span>{{teacher.teacher_name}}</span></h1>
     <h1 class="text-lg">Franja horaria: <span>08:00 - 10:00</span></h1>
-    <app-input-options listId="competencesList" [options]="['Competencia 1', 'Competencia 2', 'Competencia 3']" placeholder="Competencia"></app-input-options>
-    <app-input-options listId="ambientsList" [options]="['Ambiente 1', 'Ambiente 2', 'Ambiente 3']" placeholder="Ambiente"></app-input-options>
+    <div class="flex justify-between items-center gap-4">
+        <p class="text-md font-semibold">Tipo:</p>
+        <app-input-radio label1="Específica" label2="Genérica" [defaultSelection]="'Específica'" (selectionChange)="onSelectionChange($event)"></app-input-radio>
+    </div>
+    <app-input-options [ngModel]="competence.competence_id" listId="CompetencesList" [options]="CompetencesList" [attributes]="['competence_name']" placeholder="Competencia"></app-input-options>
+    <app-input-options [ngModel]="program.program_id" listId="ProgramsList" [options]="ProgramsList" [attributes]="['program_name']" placeholder="Programa" *ngIf="selectedOption !== 'Genérica'"></app-input-options>
     <app-button-save routerLink="/schedules"></app-button-save>
 </div>

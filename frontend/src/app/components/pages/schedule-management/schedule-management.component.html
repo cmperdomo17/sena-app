@@ -2,8 +2,8 @@
 
 <div class="flex justify-center items-center h-full z-0 flex-col gap-6 py-16 md:py-10">
     <h1 class="text-2xl font-semibold">Horarios</h1>
-    <app-input-options listId="periodsList" [options]="['Periodo 1', 'Periodo 2', 'Periodo 3']" placeholder="Periodos"></app-input-options>
-    <app-input-options listId="teachersList" [options]="['Docente 1', 'Docente 2', 'Docente 3']" placeholder="Docente"></app-input-options>
+    <app-input-options [ngModel]="period.period_id" listId="PeriodsList" [options]="PeriodsList" [attributes]="['period_name']" placeholder="Periodo"></app-input-options>
+    <app-input-options [ngModel]="teacher.teacher_id" listId="TeachersList" [options]="TeachersList" [attributes]="['teacher_fullname']" placeholder="Docente"></app-input-options>
     <app-button-search></app-button-search>
     <app-table-schedule
         [headers]="['Hora', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']"
