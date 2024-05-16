@@ -10,6 +10,9 @@ import { PeriodsService } from '../../../services/periods.service';
 export class PeriodManagementComponent implements OnInit{
 
   listPeriods: any = [];
+  message: string = '';
+  showInactivateMessage: boolean = false;
+  currentEvent: {id: number, state: number} = {id: 0, state: 0};
 
   constructor(private periodsService: PeriodsService) {}
 
@@ -30,22 +33,29 @@ export class PeriodManagementComponent implements OnInit{
     console.log('Period to be edited:',id);
   }
 
-  changeStatePeriod (event: {id: number, state: number}) {
-    let message = '';
-    if(event.state == 1) {
-      message = '¿Estás seguro que deseas inactivar el periodo?'
+  cancelInactivate() {
+    this.showInactivateMessage = false;
+  }
+
+  prepareChangeStateProgram (event: {id: number, state: number}) {
+    this.currentEvent = event;
+    if(event.state === 1) {
+      this.message = '¿Estás seguro que deseas activar el periodo?'
     }
-    else {
-      message = '¿Estás seguro que deseas activar el periodo?'
+    else if(event.state === 0){
+      this.message = '¿Estás seguro que deseas inactivar el periodo?'
     }
-    if(window.confirm(message)){
-      this.periodsService.changeStatetPeriod(event.id, event.state).subscribe(
-        res => {
-          console.log(res);
-          this.getPeriods();
-        },
-        err => console.log(err)
-      )
-    }
+    this.showInactivateMessage = true;
+  }
+
+  confirmChangeStatePeriod() {
+    this.periodsService.changeStatePeriod(this.currentEvent.id, this.currentEvent.state).subscribe(
+      res => {
+        console.log(res);
+        this.getPeriods();
+        this.showInactivateMessage = false;
+      },
+      err => console.log(err)
+    )
   }
 }

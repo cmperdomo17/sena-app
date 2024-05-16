@@ -9,6 +9,9 @@ import { ProgramsService } from '../../../services/programs.service';
 export class ProgramsManagementComponent implements OnInit{
 
   listPrograms: any = [];
+  showInactivateMessage: boolean = false;
+  message: string = '';
+  currentEvent: {id: number, state: number} = {id: 0, state: 0};
 
   constructor(private programsService: ProgramsService) {}
 
@@ -29,22 +32,29 @@ export class ProgramsManagementComponent implements OnInit{
     console.log('Program to be edited:',id);
   }
 
-  changeStateProgram (id: number, state: number) {
-    let message = '';
-    if(state == 1) {
-      message = '¿Estás seguro que deseas inactivar el programa?'
+  cancelInactivate() {
+    this.showInactivateMessage = false;
+  }
+
+  prepareChangeStateProgram (event: {id: number, state: number}) {
+    this.currentEvent = event;
+    if(event.state === 1) {
+      this.message = '¿Estás seguro que deseas activar el programa?'
     }
-    else {
-      message = '¿Estás seguro que deseas activar el programa?'
+    else if(event.state === 0){
+      this.message = '¿Estás seguro que deseas inactivar el programa?'
     }
-    if(window.confirm(message)){
-      this.programsService.changeStateAmbient(id, state).subscribe(
-        res => {
-          console.log(res);
-          this.getPrograms();
-        },
-        err => console.log(err)
-      )
-    }
+    this.showInactivateMessage = true;
+  }
+
+  confirmChangeStateProgram() {
+    this.programsService.changeStateProgram(this.currentEvent.id, this.currentEvent.state).subscribe(
+      res => {
+        console.log(res);
+        this.getPrograms();
+        this.showInactivateMessage = false;
+      },
+      err => console.log(err)
+    )
   }
 }

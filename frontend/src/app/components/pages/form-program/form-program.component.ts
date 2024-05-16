@@ -12,6 +12,7 @@ export class FormProgramComponent implements OnInit {
 
   edit: boolean = false;
   warning: string = '';
+  showInactivateMessage: boolean = false;
 
   program: Program = {
     program_id: 0,
@@ -56,6 +57,7 @@ export class FormProgramComponent implements OnInit {
     .subscribe(
       res => {
         console.log(res);
+        this.router.navigate(['/programs']);
       },
       err => console.log(err)
     )

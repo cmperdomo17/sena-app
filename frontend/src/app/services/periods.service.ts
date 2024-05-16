@@ -32,7 +32,7 @@ export class PeriodsService {
     return this.http.put(`${this.API_URI}/periods/${id}`, updatedPeriod, {headers: {auth: this.auxToken}});
   }
 
-  changeStatetPeriod(id: number, state: number) {
+  changeStatePeriod(id: number, state: number) {
     return this.http.put(`${this.API_URI}/periods/${id}/${state}`, null, {headers: {auth: this.auxToken}});
   }
 }

@@ -1,0 +1,13 @@
+.inactivate_message {
+    color: white;
+    animation: slide-in 800ms forwards;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateY(-90%);
+    }
+    100% {
+        transform: translateY(50%);
+    }
+}

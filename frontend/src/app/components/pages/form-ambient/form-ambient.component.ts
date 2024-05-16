@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class FormAmbientComponent implements OnInit {
 
   ambient: Ambient = {
-    ambient_id: '',
+    ambient_id: 0,
     ambient_name: '',
     ambient_location: '',
     ambient_type: '',
@@ -20,6 +20,7 @@ export class FormAmbientComponent implements OnInit {
   }
 
   edit: boolean = false;
+  warning: string = '';
 
   constructor(private ambientsService: AmbientsService, private router: Router, private activatedRoute: ActivatedRoute) {}
   
@@ -43,11 +44,11 @@ export class FormAmbientComponent implements OnInit {
 
   saveNewAmbient() {
     if(!this.ambient.ambient_id || !this.ambient.ambient_name || !this.ambient.ambient_location || !this.ambient.ambient_type || !this.ambient.ambient_capacity) {
-      alert('Por favor ingresa todos los campos');
+      this.warning = 'Por favor ingresa todos los campos';
       return;
     }
     if (isNaN(this.ambient.ambient_capacity)){
-      alert('La capacidad del ambiente debe ser un número entero');
+      this.warning = 'La capacidad del ambiente debe ser un número entero';
       return;
     }
     
@@ -62,13 +63,12 @@ export class FormAmbientComponent implements OnInit {
   }
 
   updateAmbient() {
-    console.log("Hola desde ambient update");
     if(!this.ambient.ambient_id || !this.ambient.ambient_name || !this.ambient.ambient_location || !this.ambient.ambient_type || !this.ambient.ambient_capacity) {
-      alert('Por favor ingresa todos los campos');
+      this.warning = 'Por favor ingresa todos los campos';
       return;
     }
     if (isNaN(this.ambient.ambient_capacity)){
-      alert('La capacidad del ambiente debe ser un número entero');
+      this.warning = 'La capacidad del ambiente debe ser un número entero';
       return;
     }
 

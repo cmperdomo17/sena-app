@@ -10,6 +10,9 @@ import { AmbientsService } from '../../../services/ambients.service';
 export class AmbientsManagementComponent implements OnInit{
 
   listAmbients: any = [];
+  message: string = '';
+  showInactivateMessage: boolean = false;
+  currentEvent: {id: number, state: number} = {id: 0, state: 0};
 
   constructor(private ambientsService: AmbientsService) {}
 
@@ -29,24 +32,30 @@ export class AmbientsManagementComponent implements OnInit{
   editAmbient(id: string) {
     console.log('Ambient to be edited: ' + id);
   }
+  cancelInactivate() {
+    this.showInactivateMessage = false;
+  }
 
-  changeStateAmbient(event: {id: string, state: number}) {
-    let message = '';
-    if(event.state == 1) {
-      message = '¿Estás seguro de que deseas inactivar el ambiente?'
+  prepareChangeStateAmbient (event: {id: number, state: number}) {
+    this.currentEvent = event;
+    if(event.state === 1) {
+      this.message = '¿Estás seguro que deseas activar el ambiente?'
     }
-    else {
-      message = '¿Estás seguro de que deseas activar el ambiente?'
+    else if(event.state === 0){
+      this.message = '¿Estás seguro que deseas inactivar el ambiente?'
     }
-    if(window.confirm(message)){
-      this.ambientsService.changeStateAmbient(event.id, event.state).subscribe(
-        res => {
-          console.log(res);
-          this.getAmbients();
-        },
-        err => console.log(err)
-      )
-    }
+    this.showInactivateMessage = true;
+  }
+
+  confirmChangeStateAmbient() {
+    this.ambientsService.changeStateAmbient(this.currentEvent.id, this.currentEvent.state).subscribe(
+      res => {
+        console.log(res);
+        this.getAmbients();
+        this.showInactivateMessage = false;
+      },
+      err => console.log(err)
+    )
   }
 
 }

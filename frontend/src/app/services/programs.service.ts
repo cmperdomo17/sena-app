@@ -31,7 +31,7 @@ export class ProgramsService {
     return this.http.put(`${this.API_URI}/programs/${id}`, updatedProgram, {headers: {auth: this.auxToken}});
   }
 
-  changeStateAmbient(id: number, state: number) {
+  changeStateProgram(id: number, state: number) {
     return this.http.put(`${this.API_URI}/programs/${id}/${state}`, null, {headers: {auth: this.auxToken}});
   }
 }

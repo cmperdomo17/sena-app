@@ -11,6 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class TeachersManagementComponent implements OnInit {
   
   listTeachers: any = [];
+  showInactivateMessage: boolean = false;
+  message: string = '';
+  currentEvent: {id: number, state: number} = {id: 0, state: 0};
   
   constructor(private teachersService: TeachersService, private activatedRoute: ActivatedRoute) {}
 
@@ -31,23 +34,30 @@ export class TeachersManagementComponent implements OnInit {
     console.log('Teacher to be edited: ' + id);
   }
 
-  changeStateTeacher(event: {id: number, state: number}) {
-    let message = '';
-    if(event.state == 1) {
-      message = '¿Estás seguro de que deseas inactivar el profesor?'
+  cancelInactivate() {
+    this.showInactivateMessage = false;
+  }
+
+  prepareChangeStateTeacher (event: {id: number, state: number}) {
+    this.currentEvent = event;
+    if(event.state === 1) {
+      this.message = '¿Estás seguro que deseas activar el docente?'
     }
-    else {
-      message = '¿Estás seguro de que deseas activar el profesor?'
+    else if(event.state === 0){
+      this.message = '¿Estás seguro que deseas inactivar el docente?'
     }
-    if(window.confirm(message)){
-      this.teachersService.changeStateTeacher(event.id, event.state).subscribe(
-        res => {
-          console.log(res);
-          this.getTeachers();
-        },
-        err => console.log(err)   
-      )
-    }
+    this.showInactivateMessage = true;
+  }
+
+  confirmChangeStateTeacher() {
+    this.teachersService.changeStateTeacher(this.currentEvent.id, this.currentEvent.state).subscribe(
+      res => {
+        console.log(res);
+        this.getTeachers();
+        this.showInactivateMessage = false;
+      },
+      err => console.log(err)
+    )
   }
 
 }
