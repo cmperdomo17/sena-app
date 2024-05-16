@@ -5,7 +5,7 @@ class UsersController{
         const sql=`CALL listUsers()`;
         const usersList=await new Promise<any>((resolve, reject) => {
             pool.query(sql,
-                (err: any, rows: any, fields: any) => {
+                (err: any, rows: any) => {
                     if (err) reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
                 });
@@ -17,7 +17,7 @@ class UsersController{
         const sql=`CALL getUser(?)`;
         const user=await new Promise<any>((resolve, reject) => {
             pool.query(sql, [id],
-                (err: any, rows: any, fields: any) => {
+                (err: any, rows: any) => {
                     if (err) reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
                 });

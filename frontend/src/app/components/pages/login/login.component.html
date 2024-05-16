@@ -16,12 +16,10 @@
             <button (click)="login()" class=" rounded-2xl py-1 px-24 font-semibold" type="submit">Ingresar</button>
         </form>
         <footer class="flex flex-col gap-2">
-            <p id="error_message" *ngIf="error">{{ error }}</p>
+            <p id="error_message" *ngIf="error_message">{{ error_message }}</p>
             <!-- <a class="underline font-bold text-sm" href="#">Olvidaste tu contraseña?</a>
             <p class="text-sm">No tienes una cuenta? Registrate <a class="underline text-white font-bold" href="#">aquí</a></p> -->
         </footer>
     </div>
 
 </div>
-
-<!-- <app-footer></app-footer> -->

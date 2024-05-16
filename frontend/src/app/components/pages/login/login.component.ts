@@ -2,7 +2,9 @@ import { Component, HostBinding } from '@angular/core';
 import { LoginService } from '../../../services/login.service';
 import { userModel } from '../../../models/User';
 import { Router } from '@angular/router';
+import { AppToken } from '../../../models/AppToken';
 import { HttpResponse } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login',
@@ -21,18 +23,33 @@ export class LoginComponent {
     user_state: 0    
   };
 
-  error: string = '';
   showPassword: boolean = false;
+  token = AppToken.getInstance();
+  error_message: string = '';
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router: Router) {}
   
   login() {
     if (!this.userAux.user_login || !this.userAux.user_pwd) {
-      this.error = 'Por favor rellena todos los campos!';
+      this.error_message = 'Por favor rellena todos los campos!';
       return;
     }
-    this.error = this.loginService.error_message;
-    this.loginService.validateLogin(this.userAux);
+    this.loginService.validateLogin(this.userAux)
+    .subscribe(
+      (response: HttpResponse<any>) => {
+        const token = response.body.token;
+        this.token.setToken(token);
+        this.router.navigate(['/home']);
+      },
+      (error) => {
+        if(error.status == 403) {
+          alert('¡Token invalido!');
+        }
+        else if(error.status == 401) {
+          this.error_message = '¡Usuario o contraseña incorrectos!';
+        }
+      }
+    );
   }
 
   toggleShowPassword() {
