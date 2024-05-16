@@ -15,6 +15,7 @@ export class FormTeacherComponent implements OnInit{
   dniTypes:any=[];
   defaultTeacherType: string = '';
   defaultTeacherContractType: string = '';
+  warning: string = '';
 
   teacher: Teacher = {
     teacher_id:0,
@@ -83,7 +84,7 @@ export class FormTeacherComponent implements OnInit{
       this.teacher.user_login=='' ||
       this.teacher.user_pwd==''
     ){
-      alert('Por favor ingresa todos los campos');
+      this.warning = 'Por favor ingresa todos los campos';
       return;
     }
     this.teacherService.createTeacher(this.teacher).subscribe(

@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FormPeriodComponent implements OnInit{
 
   edit: boolean = false;
+  warning: string = '';
   
   period: Period = {
     period_id: 0,
@@ -60,7 +61,7 @@ export class FormPeriodComponent implements OnInit{
 
     if(this.period.period_name=='' || this.period.period_start_date=='' || this.period.period_end_date==''
     ){
-      alert('Por favor ingresa todos los campos');
+      this.warning = 'Por favor ingresa todos los campos';
       return;
     }
 
@@ -69,14 +70,14 @@ export class FormPeriodComponent implements OnInit{
   
     // Validar que la fecha de inicio sea menor a la fecha de fin
     if (startDate > endDate) {
-      alert('La fecha de inicio debe ser menor a la fecha de fin');
+      this.warning = 'La fecha de inicio debe ser menor a la fecha de fin';
       return;
     }
   
     // Validar que la duración del periodo de 3 a 6 meses
     const diffMonths = this.diffInMonths(startDate, endDate);
     if (diffMonths < 3 || diffMonths > 6) {
-      alert('La duración del periodo debe ser de 3 a 6 meses');
+      this.warning = 'La duración del periodo debe ser de 3 a 6 meses';
       return;
     }
   

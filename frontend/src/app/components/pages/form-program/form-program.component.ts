@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FormProgramComponent implements OnInit {
 
   edit: boolean = false;
+  warning: string = '';
 
   program: Program = {
     program_id: 0,
@@ -37,13 +38,14 @@ export class FormProgramComponent implements OnInit {
 
   saveNewProgram() {
     if(this.program.program_name=='') {
-      alert('Por favor ingresa todos los campos')
+      this.warning = 'Por favor ingresa el nombre del programa';
       return;
     }
     this.programsService.createProgram(this.program).
     subscribe(
       res => {
         console.log(res);
+        this.router.navigate(['/programs']);
       },
       err => console.log(err)
     )
