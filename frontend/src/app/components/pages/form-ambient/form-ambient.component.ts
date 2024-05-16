@@ -42,7 +42,7 @@ export class FormAmbientComponent implements OnInit {
   }
 
   saveNewAmbient() {
-    if(!this.ambient.ambient_name || !this.ambient.ambient_location || !this.ambient.ambient_type || !this.ambient.ambient_capacity) {
+    if(!this.ambient.ambient_id || !this.ambient.ambient_name || !this.ambient.ambient_location || !this.ambient.ambient_type || !this.ambient.ambient_capacity) {
       alert('Por favor ingresa todos los campos');
       return;
     }
@@ -62,14 +62,15 @@ export class FormAmbientComponent implements OnInit {
   }
 
   updateAmbient() {
-    /*if(!this.ambient.ambient_name || !this.ambient.ambient_location || !this.ambient.ambient_type || !this.ambient.ambient_capacity) {
+    console.log("Hola desde ambient update");
+    if(!this.ambient.ambient_id || !this.ambient.ambient_name || !this.ambient.ambient_location || !this.ambient.ambient_type || !this.ambient.ambient_capacity) {
       alert('Por favor ingresa todos los campos');
       return;
     }
     if (isNaN(this.ambient.ambient_capacity)){
       alert('La capacidad del ambiente debe ser un número entero');
       return;
-    }*/
+    }
 
     this.ambientsService.updateAmbient(this.ambient.ambient_id, this.ambient)
     .subscribe(

@@ -11,9 +11,9 @@ export class TableCrudComponent {
   @Input() attributes: any[] = [];
   @Input() list: any[] = [];
   @Input() editRoute: string= '';
-  @Output() parentFunction = new EventEmitter<{id: number, state: number}>();
+  @Output() parentFunction = new EventEmitter<{id: any, state: number}>();
 
-  childFunction(id: number, state: number){
+  childFunction(id: any, state: number){
     this.parentFunction.emit({id,state});
   }
 }
