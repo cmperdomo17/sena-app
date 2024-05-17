@@ -1,4 +1,4 @@
-.cssbuttons-io {
+.cssbuttons-io, .cssbuttons-io-active {
     position: relative;
     font-family: inherit;
     font-weight: 500;
@@ -6,33 +6,49 @@
     border-radius: 0.8em;
     cursor: pointer;
     border: none;
-    background: linear-gradient(to right, #962929, #d94c4c);
     color: #0d1117;
     align-items: center;
     overflow: hidden;
 }
 
-.cssbuttons-io:hover {
+.cssbuttons-io {
+    background: linear-gradient(to right, #962929, #d94c4c);
+}
+
+.cssbuttons-io-active {
+    background: linear-gradient(to right, #297396, #4ca5d9);
+}
+
+.cssbuttons-io:hover, .cssbuttons-io-active:hover {
     color: #fff;
 }
 
-.cssbuttons-io svg {
+.cssbuttons-io svg, .cssbuttons-io-active svg{
     width: 1.3em;
     height: 1.3em;
     margin-right: 0.3em;
 }
 
-.cssbuttons-io span {
+.cssbuttons-io span, .cssbuttons-io-active span {
     position: relative;
     z-index: 10;
     transition: color 0.4s;
     display: inline-flex;
     align-items: center;
+}
+
+.cssbuttons-io span {
     padding: 0.3em .6em 0.2em .4em;
 }
 
+.cssbuttons-io-active span {
+    padding: 0.3em .9em 0.2em .8em;
+}
+
 .cssbuttons-io::before,
-.cssbuttons-io::after {
+.cssbuttons-io::after, 
+.cssbuttons-io-active::before,
+.cssbuttons-io-active::after{
     position: absolute;
     top: 0;
     left: 0;
@@ -41,7 +57,7 @@
     z-index: 0;
 }
 
-.cssbuttons-io::before {
+.cssbuttons-io::before, .cssbuttons-io-active::before {
     content: "";
     background: #fff;
     width: 120%;
@@ -50,16 +66,16 @@
     transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
 }
 
-.cssbuttons-io:hover::before {
+.cssbuttons-io:hover::before, .cssbuttons-io-active:hover::before {
     transform: translate3d(100%, 0, 0);
 }
 
-.cssbuttons-io:active {
+.cssbuttons-io:active, .cssbuttons-io-active:active {
     transform: scale(0.95);
 }
 
 @media (max-width: 768px) {
-    .cssbuttons-io {
+    .cssbuttons-io, .cssbuttons-io-active {
         font-size: 10px;
         border-radius: 30px;
     }
@@ -68,7 +84,7 @@
         display: none;
     }
 
-    .cssbuttons-io span {
+    .cssbuttons-io span, .cssbuttons-io-active span{
         padding: .3em .3em .1em .5em;
     }
 }
