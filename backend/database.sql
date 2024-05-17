@@ -402,9 +402,17 @@ end;
 create procedure getCompetence(in competenceid int, in competencetype int)
 begin
    if competencetype=0 then
-      select * from competence_generic where competencegen_id=competenceid;
+      select cg.competencegen_id as competence_id,
+             cg.competencegen_name as competence_name,
+             null as program_id,
+             cg.competencegen_state as competence_state
+      from competence_generic cg where competencegen_id=competenceid;
    else 
-      select * from competence_specific where competencespc_id=competenceid;
+      select cs.competencespc_id as competence_id,
+             cs.competencespc_name as competence_name,
+             cs.program_id as program_id,
+             cs.competencespc_state as competence_state
+      from competence_specific cs where competencespc_id=competenceid;
    end if;
 end;
 

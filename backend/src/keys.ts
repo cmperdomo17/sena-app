@@ -2,7 +2,7 @@ export default{
     database: {
         host: 'localhost',
         user: 'root',
-        password: 'admin',
+        password: 'administrador',
         database: 'sena_db'
     }
 }

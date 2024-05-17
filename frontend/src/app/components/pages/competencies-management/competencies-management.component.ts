@@ -12,6 +12,11 @@ export class CompetenciesManagementComponent implements OnInit{
   listCompetencies: any = [];
   listSpecificCompetencies: any = [];
   listGenericCompetencies: any = [];
+  type: number = 0;
+
+  message: string = '';
+  showInactivateMessage: boolean = false;
+  currentEvent: {id: number, state: number} = {id: 0, state: 0};
 
   constructor(private competenciesService: CompetenciesService) {}
 
@@ -23,6 +28,7 @@ export class CompetenciesManagementComponent implements OnInit{
     this.competenciesService.listCompetencies().subscribe(
       res => {
         this.listCompetencies = res;
+        console.log(this.listCompetencies);
         this.listSpecificCompetencies = this.listCompetencies.filter((competence: any) => competence.program_id);
         this.listGenericCompetencies = this.listCompetencies.filter((competence: any) => !competence.program_id);
       },
@@ -33,25 +39,48 @@ export class CompetenciesManagementComponent implements OnInit{
   editCompetence(id: number) {
     console.log('Competence to be edited: ' + id);
   }
-
-  changeStateCompetence(id: number, state: number) {
-    let message = '';
-    if(state == 1) {
-      message = '¿Estás seguro de que deseas inactivar la competencia?'
-    }
-    else {
-      message = '¿Estás seguro de que deseas activar la competencia?'
-    }
-    if(window.confirm(message)){
-      this.competenciesService.changeStateCompetence(id, state).subscribe(
-        res => {
-          console.log(res);
-          this.getCompetencies();
-        },
-        err => console.log(err)
-      )
-    }
+  cancelInactivate() {
+    this.showInactivateMessage = false;
   }
+
+  prepareChangeStateCompetenceGen (event: {id: number, state: number}) {
+    this.type = 0;
+    this.currentEvent = event;
+    if(event.state === 1) {
+      this.message = '¿Estás seguro que deseas activar la competencia?'
+    }
+    else if(event.state === 0){
+      this.message = '¿Estás seguro que deseas inactivar la competencia?'
+    }
+    this.showInactivateMessage = true;
+  }
+
+  prepareChangeStateCompetenceSpc (event: {id: number, state: number}) {
+    this.type = 1;
+    this.currentEvent = event;
+    if(event.state === 1) {
+      this.message = '¿Estás seguro que deseas activar la competencia?'
+    }
+    else if(event.state === 0){
+      this.message = '¿Estás seguro que deseas inactivar la competencia?'
+    }
+    this.showInactivateMessage = true;
+  }
+
+  confirmChangeStateCompetence() {
+    const auxType = {competence_type: this.type};
+    console.log('auxtype',auxType);
+    this.competenciesService.changeStateCompetence(this.currentEvent.id, this.currentEvent.state, auxType).subscribe(
+      res => {
+        console.log(res);
+        this.getCompetencies();
+        this.showInactivateMessage = false;
+      },
+      err => console.log(err)
+    )
+
+  }
+
 
 
 

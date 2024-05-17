@@ -19,8 +19,8 @@ export class CompetenciesService {
     return this.http.get(`${this.API_URI}/competencies`, {headers: {auth: this.auxToken}});
   }
 
-  getCompetence(id: number) {
-    return this.http.get(`${this.API_URI}/competencies/${id}`, {headers: {auth: this.auxToken}});
+  getCompetence(id: number, type: number) {
+    return this.http.get(`${this.API_URI}/competencies/${id}/${type}`, {headers: {auth: this.auxToken}});
   }
 
   createCompetence(competence: Competence) {
@@ -31,8 +31,9 @@ export class CompetenciesService {
     return this.http.put(`${this.API_URI}/competencies/${id}`, updatedCompetence, {headers: {auth: this.auxToken}});
   }
 
-  changeStateCompetence(id: number, state: number) {
-    return this.http.put(`${this.API_URI}/competencies/${id}/${state}`, null, {headers: {auth: this.auxToken}});
+  changeStateCompetence(id: number, state: number, type: {competence_type: number}) {
+    console.log('typeService:',type)
+    return this.http.put(`${this.API_URI}/competencies/${id}/${state}`, type, {headers: {auth: this.auxToken}});
   }
 
 }

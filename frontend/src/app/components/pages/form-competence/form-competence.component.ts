@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CompetenciesService } from '../../../services/competencies.service';
 import { ProgramsService } from '../../../services/programs.service';
 import { Competence } from '../../../models/Compentence';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-competence',
@@ -11,58 +11,98 @@ import { Router } from '@angular/router';
 })
 export class FormCompetenceComponent implements OnInit{
 
-  constructor(private competenciesService: CompetenciesService, private router: Router, private programsService: ProgramsService) { }
+  edit: boolean = false;
+  warning: string = '';
 
-  ngOnInit(): void{
-    this.listPrograms();
-  }
+  constructor(private competenciesService: CompetenciesService, private router: Router, private activatedRoute: ActivatedRoute) { }
 
   competence: Competence = {
     competence_id: 0,
     program_id: null,
-    competence_name: '',
-    competence_state: 0
+    competence_name: ''
   };
 
-  ProgramsList: any = [];
-  selectedOption: string = '';
-  errorMessage: string = '';
+  defaultType: string = 'Específica';
+  competenceType: string = '';
 
-  onSelectionChange(selection: string): void {
-    this.selectedOption = selection;
+  ngOnInit(): void{
+    const url = this.activatedRoute.snapshot.url;
+    if (url[3]){
+      this.competenciesService.getCompetence(Number(url[3].path), Number(url[2].path))
+        .subscribe(
+          (res: any) => {
+            this.competence = res[0];            
+            this.edit = true;
+            if(Number(url[2].path) == 0) {
+              this.defaultType = 'Genérica';
+              this.onSelectionChangeType(this.defaultType);
+            }
+          },
+          err => console.error(err)
+        )
+    }
+  }
+  
+  onSelectionChangeType(selection: string) {
+    this.competenceType = selection;
   }
 
-  listPrograms(): void {
-    this.programsService.listPrograms().subscribe(
-      res => {
-        this.ProgramsList = res;    
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
+  saveNewCompetence() {
+    if(!this.competence.competence_name || !this.competenceType
+    ){
+      this.warning = 'Por favor ingresa todos los campos';
+      return;
+    }
 
-  createCompetence(): void {
-    // if (this.competence.competence_name == '' || this.selectedOption == '') {
-    //   console.log(this.competence.competence_name);
-    //   console.log(this.selectedOption);
-      
-    //   this.errorMessage = 'Por favor, completa todos los campos';
-    // } else {
-    //   this.errorMessage = '';
-    //   this.competence.competence_state = 1;
-    // TODO Mandar el objeto competence con los atributos NAME Y PROGRAM_ID
-    this.competenciesService.createCompetence(this.competence).subscribe(
+    if(this.competenceType == 'Específica' && this.competence.program_id == null) {
+      this.warning = 'Por favor ingresa el id del programa';
+      return;
+    }
+
+    this.competenciesService.createCompetence(this.competence).
+    subscribe(
       res => {
-        this.router.navigate(['/competencies']);
-        
         console.log(res);
+        this.router.navigate(['/competencies']);
       },
-      err => {
-        console.log(err);
-      }
-    );
+      err=>console.log(err)
+    )
   }
+
+  updateCompetence() {
+    if(!this.competence.competence_name || !this.competenceType
+    ){
+      this.warning = 'Por favor ingresa todos los campos';
+      return;
+    }
+
+    if(this.competenceType == 'Específica' && this.competence.program_id == null) {
+      this.warning = 'Por favor ingresa el id del programa';
+      return;
+    }
+
+    let type: number;
+
+    if(this.competenceType == 'Genérica') {
+      type = 0;
+    }
+    else {
+      type = 1;
+    }
+
+    console.log('competencia',this.competence)
+
+    this.competenciesService.updateCompetence(this.competence.competence_id, this.competence).subscribe(
+      res => {
+        console.log(res);
+        this.router.navigate(['/competencies']);
+      },
+      err => console.log(err)
+    )
+
+  }
+
+  
+
 
 }

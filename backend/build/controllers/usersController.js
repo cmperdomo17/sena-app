@@ -18,7 +18,7 @@ class UsersController {
         return __awaiter(this, void 0, void 0, function* () {
             const sql = `CALL listUsers()`;
             const usersList = yield new Promise((resolve, reject) => {
-                database_1.default.query(sql, (err, rows, fields) => {
+                database_1.default.query(sql, (err, rows) => {
                     if (err)
                         reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
@@ -31,7 +31,7 @@ class UsersController {
         return __awaiter(this, void 0, void 0, function* () {
             const sql = `CALL getUser(?)`;
             const user = yield new Promise((resolve, reject) => {
-                database_1.default.query(sql, [id], (err, rows, fields) => {
+                database_1.default.query(sql, [id], (err, rows) => {
                     if (err)
                         reject(err); // En caso de error, resolvemos la Promise con error
                     resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
