@@ -21,6 +21,7 @@ export class FormTeacherComponent implements OnInit{
     teacher_id:0,
     teacher_name:'',
     teacher_lastname:'',
+    teacher_fullname:'',
     teacher_dnitype:'',
     teacher_dni:'',
     teacher_type:'',
