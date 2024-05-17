@@ -19,7 +19,8 @@ export class FormCompetenceComponent implements OnInit{
   competence: Competence = {
     competence_id: 0,
     program_id: null,
-    competence_name: ''
+    competence_name: '',
+    competence_state: 0
   };
 
   defaultType: string = 'Específica';
