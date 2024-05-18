@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompetenciesService } from '../../../services/competencies.service';
+import { CompetenciesService } from '../../../../services/competencies.service';
 
 @Component({
   selector: 'app-competencies-management',
