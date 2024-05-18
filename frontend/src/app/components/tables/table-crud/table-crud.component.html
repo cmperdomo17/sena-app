@@ -1,16 +1,34 @@
-<table>
-    <thead class="bg-white">
-        <tr class="text-slate-900">
-            <th *ngFor="let title of headers">{{ title }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let row of list">
-            <td *ngFor="let atribute of attributes">{{ row[atribute] }}</td>
-            <td class="flex gap-1 md:gap-3 td-actions" *ngIf="showActions">
-                <app-button-edit [routerLink]="[editRoute, row[attributes[0]]]"></app-button-edit>
-                <app-button-inactivate [isActivate]="row[attributes[attributes.length - 1]] == 0" (click)="childFunction(row[attributes[0]], row[attributes[attributes.length - 1]] == 0 ? 1 : 0)"></app-button-inactivate>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="overflow-auto rounded-lg shadow hidden md:block">
+    <table class="w-full">
+        <thead class="bg-gray-50 border-b-2 border-gray-200">
+            <tr class="text-slate-900">
+                <th class="px-4 py-2 text-md font-bold tracking-wide text-center" *ngFor="let title of headers">{{ title }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="{'bg-color-odd': i % 2 === 0, 'bg-color-even': i % 2 === 1}" *ngFor="let row of list; let i = index">
+                <td class="text-center p-2 whitespace-nowrap" *ngFor="let atribute of attributes">{{ row[atribute] }}</td>
+                <td class="flex p-2 gap-1 md:gap-3" *ngIf="showActions">
+                    <app-button-edit [routerLink]="[editRoute, row[attributes[0]]]"></app-button-edit>
+                    <app-button-inactivate [isActivate]="row[attributes[attributes.length - 1]] == 0" (click)="childFunction(row[attributes[0]], row[attributes[attributes.length - 1]] == 0 ? 1 : 0)"></app-button-inactivate>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="grid grid-cols-1 gap-4 md:hidden">
+    <div class="flex flex-col gap-2" *ngFor="let row of list; let i = index">
+        <div [ngClass]="{'bg-color-even': i % 2 === 0, 'bg-color-odd': i % 2 === 1}" class="rounded-lg shadow p-4 space-y-3 w-full">
+            <div class="flex items-center justify-between gap-16 text-md" *ngFor="let header of headers; let j = index">
+                <span class="font-bold">{{ header }}:</span>
+                <span>{{ row[attributes[j]] }}</span>
+                <!-- Incluye los botones en el último div generado por el *ngFor -->
+                <div *ngIf="j === headers.length - 1" class="flex gap-4">
+                    <app-button-edit [routerLink]="[editRoute, row[attributes[0]]]"></app-button-edit>
+                    <app-button-inactivate [isActivate]="row[attributes[attributes.length - 1]] == 0" (click)="childFunction(row[attributes[0]], row[attributes[attributes.length - 1]] == 0 ? 1 : 0)"></app-button-inactivate>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

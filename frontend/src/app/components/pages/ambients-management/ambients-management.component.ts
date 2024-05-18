@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AmbientsService } from '../../../../services/ambients.service';
+import { AmbientsService } from '../../../services/ambients.service';
 
 @Component({
   selector: 'app-ambients-management',
