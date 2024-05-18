@@ -1,24 +1,14 @@
-td {
-    padding: 5px;
-    text-align: center;
-    border-left: 1px solid #f2f2f2;
-    border-right: 1px solid #f2f2f2;
+.bg-color-even {
+    background-color: #0d1117;
 }
 
-th {
-    padding-inline: 20px;
-}
-
-tr {
-    border-bottom: 1px solid #f2f2f2;
+.bg-color-odd {
+    background-color: #141923;
 }
 
 @media (max-width: 768px) {
-    table {
-        width: 100%;
-    }
     td, th, tr {
-        font-size: 10px
+        font-size: 11px
     }
 
     th {
@@ -26,6 +16,6 @@ tr {
     }
 
     td {
-        padding: 2px;
+        padding: 4px;
     }
 }

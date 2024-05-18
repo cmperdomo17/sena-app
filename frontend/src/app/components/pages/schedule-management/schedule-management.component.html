@@ -1,6 +1,6 @@
 <app-control-side-bar></app-control-side-bar>
 
-<div class="flex justify-center items-center h-full z-0 flex-col gap-6 py-16 md:py-10">
+<div class="flex justify-center items-center h-full z-0 flex-col gap-6 pt-20 pb-10">
     <h1 class="text-2xl font-semibold">Horarios</h1>
     <app-input-options [ngModel]="period.period_id" listId="PeriodsList" [options]="PeriodsList" [attributes]="['period_name']" placeholder="Periodo"></app-input-options>
     <app-input-options [ngModel]="teacher.teacher_id" listId="TeachersList" [options]="TeachersList" [attributes]="['teacher_fullname']" placeholder="Docente"></app-input-options>
@@ -8,21 +8,21 @@
     <app-table-schedule
         [headers]="['Hora', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']"
         [rows]="[
-            ['7:00', 'Clase', '', '', '', '', ''],
-            ['8:00', '', 'Clase', '', '', '', ''],
-            ['9:00', '', '', 'Clase', '', '', ''],
-            ['10:00', '', '', '', 'Clase', '', ''],
-            ['11:00', '', '', '', '', 'Clase', ''],
-            ['12:00', '', '', '', '', '', 'Clase'],
-            ['13:00', 'Clase', '', '', '', '', ''],
-            ['14:00', '', 'Clase', '', '', '', ''],
-            ['15:00', '', '', 'Clase', '', '', ''],
-            ['16:00', '', '', '', 'Clase', '', ''],
-            ['17:00', '', '', '', '', 'Clase', ''],
-            ['18:00', '', '', '', '', '', 'Clase'],
-            ['19:00', 'Clase', '', '', '', '', ''],
-            ['20:00', '', 'Clase', '', '', '', ''],
-            ['21:00', '', '', 'Clase', '', '', '']
+            ['7:00', '', '', '', '', '', ''],
+            ['8:00', '', '', '', '', '', ''],
+            ['9:00', '', '', '', '', '', ''],
+            ['10:00', '', '', '', '', '', ''],
+            ['11:00', '', '', '', '', '', ''],
+            ['12:00', '', '', '', '', '', ''],
+            ['13:00', '', '', '', '', '', ''],
+            ['14:00', '', '', '', '', '', ''],
+            ['15:00', '', '', '', '', '', ''],
+            ['16:00', '', '', '', '', '', ''],
+            ['17:00', '', '', '', '', '', ''],
+            ['18:00', '', '', '', '', '', ''],
+            ['19:00', '', '', '', '', '', ''],
+            ['20:00', '', '', '', '', '', ''],
+            ['21:00', '', '', '', '', '', '']
         ]">
     </app-table-schedule>
     <app-button routerLink="/schedules/form">Crear Horario</app-button>

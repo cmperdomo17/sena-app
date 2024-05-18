@@ -23,7 +23,6 @@
             <div class="flex items-center justify-between gap-16 text-md" *ngFor="let header of headers; let j = index">
                 <span class="font-bold">{{ header }}:</span>
                 <span>{{ row[attributes[j]] }}</span>
-                <!-- Incluye los botones en el último div generado por el *ngFor -->
                 <div *ngIf="j === headers.length - 1" class="flex gap-4">
                     <app-button-edit [routerLink]="[editRoute, row[attributes[0]]]"></app-button-edit>
                     <app-button-inactivate [isActivate]="row[attributes[attributes.length - 1]] == 0" (click)="childFunction(row[attributes[0]], row[attributes[attributes.length - 1]] == 0 ? 1 : 0)"></app-button-inactivate>

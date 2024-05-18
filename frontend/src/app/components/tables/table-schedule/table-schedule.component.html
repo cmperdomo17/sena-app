@@ -1,12 +1,14 @@
-<table>
-    <thead class="bg-white">
-        <tr class="text-slate-900">
-            <th *ngFor="let title of headers">{{ title }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let row of rows">
-            <td *ngFor="let cell of row">{{ cell }}</td>
-        </tr>
-    </tbody>
-</table>
+<div class="overflow-auto rounded-lg shadow">
+    <table class="w-full">
+        <thead class="bg-gray-50 border-b-2 border-gray-200">
+            <tr class="text-slate-900">
+                <th class="px-4 py-0.5 md:py-2 text-md font-bold tracking-wide text-center" *ngFor="let title of headers">{{ title }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr [ngClass]="{'bg-color-odd': i % 2 === 0, 'bg-color-even': i % 2 === 1}" *ngFor="let row of rows; let i = index">
+                <td class="text-center p-5" [ngClass]="{'font-semibold': j === 0}" *ngFor="let cell of row; let j = index">{{ cell }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

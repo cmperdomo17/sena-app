@@ -14,7 +14,7 @@
     </div>
     <h1 class="text-2xl font-semibold">Docentes</h1>
     <app-table-crud 
-        [headers]="['ID', 'Nombre', 'Apellido', 'Tipo de Documento', 'Documento', 'Tipo', 'Tipo de Contrato', 'Área', 'Estado', 'Acciones']"
+        [headers]="['ID', 'Nombre', 'Apellido', 'T. D', 'Documento', 'Tipo', 'T. C', 'Área', 'Estado', 'Acciones']"
         [attributes]="['teacher_id', 'teacher_name', 'teacher_lastname', 'teacher_dnitype', 'teacher_dni', 'teacher_type', 'teacher_contracttype', 'teacher_area', 'teacher_state']"
         [list]="listTeachers"
         [editRoute]="'/teachers/form/'"
