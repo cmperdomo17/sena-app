@@ -56,11 +56,10 @@ class ScheduleController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body.ambient_id);
-            const sql = `CALL createSchedule(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            const sql = `CALL createSchedule(?, ?, ?, ?, ?, ?, ?, ?, ?)`;
             yield database_1.default.query(sql, [req.body.ambient_id,
                 req.body.teacher_id,
                 req.body.period_id,
-                req.body.program_id,
                 req.body.competence_id,
                 req.body.competence_type,
                 req.body.schedule_day,
@@ -72,12 +71,11 @@ class ScheduleController {
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = `CALL updateSchedule(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+            const sql = `CALL updateSchedule(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
             yield database_1.default.query(sql, [req.params.id,
                 req.body.ambient_id,
                 req.body.teacher_id,
                 req.body.period_id,
-                req.body.program_id,
                 req.body.competence_id,
                 req.body.competence_type,
                 req.body.schedule_day,
