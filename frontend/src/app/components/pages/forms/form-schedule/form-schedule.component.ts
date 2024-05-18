@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Competence } from '../../../models/Compentence';
-import { Program } from '../../../models/Program';
-import { CompetenciesService } from '../../../services/competencies.service';
-import { ProgramsService } from '../../../services/programs.service';
-import { PeriodsService } from '../../../services/periods.service';
-import { TeachersService } from '../../../services/teachers.service';
-import { Teacher } from '../../../models/Teachers';
-import { Period } from '../../../models/Period';
+import { Competence } from '../../../../models/Compentence';
+import { Program } from '../../../../models/Program';
+import { CompetenciesService } from '../../../../services/competencies.service';
+import { ProgramsService } from '../../../../services/programs.service';
+import { PeriodsService } from '../../../../services/periods.service';
+import { TeachersService } from '../../../../services/teachers.service';
+import { Teacher } from '../../../../models/Teachers';
+import { Period } from '../../../../models/Period';
 
 @Component({
   selector: 'app-form-schedule',

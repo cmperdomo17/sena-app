@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CompetenciesService } from '../../../services/competencies.service';
-import { ProgramsService } from '../../../services/programs.service';
-import { Competence } from '../../../models/Compentence';
+import { CompetenciesService } from '../../../../services/competencies.service';
+import { ProgramsService } from '../../../../services/programs.service';
+import { Competence } from '../../../../models/Compentence';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

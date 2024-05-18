@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProgramsService } from '../../../services/programs.service';
+import { ProgramsService } from '../../../../services/programs.service';
 
 @Component({
   selector: 'app-programs-management',
