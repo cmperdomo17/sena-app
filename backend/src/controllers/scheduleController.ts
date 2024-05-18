@@ -41,11 +41,10 @@ class ScheduleController{
 
     public async create (req: Request,res: Response){
         console.log(req.body.ambient_id);
-        const sql=`CALL createSchedule(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        const sql=`CALL createSchedule(?, ?, ?, ?, ?, ?, ?, ?, ?)`;
         await pool.query(sql, [req.body.ambient_id,
                                 req.body.teacher_id,
                                 req.body.period_id,
-                                req.body.program_id,
                                 req.body.competence_id,
                                 req.body.competence_type,
                                 req.body.schedule_day,
@@ -56,12 +55,11 @@ class ScheduleController{
     }
 
     public async update (req: Request,res: Response){
-        const sql=`CALL updateSchedule(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        const sql=`CALL updateSchedule(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
         await pool.query(sql, [req.params.id,
                                 req.body.ambient_id,
                                 req.body.teacher_id,
                                 req.body.period_id,
-                                req.body.program_id,
                                 req.body.competence_id,
                                 req.body.competence_type,
                                 req.body.schedule_day,

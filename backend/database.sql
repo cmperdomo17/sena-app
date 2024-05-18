@@ -84,7 +84,6 @@ create table schedule
    ambient_id          varchar(6) not null,
    teacher_id           int not null,
    period_id           int not null,
-   program_id          int not null,
    competence_id        int not null,
    competence_type      int not null,
    schedule_day          varchar(10),
@@ -140,9 +139,6 @@ alter table competencegen_program add constraint fk_competencegen_program2 forei
       references competence_generic (competencegen_id) on delete restrict on update restrict;
 
 alter table competence_specific add constraint fk_competencesp_program foreign key (program_id)
-      references program (program_id) on delete restrict on update restrict;
-
-alter table schedule add constraint fk_schedule foreign key (program_id)
       references program (program_id) on delete restrict on update restrict;
 
 alter table schedule add constraint fk_schedule2 foreign key (ambient_id)
@@ -493,7 +489,6 @@ end;
 create procedure createSchedule(in ambientid varchar(6),
                                  in teacherid int,
                                  in periodid int,
-                                 in programid int,
                                  in competenceid int,
                                  in competencetype int,
                                  in scheduleday varchar(10),
@@ -501,9 +496,9 @@ create procedure createSchedule(in ambientid varchar(6),
                                  in scheduleend_hour int,
                                  in scheduleduration int)
 begin
-   insert into schedule (ambient_id,teacher_id,period_id,program_id,competence_id,competence_type,
+   insert into schedule (ambient_id,teacher_id,period_id,competence_id,competence_type,
                         schedule_day,schedule_start_hour,schedule_end_hour,schedule_duration)
-   values (ambientid,teacherid,periodid,programid,competenceid,competencetype,
+   values (ambientid,teacherid,periodid,competenceid,competencetype,
            scheduleday,schedulestart_hour,scheduleend_hour,scheduleduration);
 end;
 
@@ -511,7 +506,6 @@ create procedure updateSchedule(in scheduleid int,
                                  in ambientid varchar(6),
                                  in teacherid int,
                                  in periodid int,
-                                 in programid int,
                                  in competenceid int,
                                  in competencetype int,
                                  in scheduleday varchar(10),
@@ -522,7 +516,6 @@ begin
    update schedule set ambient_id=ambientid,
                         teacher_id=teacherid,
                         period_id=periodid,
-                        program_id=programid,
                         competence_id=competenceid,
                         competence_type=competencetype,
                         schedule_day=scheduleday,
@@ -578,11 +571,11 @@ values (1,"Software 3",1);
 insert into competence_specific (program_id, competencespc_name, competencespc_state)
 values (2,"Anatomia",1);
 
-insert into schedule (ambient_id,teacher_id,period_id,program_id,competence_id,competence_type,
+insert into schedule (ambient_id,teacher_id,period_id,competence_id,competence_type,
                         schedule_day,schedule_start_hour,schedule_end_hour,schedule_duration)
-values ("1A1A1", 1, 1, 1, 1, 1, "Lunes", 7, 9, 2);
-insert into schedule (ambient_id,teacher_id,period_id,program_id,competence_id,competence_type,
+values ("1A1A1", 1, 1, 1, 1, "Lunes", 7, 9, 2);
+insert into schedule (ambient_id,teacher_id,period_id,competence_id,competence_type,
                      schedule_day,schedule_start_hour,schedule_end_hour,schedule_duration)
-values ("2B2B2B", 1, 2, 1, 1, 0, "Lunes", 7, 9, 2);
+values ("2B2B2B", 1, 2, 1, 0, "Lunes", 7, 9, 2);
 
 alter table `period` AUTO_INCREMENT = 1;
