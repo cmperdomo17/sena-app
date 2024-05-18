@@ -14,6 +14,7 @@ const teachersRoutes_1 = __importDefault(require("./routes/teachersRoutes"));
 const periodsRoutes_1 = __importDefault(require("./routes/periodsRoutes"));
 const competenceRoutes_1 = __importDefault(require("./routes/competenceRoutes"));
 const userRoutes_1 = __importDefault(require("./routes/userRoutes"));
+const scheduleRoutes_1 = __importDefault(require("./routes/scheduleRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -34,6 +35,7 @@ class Server {
         this.app.use('/api/teachers', midleware_1.isAdmin, teachersRoutes_1.default);
         this.app.use('/api/periods', midleware_1.isAdmin, periodsRoutes_1.default);
         this.app.use('/api/competencies', midleware_1.isAdmin, competenceRoutes_1.default);
+        this.app.use('/api/schedules', midleware_1.isAdmin, scheduleRoutes_1.default);
         this.app.use('/', midleware_1.isAdmin, userRoutes_1.default);
     }
     start() {
