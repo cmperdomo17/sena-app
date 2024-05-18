@@ -32,8 +32,11 @@ export class CompetenciesService {
   }
 
   changeStateCompetence(id: number, state: number, type: {competence_type: number}) {
-    console.log('typeService:',type)
     return this.http.put(`${this.API_URI}/competencies/${id}/${state}`, type, {headers: {auth: this.auxToken}});
+  }
+
+  deleteCompetence(id: number, program_id: number | null) {
+    return this.http.delete(`${this.API_URI}/competencies/${id}/${program_id}`, {headers: {auth: this.auxToken}});
   }
 
 }

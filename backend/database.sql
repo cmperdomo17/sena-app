@@ -441,6 +441,18 @@ begin
    end if;
 end;
 
+create procedure deleteCompetence(in competenceid int,
+                                 in programid int)
+begin
+   if programid is null then
+      delete from competence_generic
+      where competencegen_id=competenceid;
+   else
+      delete from competence_specific 
+      where competencespc_id=competenceid;
+   end if;
+end;
+
 create procedure changeStateCompetence(in competenceid int,
                                        in competencetype int,
                                        in competencestate int)

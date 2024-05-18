@@ -37,7 +37,6 @@ class CompetenceController{
     public async update (req: Request,res: Response){
         const sql=`CALL updateCompetence(?, ?, ?)`;
         await pool.query(sql, [req.params.id,
-                                req.params.type,
                                 req.body.program_id,
                                 req.body.competence_name]);
         res.json({message: 'Competence updated!'});
@@ -45,9 +44,14 @@ class CompetenceController{
 
     public async changeState (req: Request,res: Response){
         const sql=`CALL changeStateCompetence(?, ?, ?)`;
-        console.log('hola como estoy:', req.body.competence_type);
         await pool.query(sql, [req.params.id, req.body.competence_type, req.params.state]);
         res.json({message: 'Competence state changed!'});
+    }
+
+    public async delete (req: Request,res: Response) {
+        const sql=`CALL deleteCompetence(?, ?)`;
+        await pool.query(sql, [req.params.id, req.params.program_id]);
+        res.json({message: 'Competence deleted!'});
     }
 
 }

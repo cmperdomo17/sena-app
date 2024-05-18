@@ -16,6 +16,7 @@ class CompetenceRoutes {
         this.router.post('/', competenceController_1.default.create);
         this.router.put('/:id', competenceController_1.default.update);
         this.router.put('/:id/:state', competenceController_1.default.changeState);
+        this.router.delete('/:id/:program_id', competenceController_1.default.delete);
     }
 }
 const competenceRoutes = new CompetenceRoutes();

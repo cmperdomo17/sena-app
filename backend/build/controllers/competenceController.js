@@ -52,7 +52,6 @@ class CompetenceController {
         return __awaiter(this, void 0, void 0, function* () {
             const sql = `CALL updateCompetence(?, ?, ?)`;
             yield database_1.default.query(sql, [req.params.id,
-                req.params.type,
                 req.body.program_id,
                 req.body.competence_name]);
             res.json({ message: 'Competence updated!' });
@@ -61,9 +60,15 @@ class CompetenceController {
     changeState(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const sql = `CALL changeStateCompetence(?, ?, ?)`;
-            console.log('hola como estoy:', req.body.competence_type);
             yield database_1.default.query(sql, [req.params.id, req.body.competence_type, req.params.state]);
             res.json({ message: 'Competence state changed!' });
+        });
+    }
+    delete(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sql = `CALL deleteCompetence(?, ?)`;
+            yield database_1.default.query(sql, [req.params.id, req.params.program_id]);
+            res.json({ message: 'Competence deleted!' });
         });
     }
 }
