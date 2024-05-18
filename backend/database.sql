@@ -11,42 +11,6 @@ create database sena_db;
 
 use sena_db;
 
-drop table if exists AMBIENT;
-
-drop table if exists COMPETENCEGEN_PROGRAM;
-
-drop table if exists COMPETENCE_SPECIFIC;
-
-drop table if exists COMPETENCE_GENERIC;
-
-drop table if exists TEACHER;
-
-drop table if exists `SCHEDULE`;
-
-drop table if exists ACADEMIC_PERIOD;
-
-drop table if exists PROGRAM;
-
-drop table if exists `USER`;
-
-drop procedure if exists listPrograms;
-drop procedure if exists getProgram;
-drop procedure if exists createProgram;
-drop procedure if exists updateProgram;
-drop procedure if exists changeStateProgram;
-
-drop procedure if exists listAmbients;
-drop procedure if exists getAmbient;
-drop procedure if exists createAmbient;
-drop procedure if exists updateAmbient;
-drop procedure if exists changeStateAmbient;
-
-drop procedure if exists listTeachers;
-drop procedure if exists getTeacher;
-drop procedure if exists createTeacher;
-drop procedure if exists updateTeacher;
-drop procedure if exists changeStateTeacher;
-
 /*==============================================================*/
 /* Table: ambiente                                              */
 /*==============================================================*/
@@ -115,16 +79,19 @@ create table teacher
 /* Table: schedule                                               */
 /*==============================================================*/
 create table schedule
-(
+(  
+   schedule_id          int not null AUTO_INCREMENT,
    ambient_id          varchar(6) not null,
    teacher_id           int not null,
    period_id           int not null,
    program_id          int not null,
+   competence_id        int not null,
+   competence_type      int not null,
    schedule_day          varchar(10),
    schedule_start_hour  numeric(8,0),
    schedule_end_hour     numeric(8,0),
    schedule_duration     numeric(8,0),
-   primary key (ambient_id, teacher_id, period_id, program_id)
+   primary key (schedule_id)
 );
 
 /*==============================================================*/
@@ -504,6 +471,76 @@ $$
 DELIMITER ;
 
 /*==============================================================*/
+/* Procedures Schedule                                          */
+/*==============================================================*/
+DELIMITER $$
+
+create procedure listSchedulesAll()
+begin
+   select * from schedule;
+end;
+
+create procedure listSchedulesPeriodTeacher(in teacherid int, in periodid int)
+begin
+   select * from schedule where teacher_id=teacherid AND period_id=periodid;
+end;
+
+create procedure getSchedule(in scheduleid int)
+begin
+   select * from schedule where schedule_id=scheduleid;
+end;
+
+create procedure createSchedule(in ambientid varchar(6),
+                                 in teacherid int,
+                                 in periodid int,
+                                 in programid int,
+                                 in competenceid int,
+                                 in competencetype int,
+                                 in scheduleday varchar(10),
+                                 in schedulestart_hour int,
+                                 in scheduleend_hour int,
+                                 in scheduleduration int)
+begin
+   insert into schedule (ambient_id,teacher_id,period_id,program_id,competence_id,competence_type,
+                        schedule_day,schedule_start_hour,schedule_end_hour,schedule_duration)
+   values (ambientid,teacherid,periodid,programid,competenceid,competencetype,
+           scheduleday,schedulestart_hour,scheduleend_hour,scheduleduration);
+end;
+
+create procedure updateSchedule(in scheduleid int,
+                                 in ambientid varchar(6),
+                                 in teacherid int,
+                                 in periodid int,
+                                 in programid int,
+                                 in competenceid int,
+                                 in competencetype int,
+                                 in scheduleday varchar(10),
+                                 in schedulestart_hour numeric(8,0),
+                                 in scheduleend_hour numeric(8,0),
+                                 in scheduleduration numeric(8,0))
+begin
+   update schedule set ambient_id=ambientid,
+                        teacher_id=teacherid,
+                        period_id=periodid,
+                        program_id=programid,
+                        competence_id=competenceid,
+                        competence_type=competencetype,
+                        schedule_day=scheduleday,
+                        schedule_start_hour=schedulestart_hour,
+                        schedule_end_hour=scheduleend_hour,
+                        schedule_duration=scheduleduration
+   where schedule_id=scheduleid;
+end;
+
+create procedure deleteSchedule(in scheduleid int)
+begin
+   delete from schedule where schedule_id=scheduleid;
+end;
+
+$$
+DELIMITER ;
+
+/*==============================================================*/
 /* Datos de prueba                                              */
 /*==============================================================*/
 
@@ -540,5 +577,12 @@ insert into competence_specific (program_id, competencespc_name, competencespc_s
 values (1,"Software 3",1);
 insert into competence_specific (program_id, competencespc_name, competencespc_state)
 values (2,"Anatomia",1);
+
+insert into schedule (ambient_id,teacher_id,period_id,program_id,competence_id,competence_type,
+                        schedule_day,schedule_start_hour,schedule_end_hour,schedule_duration)
+values ("1A1A1", 1, 1, 1, 1, 1, "Lunes", 7, 9, 2);
+insert into schedule (ambient_id,teacher_id,period_id,program_id,competence_id,competence_type,
+                     schedule_day,schedule_start_hour,schedule_end_hour,schedule_duration)
+values ("2B2B2B", 1, 2, 1, 1, 0, "Lunes", 7, 9, 2);
 
 alter table `period` AUTO_INCREMENT = 1;

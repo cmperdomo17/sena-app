@@ -10,6 +10,7 @@ import teachersRoutes from './routes/teachersRoutes';
 import periodsRoutes from './routes/periodsRoutes';
 import competenceRoutes from './routes/competenceRoutes';
 import userRoutes from './routes/userRoutes';
+import scheduleRoutes from './routes/scheduleRoutes';
 
 class Server{
 
@@ -36,6 +37,7 @@ class Server{
         this.app.use('/api/teachers',isAdmin,teachersRoutes);
         this.app.use('/api/periods',isAdmin,periodsRoutes);
         this.app.use('/api/competencies',isAdmin,competenceRoutes);
+        this.app.use('/api/schedules',isAdmin,scheduleRoutes);
         this.app.use('/',isAdmin, userRoutes);
     }
 
