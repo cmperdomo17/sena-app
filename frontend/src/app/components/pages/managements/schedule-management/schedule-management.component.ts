@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { PeriodsService } from '../../../services/periods.service';
-import { TeachersService } from '../../../services/teachers.service';
-import { Period } from '../../../models/Period';
-import { Teacher } from '../../../models/Teachers';
+import { PeriodsService } from '../../../../services/periods.service';
+import { TeachersService } from '../../../../services/teachers.service';
+import { Period } from '../../../../models/Period';
+import { Teacher } from '../../../../models/Teachers';
 
 @Component({
   selector: 'app-schedule-management',

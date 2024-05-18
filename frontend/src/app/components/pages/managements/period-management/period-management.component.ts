@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PeriodsService } from '../../../services/periods.service';
+import { PeriodsService } from '../../../../services/periods.service';
 
 @Component({
   selector: 'app-period-management',

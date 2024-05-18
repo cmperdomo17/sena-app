@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { Ambient } from '../../../models/Ambient';
-import { AmbientsService } from '../../../services/ambients.service';
+import { Ambient } from '../../../../models/Ambient';
+import { AmbientsService } from '../../../../services/ambients.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

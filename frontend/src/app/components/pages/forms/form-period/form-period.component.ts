@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Period } from '../../../models/Period';
-import { PeriodsService } from '../../../services/periods.service';
+import { Period } from '../../../../models/Period';
+import { PeriodsService } from '../../../../services/periods.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
