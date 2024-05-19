@@ -86,7 +86,7 @@ export class ScheduleManagementComponent implements OnInit {
   findScheduleByPeriodTeacher(): void {
     for (let i=0; i<15; i++) {
       for (let j=1; j<7; j++){
-        this.scheduleTable[i][j] = '';
+        this.scheduleTable[i][j] = undefined;
       }
     }
 
@@ -115,7 +115,7 @@ export class ScheduleManagementComponent implements OnInit {
       case 'Martes':
         dayIndex = 2;
         break;
-      case 'Miércoles':
+      case 'Miercoles':
         dayIndex = 3;
         break;
       case 'Jueves':
@@ -124,12 +124,13 @@ export class ScheduleManagementComponent implements OnInit {
       case 'Viernes':
         dayIndex = 5;
         break;
-      case 'Sábado':
+      case 'Sabado':
         dayIndex = 6;
         break;
     }
+    
     for (let i=startHour - 7; i<endHour - 7; i++){
-      this.scheduleTable[i][dayIndex] = schedule.ambient_id;
+      this.scheduleTable[i][dayIndex] = schedule;
     }
   }
 
