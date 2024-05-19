@@ -43,13 +43,14 @@ export class FormCompetenceComponent implements OnInit {
             this.edit = true;
             if (Number(url[2].path) == 0) {
               this.defaultType = 'Genérica';
-              this.onSelectionChangeType(this.defaultType);
-            }
+            } 
             this.auxCompetence = JSON.parse(JSON.stringify(this.competence));
+            this.onSelectionChangeType(this.defaultType);
           },
           err => console.error(err)
         )
     }
+    
   }
 
   onSelectionChangeType(selection: string) {
@@ -100,6 +101,9 @@ export class FormCompetenceComponent implements OnInit {
 
     //CUANDO SE EDITA EL TIPO DE COMPETENCIA DE GENERICO A ESPECÍFICO HAY UN PROBLEMA QUE NO DEJA BORRAR LA COMPETENCIA ORIGINAL
     if ((this.auxCompetence.program_id == null && this.competence.program_id != null) || (this.auxCompetence.program_id != null && this.competence.program_id == null)) {
+      if (this.auxCompetence.program_id == null) {
+        this.auxCompetence.program_id = 0;
+      }
       this.competenciesService.deleteCompetence(this.auxCompetence.competence_id, this.auxCompetence.program_id).subscribe(
         res => {
           console.log(res);

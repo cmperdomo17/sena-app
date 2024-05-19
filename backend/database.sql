@@ -407,7 +407,7 @@ end;
 create procedure deleteCompetence(in competenceid int,
                                  in programid int)
 begin
-   if programid is null then
+   if programid=0 then
       delete from competence_generic
       where competencegen_id=competenceid;
    else
