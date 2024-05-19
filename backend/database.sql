@@ -255,7 +255,7 @@ create procedure createTeacher(in teachername varchar(100),
                               in userpwd varchar(50))
 begin
 
-   insert into user (user_login, user_pwd) values (userlogin,userpwd);
+   insert into user (user_login, user_pwd, user_state) values (userlogin, userpwd, 1);
 
    set @userid = last_insert_id();
 
@@ -577,5 +577,13 @@ values ("1A1A1", 1, 1, 1, 1, "Lunes", 7, 9, 2);
 insert into schedule (ambient_id,teacher_id,period_id,competence_id,competence_type,
                      schedule_day,schedule_start_hour,schedule_end_hour,schedule_duration)
 values ("2B2B2B", 1, 2, 1, 0, "Lunes", 7, 9, 2);
+
+insert into schedule (ambient_id,teacher_id,period_id,competence_id,competence_type,
+                        schedule_day,schedule_start_hour,schedule_end_hour,schedule_duration)
+values ("1A1A1", 2, 1, 2, 1, "Martes", 11, 13, 2);
+
+insert into schedule (ambient_id,teacher_id,period_id,competence_id,competence_type,
+                        schedule_day,schedule_start_hour,schedule_end_hour,schedule_duration)
+values ("2B2B2B", 2, 1, 2, 1, "Jueves", 15, 19, 4);
 
 alter table `period` AUTO_INCREMENT = 1;

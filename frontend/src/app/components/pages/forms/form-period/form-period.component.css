@@ -7,6 +7,7 @@
     background-color: #fff;
     color: red;
     animation: slide-in 700ms forwards;
+    text-align: center;
 }
 
 @keyframes slide-in {
@@ -15,5 +16,21 @@
     }
     100% {
         transform: translateY(160%);
+    }
+}
+
+@keyframes slide-in-2 {
+    0% {
+        transform: translateY(-90%);
+    }
+    100% {
+        transform: translateY(200%);
+    }
+}
+
+@media (max-width: 768px) {
+    .warning_message {
+        font-size: 13px;
+        animation: slide-in-2 700ms forwards;
     }
 }

@@ -14,7 +14,7 @@
         <p class="text-md font-semibold">Tipo:</p>
         <app-input-radio label1="Específica" label2="Genérica" [defaultSelection]="'Específica'" (selectionChange)="onSelectionChange($event)"></app-input-radio>
     </div>
-    <app-input-options [ngModel]="competence.competence_id" listId="CompetencesList" [options]="CompetencesList" [attributes]="['competence_name']" placeholder="Competencia"></app-input-options>
-    <app-input-options [ngModel]="program.program_id" listId="ProgramsList" [options]="ProgramsList" [attributes]="['program_name']" placeholder="Programa" *ngIf="selectedOption !== 'Genérica'"></app-input-options>
+    <app-input-options ngDefaultControl [ngModel]="competence.competence_id" listId="CompetencesList" [options]="CompetencesList" [attributes]="['competence_name']" placeholder="Competencia"></app-input-options>
+    <app-input-options ngDefaultControl [ngModel]="program.program_id" listId="ProgramsList" [options]="ProgramsList" [attributes]="['program_name']" placeholder="Programa" *ngIf="selectedOption !== 'Genérica'"></app-input-options>
     <app-button-save routerLink="/schedules"></app-button-save>
 </div>

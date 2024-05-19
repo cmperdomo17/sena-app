@@ -34,7 +34,18 @@ export class FormTeacherComponent implements OnInit{
   constructor(private teacherService: TeachersService, private router: Router, private activatedRoute: ActivatedRoute){
   }
 
+  listTeachers: any = [];
+
   ngOnInit(): void {
+
+    this.teacherService.listTeachers()
+    .subscribe(
+      (res: any) => {
+        this.listTeachers = res;            
+      },
+      err => console.error(err)
+    )
+
     this.listDniTypes();
     const params = this.activatedRoute.snapshot.params;
     if (params['id']){
@@ -75,6 +86,7 @@ export class FormTeacherComponent implements OnInit{
     console.log(this.teacher.teacher_type);
     console.log(this.teacher.teacher_contracttype);
     
+
     if(this.teacher.teacher_name=='' ||
       this.teacher.teacher_lastname=='' || 
       this.teacher.teacher_dnitype=='' ||
@@ -84,10 +96,19 @@ export class FormTeacherComponent implements OnInit{
       this.teacher.teacher_area=='' ||
       this.teacher.user_login=='' ||
       this.teacher.user_pwd==''
-    ){
+    ) 
+    {
       this.warning = 'Por favor ingresa todos los campos';
       return;
     }
+
+    const fullname = this.teacher.teacher_name + ' ' + this.teacher.teacher_lastname;
+
+    if (this.listTeachers.find((teacher: Teacher) => (teacher.teacher_name + ' ' + teacher.teacher_lastname) == fullname)) {
+      this.warning = 'El profesor: ' + fullname + ' ya existe';
+      return;
+    }
+
     this.teacherService.createTeacher(this.teacher).subscribe(
       res=>{
         console.log(res);

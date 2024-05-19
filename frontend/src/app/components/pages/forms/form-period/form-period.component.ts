@@ -23,7 +23,18 @@ export class FormPeriodComponent implements OnInit{
 
   constructor(private periodsService: PeriodsService, private router: Router, private activatedRoute: ActivatedRoute) {}
 
+  listPeriods: any = [];
+
   ngOnInit(): void {
+
+    this.periodsService.listPeriods()
+    .subscribe(
+      res => {
+        this.listPeriods = res;
+      },
+      err => console.error(err)
+    )
+
     const params = this.activatedRoute.snapshot.params;
     if (params['id']){
       this.periodsService.getPeriod(params['id'])
@@ -83,6 +94,11 @@ export class FormPeriodComponent implements OnInit{
   
     this.period.period_start_date = this.convertDateStringFormat(this.period.period_start_date);
     this.period.period_end_date = this.convertDateStringFormat(this.period.period_end_date);
+
+    if (this.listPeriods.find((period: Period) => period.period_name == this.period.period_name)) {
+      this.warning = 'El periodo: ' + this.period.period_name + ' ya existe';
+      return;
+    }
 
     this.periodsService.createPeriod(this.period).subscribe(
       res => {

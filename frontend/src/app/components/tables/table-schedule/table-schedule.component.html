@@ -6,8 +6,12 @@
             </tr>
         </thead>
         <tbody>
-            <tr [ngClass]="{'bg-color-odd': i % 2 === 0, 'bg-color-even': i % 2 === 1}" *ngFor="let row of rows; let i = index">
-                <td class="text-center p-5" [ngClass]="{'font-semibold': j === 0}" *ngFor="let cell of row; let j = index">{{ cell }}</td>
+            <tr [ngClass]="{'bg-color-odd': i % 2 === 0, 'bg-color-even': i % 2 === 1}" *ngFor="let row of table; let i = index">
+                <td class="text-center p-5" [ngClass]="{'font-semibold': j === 0}" *ngFor="let cell of row; let j = index">
+                    <div *ngIf="shouldDisplayCell(i,j)" [attr.rowspan]="getRowSpan(cell)">
+                        {{ cell }}
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>

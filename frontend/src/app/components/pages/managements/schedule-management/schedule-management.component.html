@@ -2,28 +2,12 @@
 
 <div class="flex justify-center items-center h-full z-0 flex-col gap-6 pt-20 pb-10">
     <h1 class="text-2xl font-semibold">Horarios</h1>
-    <app-input-options [ngModel]="period.period_id" listId="PeriodsList" [options]="PeriodsList" [attributes]="['period_name']" placeholder="Periodo"></app-input-options>
-    <app-input-options [ngModel]="teacher.teacher_id" listId="TeachersList" [options]="TeachersList" [attributes]="['teacher_fullname']" placeholder="Docente"></app-input-options>
-    <app-button-search></app-button-search>
+    <app-input-options ngDefaultControl [(ngModel)]="period.period_name" listId="PeriodsList" [options]="PeriodsList" [attributes]="['period_name']" placeholder="Periodo"></app-input-options>
+    <app-input-options ngDefaultControl [(ngModel)]="teacher.teacher_fullname" listId="TeachersList" [options]="TeachersList" [attributes]="['teacher_fullname']" placeholder="Docente"></app-input-options>
+    <app-button-search (click)="findScheduleByPeriodTeacher()" ></app-button-search>
     <app-table-schedule
         [headers]="['Hora', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']"
-        [rows]="[
-            ['7:00', '', '', '', '', '', ''],
-            ['8:00', '', '', '', '', '', ''],
-            ['9:00', '', '', '', '', '', ''],
-            ['10:00', '', '', '', '', '', ''],
-            ['11:00', '', '', '', '', '', ''],
-            ['12:00', '', '', '', '', '', ''],
-            ['13:00', '', '', '', '', '', ''],
-            ['14:00', '', '', '', '', '', ''],
-            ['15:00', '', '', '', '', '', ''],
-            ['16:00', '', '', '', '', '', ''],
-            ['17:00', '', '', '', '', '', ''],
-            ['18:00', '', '', '', '', '', ''],
-            ['19:00', '', '', '', '', '', ''],
-            ['20:00', '', '', '', '', '', ''],
-            ['21:00', '', '', '', '', '', '']
-        ]">
+        [table]="scheduleTable">
     </app-table-schedule>
     <app-button routerLink="/schedules/form">Crear Horario</app-button>
 </div>
