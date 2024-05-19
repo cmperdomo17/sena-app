@@ -1,7 +1,7 @@
 <app-control-side-bar></app-control-side-bar>
 
 <div class="flex justify-center items-center h-full z-0 flex-col gap-4 py-2">
-    <div class="fixed rounded-full px-5 py-1 font-extrabold top-0 warning_message" *ngIf="warning">
+    <div class="fixed rounded-full px-5 py-1 font-extrabold top-0 warning_message z-30" *ngIf="warning">
         <p id="warning_message" *ngIf="warning">{{ warning }}</p>
     </div>
     <a routerLink="/teachers">

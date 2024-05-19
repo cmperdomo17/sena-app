@@ -37,6 +37,7 @@ import { FormTeacherComponent } from './components/pages/forms/form-teacher/form
 import { FormProgramComponent } from './components/pages/forms/form-program/form-program.component';
 import { FormPeriodComponent } from './components/pages/forms/form-period/form-period.component';
 import { InputDateComponent } from './components/inputs/input-date/input-date.component';
+import { ConfirmMessageComponent } from './components/others/confirm-message/confirm-message.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { InputDateComponent } from './components/inputs/input-date/input-date.co
     FormTeacherComponent,
     FormProgramComponent,
     FormPeriodComponent,
-    InputDateComponent
+    InputDateComponent,
+    ConfirmMessageComponent
   ],
   imports: [
     BrowserModule,
