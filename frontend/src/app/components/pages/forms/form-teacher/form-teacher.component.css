@@ -18,8 +18,19 @@
     }
 }
 
+@keyframes slide-in-responsive {
+    0% {
+        transform: translateY(-90%);
+    }
+    100% {
+        transform: translateY(200%);
+    }
+
+}
+
 @media (max-width: 768px) {
     .warning_message {
         font-size: 0.8rem;
+        animation: slide-in-responsive 700ms forwards;
     }
 }
