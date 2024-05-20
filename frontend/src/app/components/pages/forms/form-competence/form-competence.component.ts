@@ -3,6 +3,7 @@ import { CompetenciesService } from '../../../../services/competencies.service';
 import { ProgramsService } from '../../../../services/programs.service';
 import { Competence } from '../../../../models/Compentence';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Program } from '../../../../models/Program';
 
 @Component({
   selector: 'app-form-competence',
@@ -14,7 +15,7 @@ export class FormCompetenceComponent implements OnInit {
   edit: boolean = false;
   warning: string = '';
 
-  constructor(private competenciesService: CompetenciesService, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private competenciesService: CompetenciesService, private router: Router, private activatedRoute: ActivatedRoute, private programsService: ProgramsService) { }
 
   competence: Competence = {
     competence_id: 0,
@@ -23,6 +24,13 @@ export class FormCompetenceComponent implements OnInit {
     competence_state: 0
   };
 
+  program: Program = {
+    program_id: 0,
+    program_name: '',
+    program_state: 0
+  };
+
+  ProgramsList: any = [];
   defaultType: string = 'Específica';
   competenceType: string = '';
 
@@ -129,6 +137,16 @@ export class FormCompetenceComponent implements OnInit {
         err => console.log(err)
       )
     }
+  }
 
+  listPrograms(): void {
+    this.programsService.listPrograms().subscribe(
+      res => {
+        this.ProgramsList = res;
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 }
