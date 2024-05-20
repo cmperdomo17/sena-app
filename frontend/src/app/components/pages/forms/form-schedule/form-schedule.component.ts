@@ -106,5 +106,3 @@ export class FormScheduleComponent implements OnInit {
     );
   }
 }
-
-

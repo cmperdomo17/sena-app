@@ -27,7 +27,6 @@ export class TableScheduleComponent implements OnInit{
         return true;
       }
     }
-    
   }
   
   getRowSpan(cell: any): number {

@@ -8,12 +8,11 @@
         <tbody>
             <tr [ngClass]="{'bg-color-odd': i % 2 === 0, 'bg-color-even': i % 2 === 1}" *ngFor="let row of table; let i = index">
                 <ng-container *ngFor="let cell of row; let j = index" >
-                    <td class="text-center p-5" [ngClass]="{'font-semibold': j === 0}" *ngIf="shouldDisplayCell(i,j,cell)" [attr.rowspan]="getRowSpan(cell)">
-                        
+                    <td class="text-center p-5" [ngClass]="{'font-semibold': j === 0}" *ngIf="shouldDisplayCell(i,j,cell)" [attr.rowspan]="getRowSpan(cell)" [ngStyle]="{'backgroundColor': cell!=undefined && j>0 ? '#fff' : 'none'}">
                         <div *ngIf="j==0">
                             {{ cell }}
                         </div>
-                        <div *ngIf="cell!=undefined && j>0">
+                        <div class="text-lg font-semibold text-zinc-950" *ngIf="cell!=undefined && j>0">
                             {{ cell.ambient_id }}
                         </div>
                     </td>
