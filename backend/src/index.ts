@@ -2,7 +2,7 @@ import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
 import 'dotenv/config'
-import { isAdmin } from './midleware';
+import { isAdmin, isTeacher, isUser } from './midleware';
 
 import programsRoutes from './routes/programsRoutes';
 import ambientsRoutes from './routes/ambientsRoutes';
@@ -11,6 +11,7 @@ import periodsRoutes from './routes/periodsRoutes';
 import competenceRoutes from './routes/competenceRoutes';
 import userRoutes from './routes/userRoutes';
 import scheduleRoutes from './routes/scheduleRoutes';
+import userTeacherRoutes from './routes/userTeacherRoutes';
 
 class Server{
 
@@ -38,7 +39,8 @@ class Server{
         this.app.use('/api/periods',isAdmin,periodsRoutes);
         this.app.use('/api/competencies',isAdmin,competenceRoutes);
         this.app.use('/api/schedules',isAdmin,scheduleRoutes);
-        this.app.use('/',isAdmin, userRoutes);
+        this.app.use('/login',isUser, userRoutes);
+        this.app.use('/api/userTeacher',isTeacher,userTeacherRoutes);
     }
 
     start(): void{

@@ -244,6 +244,11 @@ begin
 	select * from teacher where teacher_id=teacherid;
 end;
 
+create procedure getTeacherByUserId(in userid int)
+begin
+   select * from teacher where user_id=userid;
+end;
+
 create procedure createTeacher(in teachername varchar(100), 
                               in teacherlastname varchar(100), 
                               in teacherdnitype varchar(10),

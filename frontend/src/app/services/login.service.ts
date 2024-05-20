@@ -11,7 +11,7 @@ export class LoginService {
   
   token = AppToken.getInstance();
 
-  API_URI = 'http://localhost:3000/';
+  API_URI = 'http://localhost:3000/login';
 
   constructor(private http: HttpClient, private router: Router) { }
 
