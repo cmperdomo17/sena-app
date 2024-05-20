@@ -10,7 +10,7 @@
         </a>
         <h1 class="text-2xl font-semibold">Formulario Programas</h1>
     </div>
-    <app-input label="Nombre" ngDefaultControl [(ngModel)]="program.program_name" [value]="program" [atribute]="'PROGRAM_NAME'"></app-input>
+    <app-input label="Nombre" ngDefaultControl [(ngModel)]="program.program_name" [value]="program" [atribute]="'program_name'"></app-input>
     
     <app-button-save (click)="edit ? updateProgram() : saveNewProgram()"></app-button-save>
 
