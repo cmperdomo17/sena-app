@@ -12,7 +12,7 @@
     </div>
     <app-input label="Nombre" ngDefaultControl [(ngModel)]="competence.competence_name" [value]="competence" [atribute]="'competence_name'"></app-input>
 
-    <app-input label="Id Programa" ngDefaultControl [(ngModel)]="competence.program_id" [value]="competence" [atribute]="'program_id'" *ngIf="competenceType !== 'Genérica'"></app-input>
+    <app-input-options listId="ProgramIdList" [options]="programsList" [attributes]="['program_id']" placeholder="Id Programa" ngDefaultControl [(ngModel)]="competence.program_id" [value]="competence.program_id?.toString() || ''" *ngIf="competenceType !== 'Genérica'"></app-input-options>
 
     <div class="flex justify-between items-center gap-4">
         <p class="text-md font-semibold">Tipo de competencia</p>

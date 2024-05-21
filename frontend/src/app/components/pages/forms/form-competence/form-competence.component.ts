@@ -30,7 +30,7 @@ export class FormCompetenceComponent implements OnInit {
     program_state: 0
   };
 
-  ProgramsList: any = [];
+  programsList: any = [];
   defaultType: string = 'Específica';
   competenceType: string = '';
 
@@ -51,14 +51,14 @@ export class FormCompetenceComponent implements OnInit {
             this.edit = true;
             if (Number(url[2].path) == 0) {
               this.defaultType = 'Genérica';
-            } 
+            }
             this.auxCompetence = JSON.parse(JSON.stringify(this.competence));
             this.onSelectionChangeType(this.defaultType);
           },
           err => console.error(err)
         )
     }
-    
+    this.listPrograms();
   }
 
   onSelectionChangeType(selection: string) {
@@ -79,6 +79,12 @@ export class FormCompetenceComponent implements OnInit {
 
     if (this.competenceType == 'Genérica') {
       this.competence.program_id = null;
+    }
+
+    // Validar que solo se ingrese una opcion que exista en la lista de programas
+    if (this.competence.program_id != null && !this.programsList.find((program: any) => program.program_id == this.competence.program_id)) {
+      this.warning = 'El identificador del programa ingresado no es valido';
+      return;
     }
 
     this.competenciesService.createCompetence(this.competence).
@@ -107,7 +113,12 @@ export class FormCompetenceComponent implements OnInit {
       this.competence.program_id = null;
     }
 
-    //CUANDO SE EDITA EL TIPO DE COMPETENCIA DE GENERICO A ESPECÍFICO HAY UN PROBLEMA QUE NO DEJA BORRAR LA COMPETENCIA ORIGINAL
+    // Validar que solo se ingrese una opcion que exista en la lista de programas
+    if (this.competence.program_id != null && !this.programsList.find((program: any) => program.program_id == this.competence.program_id)) {
+      this.warning = 'El identificador del programa ingresado no es valido';
+      return;
+    }
+
     if ((this.auxCompetence.program_id == null && this.competence.program_id != null) || (this.auxCompetence.program_id != null && this.competence.program_id == null)) {
       if (this.auxCompetence.program_id == null) {
         this.auxCompetence.program_id = 0;
@@ -141,11 +152,11 @@ export class FormCompetenceComponent implements OnInit {
 
   listPrograms(): void {
     this.programsService.listPrograms().subscribe(
-      res => {
-        this.ProgramsList = res;
+      (res: any) => {
+        this.programsList = res;
       },
       err => {
-        console.log(err);
+        console.error(err);
       }
     );
   }
