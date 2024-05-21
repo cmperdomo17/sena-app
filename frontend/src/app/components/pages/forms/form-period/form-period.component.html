@@ -11,7 +11,11 @@
         <h1 class="text-2xl font-semibold">Formulario Periodos</h1>
     </div>
     <app-input label="Nombre" ngDefaultControl [(ngModel)]="period.period_name" [value]="period" [atribute]="'period_name'"></app-input>
-    <app-input-date label="Fecha Inicio" ngDefaultControl [(ngModel)]="period.period_start_date" [value]="period" [atribute]="'period_start_date'" [startDate]="period.period_start_date" [endDate]="period.period_end_date"></app-input-date>
-    <app-input-date label="Fecha Fin" ngDefaultControl [(ngModel)]="period.period_end_date" [value]="period" [atribute]="'period_end_date'" [startDate]="period.period_start_date" [endDate]="period.period_end_date"></app-input-date>
+    <app-input-date label="Fecha de Inicio:" ngDefaultControl [(ngModel)]="period.period_start_date" [value]="period" [atribute]="'period_start_date'" [startDate]="period.period_start_date" [endDate]="period.period_end_date"></app-input-date>
+
+    <app-input-radio *ngIf="period.period_start_date" [radioGroupId]="'periodDuration'" [radioName]="'Duration'"
+        [label1]="'3 meses'" [label2]="'6 meses'" (selectionChange)="onDurationChange($event)">
+    </app-input-radio>
+    <p class="font-bold" *ngIf="period.period_end_date">Fecha de fin: <span class="font-normal">{{ period.period_end_date }}</span> </p>
     <app-button-save (click)="edit ? updatePeriod() : saveNewPeriod()"></app-button-save>
 </div>

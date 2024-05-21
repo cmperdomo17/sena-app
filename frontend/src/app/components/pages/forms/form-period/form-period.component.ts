@@ -12,6 +12,7 @@ export class FormPeriodComponent implements OnInit{
 
   edit: boolean = false;
   warning: string = '';
+  durationSelected: boolean = false;
   
   period: Period = {
     period_id: 0,
@@ -66,6 +67,18 @@ export class FormPeriodComponent implements OnInit{
     const diffInYears = date2.getFullYear() - date1.getFullYear();
     const diffInMonths = date2.getMonth() - date1.getMonth();
     return diffInYears * 12 + diffInMonths;
+  }
+
+  onDurationChange(duration: string): void{
+    this.durationSelected = true;
+    if (!this.period.period_start_date) {
+      this.warning = 'Por favor ingresa la fecha de inicio del periodo';
+      return;
+    }
+    const durationInMonths = parseInt(duration);
+    const startDate = new Date(this.period.period_start_date);
+    startDate.setMonth(startDate.getMonth() + durationInMonths);
+    this.period.period_end_date = startDate.toISOString().split('T')[0];
   }
   
   saveNewPeriod() {

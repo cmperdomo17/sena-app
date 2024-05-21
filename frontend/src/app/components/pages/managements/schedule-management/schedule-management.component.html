@@ -5,9 +5,9 @@
     <app-input-options ngDefaultControl [(ngModel)]="period.period_name" listId="PeriodsList" [options]="PeriodsList" [attributes]="['period_name']" placeholder="Periodo"></app-input-options>
     <app-input-options ngDefaultControl [(ngModel)]="teacher.teacher_fullname" listId="TeachersList" [options]="TeachersList" [attributes]="['teacher_fullname']" placeholder="Docente"></app-input-options>
     <app-button-search (click)="findScheduleByPeriodTeacher()" ></app-button-search>
+    <app-button routerLink="/schedules/form">Crear Horario</app-button>
     <app-table-schedule
         [headers]="['Hora', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']"
         [table]="scheduleTable">
     </app-table-schedule>
-    <app-button routerLink="/schedules/form">Crear Horario</app-button>
 </div>
