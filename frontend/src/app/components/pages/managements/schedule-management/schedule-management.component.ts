@@ -5,6 +5,12 @@ import { Period } from '../../../../models/Period';
 import { Teacher } from '../../../../models/Teachers';
 import { ScheduleService } from '../../../../services/schedule.service';
 import { Schedule } from '../../../../models/Schedule';
+import { AmbientsService } from '../../../../services/ambients.service';
+import { ProgramsService } from '../../../../services/programs.service';
+import { Program } from '../../../../models/Program';
+import { CompetenciesService } from '../../../../services/competencies.service';
+import { Competence } from '../../../../models/Compentence';
+import { Ambient } from '../../../../models/Ambient';
 
 @Component({
   selector: 'app-schedule-management',
@@ -13,14 +19,24 @@ import { Schedule } from '../../../../models/Schedule';
 })
 export class ScheduleManagementComponent implements OnInit {
 
-  constructor(private periodsService: PeriodsService, private teachersService: TeachersService, private scheduleService: ScheduleService) { }
+  constructor(private periodsService: PeriodsService, private teachersService: TeachersService, private scheduleService: ScheduleService, private ambientsService: AmbientsService, private programsService: ProgramsService, private competenciesService: CompetenciesService) { }
 
   scheduleTable: Array<any>=Array(7);
   listSchedules: any = [];
+  ambientsList: any = [];
+  programsList: any = [];
+  competenciesList: any = [];
+  competenciesGenList: any = [];
+  competenciesSpcList: any = [];
+  type: number = 0;
 
   ngOnInit(): void {
     this.listPeriods();
     this.listTeachers();
+    this.listAmbients();
+    this.listPrograms();
+    this.listCompetencies();
+    
     const hours = ['7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'];
     
     for (let i=0; i<15; i++) {
@@ -58,7 +74,7 @@ export class ScheduleManagementComponent implements OnInit {
   TeachersList: any = [];
   teacherFullName: string = '';
 
-  listPeriods(): void {
+  listPeriods() {
     this.periodsService.listPeriods().subscribe(
       res => {
         this.PeriodsList = res;
@@ -96,8 +112,20 @@ export class ScheduleManagementComponent implements OnInit {
     this.scheduleService.listSchedulesByPeriodTeacher(this.period.period_id, this.teacher.teacher_id).subscribe(
       res => {
         this.listSchedules = res;
+        let competence;
+        let ambient;
         this.listSchedules.forEach((schedule: Schedule) => {
-          this.fillTimeSlot(schedule.schedule_day, schedule.schedule_start_hour, schedule.schedule_end_hour, schedule);
+          if(schedule.competence_type == 0) {
+            competence = {...this.competenciesGenList.find((competence: Competence) => competence.competence_id == schedule.competence_id)};
+          }
+          else {
+            competence = {...this.competenciesSpcList.find((competence: Competence) => competence.competence_id == schedule.competence_id)};
+          }
+
+          ambient = {...this.ambientsList.find((ambient: Ambient) => ambient.ambient_id == schedule.ambient_id)};
+      
+
+          this.fillTimeSlot(schedule.schedule_day, schedule.schedule_start_hour, schedule.schedule_end_hour, ambient.ambient_name, competence.competence_name);
         });
       },
       err => {
@@ -106,7 +134,7 @@ export class ScheduleManagementComponent implements OnInit {
     );
   }
 
-  fillTimeSlot(day: string, startHour: number, endHour: number, schedule: Schedule){
+  fillTimeSlot(day: string, startHour: number, endHour: number, ambient_name: string, competence_name:string){
     let dayIndex: number = 0;
     switch (day) {
       case 'Lunes':
@@ -128,10 +156,46 @@ export class ScheduleManagementComponent implements OnInit {
         dayIndex = 6;
         break;
     }
-    
+    const auxSchedule = {schedule_start_hour: startHour,
+                          schedule_end_hour: endHour,
+                          ambient_name: ambient_name,
+                          competence_name:competence_name}
     for (let i=startHour - 7; i<endHour - 7; i++){
-      this.scheduleTable[i][dayIndex] = schedule;
+      this.scheduleTable[i][dayIndex] = auxSchedule;
     }
+
+  }
+
+  listAmbients() {
+    this.ambientsService.listAmbients()
+    .subscribe(
+      res => {
+        this.ambientsList = res;
+      },
+      err => console.error(err)
+    );
+  }
+
+  listCompetencies() {
+    this.competenciesService.listCompetencies().subscribe(
+      res => {
+        this.competenciesList = res;
+        console.log(this.listCompetencies);
+        this.competenciesSpcList = this.competenciesList.filter((competence: any) => competence.program_id);
+        this.competenciesGenList = this.competenciesList.filter((competence: any) => !competence.program_id);
+      },
+      err => console.log(err)
+    )
+  }
+
+  listPrograms() {
+    this.programsService.listPrograms()
+    .subscribe(
+      res => {
+        this.programsList = res;
+      },
+      err => console.error(err)
+    )
   }
 
 }

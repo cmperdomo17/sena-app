@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class FormAmbientComponent implements OnInit {
 
   ambient: Ambient = {
-    ambient_id: 0,
+    ambient_id: '',
     ambient_name: '',
     ambient_location: '',
     ambient_type: '',

@@ -12,7 +12,7 @@ export class AmbientsManagementComponent implements OnInit{
   listAmbients: any = [];
   message: string = '';
   showInactivateMessage: boolean = false;
-  currentEvent: {id: number, state: number} = {id: 0, state: 0};
+  currentEvent: {id: string, state: number} = {id: '', state: 0};
 
   constructor(private ambientsService: AmbientsService) {}
 
@@ -36,7 +36,7 @@ export class AmbientsManagementComponent implements OnInit{
     this.showInactivateMessage = false;
   }
 
-  prepareChangeStateAmbient (event: {id: number, state: number}) {
+  prepareChangeStateAmbient (event: {id: string, state: number}) {
     this.currentEvent = event;
     if(event.state === 1) {
       this.message = '¿Estás seguro que deseas activar el ambiente?'

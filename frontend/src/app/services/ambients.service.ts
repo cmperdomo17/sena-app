@@ -20,7 +20,7 @@ export class AmbientsService {
     return this.http.get(`${this.API_URI}/ambients`, {headers: {auth: this.auxToken}});
   }
 
-  getAmbient(id: number) {
+  getAmbient(id: string) {
     return this.http.get(`${this.API_URI}/ambients/${id}`, {headers: {auth: this.auxToken}});
   }
 
@@ -28,11 +28,11 @@ export class AmbientsService {
     return this.http.post(`${this.API_URI}/ambients`, ambient, {headers: {auth: this.auxToken}});
   }
 
-  updateAmbient(id: number, updatedAmbient: Ambient) {
+  updateAmbient(id: string, updatedAmbient: Ambient) {
     return this.http.put(`${this.API_URI}/ambients/${id}`, updatedAmbient, {headers: {auth: this.auxToken}});
   }
 
-  changeStateAmbient(id: number, state: number) {
+  changeStateAmbient(id: string, state: number) {
     return this.http.put(`${this.API_URI}/ambients/${id}/${state}`, null, {headers: {auth: this.auxToken}});
   }
 }

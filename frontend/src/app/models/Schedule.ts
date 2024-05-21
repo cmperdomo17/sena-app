@@ -4,7 +4,7 @@ export interface Schedule {
     teacher_id: number;
     period_id: number;
     competence_id: number;
-    competence_type: string;
+    competence_type: number;
     schedule_day: string;
     schedule_start_hour: number;
     schedule_end_hour: number;
