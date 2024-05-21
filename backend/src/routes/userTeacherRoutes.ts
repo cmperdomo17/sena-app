@@ -10,8 +10,9 @@ class UserTeachersRoutes{
     }
 
     config(): void{
-        this.router.get('/', userTeacherController.getTeacher);
-        this.router.get('/:Pid', userTeacherController.ListSchedulesPeriodTeacher);
+        this.router.get('/', userTeacherController.getTeacherT);
+        this.router.post('/:Pid', userTeacherController.ListSchedulesPeriodTeacherT);
+        this.router.get('/periods', userTeacherController.ListPeriodsT);
     }
 }
 

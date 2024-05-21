@@ -90,8 +90,8 @@ export class ScheduleManagementComponent implements OnInit {
       }
     }
 
-    this.teacher = this.TeachersList.find((teacher: Teacher) => teacher.teacher_fullname == this.teacher.teacher_fullname);
-    this.period = this.PeriodsList.find((period: Period) => period.period_name == this.period.period_name); 
+    this.teacher = {...this.TeachersList.find((teacher: Teacher) => teacher.teacher_fullname == this.teacher.teacher_fullname)};
+    this.period = {...this.PeriodsList.find((period: Period) => period.period_name == this.period.period_name)}; 
     
     this.scheduleService.listSchedulesByPeriodTeacher(this.period.period_id, this.teacher.teacher_id).subscribe(
       res => {

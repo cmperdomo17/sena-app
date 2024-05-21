@@ -15,6 +15,8 @@ export class AppToken {
     public setToken(token: string | null) {
         if(token) {
             localStorage.setItem("token", JSON.stringify(token));
+        }else{
+            localStorage.setItem("token",'');
         }
     }
 

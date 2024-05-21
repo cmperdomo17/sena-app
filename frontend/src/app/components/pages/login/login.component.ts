@@ -39,7 +39,12 @@ export class LoginComponent {
       (response: HttpResponse<any>) => {
         const token = response.body.token;
         this.token.setToken(token);
-        this.router.navigate(['/home']);
+        if(response.body.user_type==1){
+          this.router.navigate(['/home']);
+        }else if(response.body.user_type==0){
+          this.router.navigate(['/user']);
+        }
+        
       },
       (error) => {
         if(error.status == 403) {

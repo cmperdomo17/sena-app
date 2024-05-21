@@ -41,7 +41,7 @@ function isUser(req, res, next) {
             const token = generateToken(logUser);
             console.log('admin token:', token);
             // Se le da un token con una duracion de 3h
-            res.json({ token: token });
+            res.json({ token: token, user_type: 1 });
             next();
         }
         else {
@@ -55,7 +55,7 @@ function isUser(req, res, next) {
                     teacherUser.user_type = 0;
                     const token = generateToken(teacherUser);
                     console.log('Teacher token: ', token);
-                    res.json({ token: token });
+                    res.json({ token: token, user_type: 0 });
                     next();
                 }
                 else {

@@ -32,7 +32,7 @@ export async function isUser(req: Request, res: Response, next: NextFunction) {
         const token = generateToken(logUser);
         console.log('admin token:',token);
         // Se le da un token con una duracion de 3h
-        res.json({token: token});
+        res.json({token: token, user_type: 1});
         next();
     } else {
         try{
@@ -45,7 +45,7 @@ export async function isUser(req: Request, res: Response, next: NextFunction) {
                 teacherUser.user_type=0;
                 const token = generateToken(teacherUser);
                 console.log('Teacher token: ',token);
-                res.json({token: token});
+                res.json({token: token, user_type: 0});
                 next();
             }else{  
                 //Si no exite devolver un error 404 - Usuario no encontrado
