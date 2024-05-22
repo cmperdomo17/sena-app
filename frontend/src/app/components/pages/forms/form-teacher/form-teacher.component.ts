@@ -106,7 +106,7 @@ export class FormTeacherComponent implements OnInit{
     if (this.teacher.teacher_name.match(/\d/) || this.teacher.teacher_lastname.match(/\d/)) {
       this.warning = 'El nombre y apellido no pueden contener números';
       return;
-    }
+    } 
 
     // Validar que solo se ingrese una opcion que exista en la lista de DNI
     if (!this.dniTypes.find((type: any) => type.typeName == this.teacher.teacher_dnitype)) {
