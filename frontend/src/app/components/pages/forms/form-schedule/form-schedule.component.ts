@@ -50,6 +50,7 @@ export class FormScheduleComponent implements OnInit {
 
     this.listAmbients();
     this.listCompetencies();
+    this.listAllSchedules();
   }
 
   schedule: Schedule = {
@@ -121,34 +122,16 @@ export class FormScheduleComponent implements OnInit {
 
   selectedOption: string = '';
 
-  selectedTeacher: Teacher = {
-    teacher_id: 0,
-    teacher_name: '',
-    teacher_lastname: '',
-    teacher_fullname: '',
-    teacher_dnitype: '',
-    teacher_dni: '',
-    teacher_type: '',
-    teacher_contracttype: '',
-    teacher_area: '',
-    user_login: '',
-    user_pwd: ''
-  };
+  listSchedules: any=[];
 
   onSelectionChangeType(selection: string) {
     this.competenceType = selection;
-  }
-
-  onSelectionChangeTeacher(teacher: Teacher) {
-    this.selectedTeacher = teacher;
-    this.schedule.teacher_id = teacher.teacher_id;
   }
 
   listCompetencies() {
     this.competenciesService.listCompetencies().subscribe(
       res => {
         this.competenciesList = res;
-        console.log(this.listCompetencies);
         this.competenciesSpcList = this.competenciesList.filter((competence: any) => competence.program_id);
         this.competenciesGenList = this.competenciesList.filter((competence: any) => !competence.program_id);
       },
@@ -165,10 +148,22 @@ export class FormScheduleComponent implements OnInit {
     )
   }
 
+  listAllSchedules(){
+    this.schedulesService.listAllSchedules().subscribe(
+      res =>{
+        this.listSchedules=res;
+      },err => {
+        console.log(err);
+      }
+    );
+  }
+
   saveNewSchedule() {
     const startHour = Number(this.schedule.schedule_start_hour);
     const duration = Number(this.schedule.schedule_duration);
-  
+    this.schedule.schedule_start_hour=startHour;
+    this.schedule.schedule_duration=duration;
+
     if (startHour == 0 ||
       duration == 0 ||
       this.schedule.schedule_day == '' ||
@@ -177,9 +172,9 @@ export class FormScheduleComponent implements OnInit {
       this.warning = 'Por favor ingresa todos los campos';
       return;
     }
-
+    let auxAmbient = this.ambienstList.find((ambient: any) => ambient.ambient_id == this.schedule.ambient_id);
     // Validar que solo se ingrese una opcion que exista en la lista de ambientes
-    if (!this.ambienstList.find((ambient: any) => ambient.ambient_id == this.schedule.ambient_id)) {
+    if (!auxAmbient) {
       this.warning = 'El ambiente del horario no es valido';
       return;
     }
@@ -217,10 +212,48 @@ export class FormScheduleComponent implements OnInit {
     let auxCompetence;
     if (this.competenceType == 'Genérica') {
       auxCompetence = this.competenciesGenList.find((competence: Competence) => competence.competence_name == this.competence.competence_name);
-      
     }
     else {
       auxCompetence = this.competenciesSpcList.find((competence: Competence) => competence.competence_name == this.competence.competence_name);
+    }
+
+    let ambientIsTaken = false;
+    let teacherIsBusy = false;
+    //Validar que el ambiente no este ocupado en ese horario
+    //Validar que el profesor no este ocupado en ese horario
+    this.listSchedules.forEach((schedule: Schedule) => {
+      //Si el ambiente esta ocupado ese mismo dia o si el docente esta ocupado ese mismo dia
+      const bandAmbient=schedule.ambient_id === this.schedule.ambient_id;
+      const bandTeacher=schedule.teacher_id === this.schedule.teacher_id;
+      if((bandAmbient || bandTeacher) && (schedule.schedule_day == this.schedule.schedule_day)){
+        
+        //Se verifica que ese horario no ocupe ese ambiente o al docente en el horario actual
+        //1era condicion: si la hora de inicio del horario actual esta entre las horas de inicio y final del horario encontrado
+        //1era condicion: 
+        //    schedule.startHour  <=   this.schedule.startHour  <  schedule.endHour
+        //          7             <=                8           <          10
+        //2da condicion: si la hora de fin del horario actual esta entre las horas de inicio y final del horario encontrado
+        //2da condicion:
+        //    schedule.startHour  <   this.schedule.endHour  <=  schedule.endHour
+        //          7             <                9         <=            10
+        console.log('Horario encontrado: ',schedule);
+        console.log('Horario actual: ',this.schedule);
+        if(((schedule.schedule_start_hour <= this.schedule.schedule_start_hour) && (this.schedule.schedule_start_hour < schedule.schedule_end_hour)) ||
+           ((schedule.schedule_start_hour < this.schedule.schedule_end_hour) && (this.schedule.schedule_end_hour <= schedule.schedule_end_hour))){
+            if(bandAmbient){
+              ambientIsTaken=true;
+            }else{
+              teacherIsBusy=true;
+            }
+        }
+      }
+    });
+    if(ambientIsTaken){
+      this.warning='El ambiente ya esta ocupado en la franja horaria seleccionada';
+      return;
+    }else if(teacherIsBusy){
+      this.warning='El docente ya esta ocupado en la franja horaria seleccionada';
+      return;
     }
 
     this.schedule.competence_id = auxCompetence.competence_id;

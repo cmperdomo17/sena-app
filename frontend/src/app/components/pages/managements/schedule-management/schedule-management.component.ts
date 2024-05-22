@@ -180,7 +180,6 @@ export class ScheduleManagementComponent implements OnInit {
     this.competenciesService.listCompetencies().subscribe(
       res => {
         this.competenciesList = res;
-        console.log(this.listCompetencies);
         this.competenciesSpcList = this.competenciesList.filter((competence: any) => competence.program_id);
         this.competenciesGenList = this.competenciesList.filter((competence: any) => !competence.program_id);
       },
