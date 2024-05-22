@@ -9,7 +9,6 @@ import { LoginService } from '../../../services/login.service';
 export class HeaderComponent {
   @Output() toggleSidebarEvent = new EventEmitter<void>();
   @Input() showSidebarToggle: boolean = true;
-  @Input() showProfileButton: boolean = true;
 
   showSignoutMessage: boolean = false;
 
@@ -31,6 +30,4 @@ export class HeaderComponent {
   cancelSignout() {
     this.showSignoutMessage = false;
   }
-
-  
 }

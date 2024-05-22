@@ -159,6 +159,7 @@ export class FormScheduleComponent implements OnInit {
   }
 
   saveNewSchedule() {
+    
     const startHour = Number(this.schedule.schedule_start_hour);
     const duration = Number(this.schedule.schedule_duration);
     this.schedule.schedule_start_hour=startHour;

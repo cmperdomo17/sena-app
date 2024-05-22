@@ -50,7 +50,7 @@ export class LoginComponent {
         if(error.status == 403) {
           alert('¡Token invalido!');
         }
-        else if(error.status == 401) {
+        else if(error.status == 401 || error.status == 404) {
           this.error_message = '¡Usuario o contraseña incorrectos!';
         }
       }

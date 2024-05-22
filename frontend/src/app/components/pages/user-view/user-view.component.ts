@@ -14,7 +14,7 @@ export class UserViewComponent implements AfterViewInit{
 
   scheduleTable: Array<any>=Array(7);
   listSchedules: any = [];
-
+  warning: string = '';
   PeriodsList: any = [];
 
   period: Period = {
@@ -72,6 +72,10 @@ export class UserViewComponent implements AfterViewInit{
   }
 
   listSchedulesByPeriod(): void{
+    if (this.period.period_name === '') {
+      this.warning = 'Por favor seleccione un periodo';
+      return;
+    }
     for (let i=0; i<15; i++) {
       for (let j=1; j<7; j++){
         this.scheduleTable[i][j] = undefined;

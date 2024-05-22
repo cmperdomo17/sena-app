@@ -11,6 +11,7 @@ import { Program } from '../../../../models/Program';
 import { CompetenciesService } from '../../../../services/competencies.service';
 import { Competence } from '../../../../models/Compentence';
 import { Ambient } from '../../../../models/Ambient';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-schedule-management',
@@ -19,7 +20,7 @@ import { Ambient } from '../../../../models/Ambient';
 })
 export class ScheduleManagementComponent implements OnInit {
 
-  constructor(private periodsService: PeriodsService, private teachersService: TeachersService, private scheduleService: ScheduleService, private ambientsService: AmbientsService, private programsService: ProgramsService, private competenciesService: CompetenciesService) { }
+  constructor(private periodsService: PeriodsService, private teachersService: TeachersService, private scheduleService: ScheduleService, private ambientsService: AmbientsService, private programsService: ProgramsService, private competenciesService: CompetenciesService, private router: Router) { }
 
   scheduleTable: Array<any>=Array(7);
   listSchedules: any = [];
@@ -29,6 +30,8 @@ export class ScheduleManagementComponent implements OnInit {
   competenciesGenList: any = [];
   competenciesSpcList: any = [];
   type: number = 0;
+  warning: string = '';
+  TeacherAndPeriodExist: boolean = false;
 
   ngOnInit(): void {
     this.listPeriods();
@@ -100,6 +103,11 @@ export class ScheduleManagementComponent implements OnInit {
   }
 
   findScheduleByPeriodTeacher(): void {
+    if (this.teacher.teacher_fullname == '' || this.period.period_name == '') {
+      this.warning = 'Por favor seleccione un periodo y un docente';
+      return;
+    }
+    this.warning = '';
     for (let i=0; i<15; i++) {
       for (let j=1; j<7; j++){
         this.scheduleTable[i][j] = undefined;
@@ -108,7 +116,14 @@ export class ScheduleManagementComponent implements OnInit {
 
     this.teacher = {...this.TeachersList.find((teacher: Teacher) => teacher.teacher_fullname == this.teacher.teacher_fullname)};
     this.period = {...this.PeriodsList.find((period: Period) => period.period_name == this.period.period_name)}; 
-    
+
+    if (this.teacher && this.period) {
+      this.TeacherAndPeriodExist = true;
+    } else {
+      this.TeacherAndPeriodExist = false;
+      return;
+    }
+
     this.scheduleService.listSchedulesByPeriodTeacher(this.period.period_id, this.teacher.teacher_id).subscribe(
       res => {
         this.listSchedules = res;
@@ -123,7 +138,6 @@ export class ScheduleManagementComponent implements OnInit {
           }
 
           ambient = {...this.ambientsList.find((ambient: Ambient) => ambient.ambient_id == schedule.ambient_id)};
-      
 
           this.fillTimeSlot(schedule.schedule_day, schedule.schedule_start_hour, schedule.schedule_end_hour, ambient.ambient_name, competence.competence_name);
         });

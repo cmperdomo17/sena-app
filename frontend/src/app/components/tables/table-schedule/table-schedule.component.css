@@ -8,11 +8,11 @@
 
 @media (max-width: 768px) {
     td, th, tr {
-        font-size: 11px
+        font-size: 10px
     }
 
     th {
-        padding-inline: 5px;
+        padding-inline: 4px;
     }
 
     td {

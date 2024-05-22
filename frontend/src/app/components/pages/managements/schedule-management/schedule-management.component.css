@@ -1,0 +1,14 @@
+.warning_message {
+    background-color: #fff;
+    color: red;
+    animation: slide-in 700ms forwards;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateY(-90%);
+    }
+    100% {
+        transform: translateY(160%);
+    }
+}
