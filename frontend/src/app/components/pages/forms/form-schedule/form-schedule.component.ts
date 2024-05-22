@@ -31,6 +31,7 @@ export class FormScheduleComponent implements OnInit {
           (res: any) => {
             this.teacher = res[0];
             this.teacher.teacher_fullname = this.teacher.teacher_name + ' ' + this.teacher.teacher_lastname;
+            this.schedule.teacher_id = this.teacher.teacher_id;
           },
           err => console.error(err)
         )
@@ -38,6 +39,7 @@ export class FormScheduleComponent implements OnInit {
         .subscribe(
           (res: any) => {
             this.period = res[0];
+            this.schedule.period_id = this.period.period_id;
           },
           err => console.error(err)
         )
@@ -137,6 +139,11 @@ export class FormScheduleComponent implements OnInit {
     this.competenceType = selection;
   }
 
+  onSelectionChangeTeacher(teacher: Teacher) {
+    this.selectedTeacher = teacher;
+    this.schedule.teacher_id = teacher.teacher_id;
+  }
+
   listCompetencies() {
     this.competenciesService.listCompetencies().subscribe(
       res => {
@@ -159,8 +166,11 @@ export class FormScheduleComponent implements OnInit {
   }
 
   saveNewSchedule() {
-    if (this.schedule.schedule_start_hour == 0 ||
-      this.schedule.schedule_duration == 0 ||
+    const startHour = Number(this.schedule.schedule_start_hour);
+    const duration = Number(this.schedule.schedule_duration);
+  
+    if (startHour == 0 ||
+      duration == 0 ||
       this.schedule.schedule_day == '' ||
       this.competence.competence_name == ''
     ) {
@@ -191,32 +201,30 @@ export class FormScheduleComponent implements OnInit {
       return;
     }
 
-    //Calcular la hora de terminación teniendo en cuenta la duración
-    this.schedule.schedule_end_hour = Number(this.schedule.schedule_start_hour) + Number(this.schedule.schedule_duration);
-
-    //Validar que la hora de inicio este dentro de las posibles
-    if (this.schedule.schedule_start_hour < 7 || this.schedule.schedule_start_hour > 22) {
-      this.warning = 'La hora de inicio ingresada no es valida';
+    // Validar que la hora de inicio esté dentro de las posibles
+    if (startHour < 7 || startHour > 22) {
+      this.warning = 'La hora de inicio ingresada no es válida';
       return;
     }
+    // Calcular la hora de terminación teniendo en cuenta la duración
+    this.schedule.schedule_end_hour = startHour + duration;
 
     if (this.schedule.schedule_end_hour > 22) {
       this.warning = 'La franja horaria se sale del horario laboral';
-      console.log(this.schedule.schedule_end_hour);
       return;
     }
 
     let auxCompetence;
     if (this.competenceType == 'Genérica') {
       auxCompetence = this.competenciesGenList.find((competence: Competence) => competence.competence_name == this.competence.competence_name);
+      
     }
     else {
       auxCompetence = this.competenciesSpcList.find((competence: Competence) => competence.competence_name == this.competence.competence_name);
     }
 
     this.schedule.competence_id = auxCompetence.competence_id;
-    this.schedule.competence_type = auxCompetence.competence_type;
-
+    this.schedule.competence_type = this.competenceType == 'Genérica' ? 0 : 1;
 
     this.schedulesService.createSchedule(this.schedule).subscribe(
       res => {

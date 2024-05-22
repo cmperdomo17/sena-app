@@ -21,8 +21,6 @@
 
     <app-input-options listId="scheduleDay" [options]="scheduleDays" [attributes]="['day']" placeholder="Día de horario" ngDefaultControl [(ngModel)]="schedule.schedule_day" [value]="schedule.schedule_day"></app-input-options>
 
-    <!-- <h1 class="text-lg">Franja horaria: <span>08:00 - 10:00</span></h1> -->
-
     <div class="flex justify-between items-center gap-4">
         <p class="text-md font-semibold">Tipo de competencia</p>
         <app-input-radio label1="Específica" label2="Genérica" [radioName]="'radio1'" [radioGroupId]="'1'" [(ngModel)]="competenceType" (selectionChange)="onSelectionChangeType($event)"></app-input-radio>
