@@ -158,6 +158,24 @@ export class FormScheduleComponent implements OnInit {
     );
   }
 
+  getDayIndex(day: string): number{
+    switch(day) {
+      case 'Lunes':
+        return 0;
+      case 'Martes':
+        return 1;
+      case 'Miercoles':
+        return 2;
+      case 'Jueves':
+        return 3;
+      case 'Viernes':
+        return 4;
+      case 'Sabado':
+        return 5;
+    }
+    return -1;
+  }
+
   saveNewSchedule() {
     
     const startHour = Number(this.schedule.schedule_start_hour);
@@ -262,33 +280,15 @@ export class FormScheduleComponent implements OnInit {
 
     this.listSchedules.forEach((schedule: Schedule) => {
       // Validar el profesor de Planta cumpla con máximo 32 horas semanales y 8 diarias
-      if (schedule.teacher_id == this.teacher.teacher_id) {
-      
-        switch(schedule.schedule_day) {
-          case 'Lunes':
-            console.log(schedule.schedule_day);
-            countDay[0] += schedule.schedule_duration;
-            break;
-          case 'Martes':
-            countDay[1] += schedule.schedule_duration;
-            break;
-          case 'Miercoles':
-            countDay[2] += schedule.schedule_duration;
-            break;
-          case 'Jueves':
-            countDay[3] += schedule.schedule_duration;
-            break;
-          case 'Viernes':
-            countDay[4] += schedule.schedule_duration;
-            break;
-          case 'Sabado':
-            countDay[5] += schedule.schedule_duration;
-            break;
-        }
+      if ((schedule.teacher_id == this.teacher.teacher_id) && (schedule.period_id==this.schedule.period_id) ) {
+        const auxDayIndex=this.getDayIndex(schedule.schedule_day);
+        countDay[auxDayIndex]+=schedule.schedule_duration;
       }
     })
 
     let exced: boolean = false;
+    const auxDayI = this.getDayIndex(this.schedule.schedule_day);
+    countDay[auxDayI]+=this.schedule.schedule_duration;
 
     if (this.teacher.teacher_contracttype == 'PT') {
       countDay.forEach((count)=>{
