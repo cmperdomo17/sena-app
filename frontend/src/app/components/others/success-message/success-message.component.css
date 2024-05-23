@@ -1,0 +1,38 @@
+.success_message {
+    animation: slide-down 700ms forwards;
+    position: absolute;
+    font-size: 17px;
+    left : 37%;
+}
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(-300%);
+    }
+    100% {
+        transform: translateY(-130%);
+    }
+}
+
+@keyframes slide-down-responsive {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(10%);
+    }
+}
+
+@media (max-width: 768px) {
+    .success_message {
+        font-size: 15px;
+        text-align: center;
+        width: 100%;
+        left: 0;
+        animation: slide-down-responsive 700ms forwards;
+    }
+    .success_message svg {
+        width: 13px;
+        height: 13px;
+    }
+}

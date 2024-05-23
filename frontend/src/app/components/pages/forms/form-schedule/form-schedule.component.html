@@ -4,6 +4,9 @@
     <div class="fixed rounded-full px-5 py-1 font-extrabold top-0 warning_message z-0 md:z-20" *ngIf="warning">
         <p id="warning_message" *ngIf="warning">{{ warning }}</p>
     </div>
+    <div class="fixed top-12 z-30 w-full">
+        <app-success-message *ngIf="success" [message]="success"></app-success-message>
+    </div>
     <div class="flex gap-4">
         <a routerLink="/schedules">
             <svg  xmlns="http://www.w3.org/2000/svg"  width="36"  height="36"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2.5"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l4 4" /><path d="M5 12l4 -4" /></svg>
@@ -21,7 +24,7 @@
 
     <app-input-options listId="scheduleDay" [options]="scheduleDays" [attributes]="['day']" placeholder="Día de horario" ngDefaultControl [(ngModel)]="schedule.schedule_day" [value]="schedule.schedule_day"></app-input-options>
 
-    <div class="flex justify-between items-center gap-4">
+    <div class="flex justify-between items-center flex-col md:flex-row gap-2 md:gap-4">
         <p class="text-md font-semibold">Tipo de competencia</p>
         <app-input-radio label1="Específica" label2="Genérica" [radioName]="'radio1'" [radioGroupId]="'1'" [(ngModel)]="competenceType" (selectionChange)="onSelectionChangeType($event)"></app-input-radio>
     </div>
@@ -31,4 +34,5 @@
     <app-input-options ngDefaultControl [(ngModel)]="competence.competence_name" listId="CompetencesGenList" [options]="competenciesGenList" [attributes]="['competence_name']" placeholder="Competencia Genérica" [value]="competence.competence_name" *ngIf="competenceType == 'Genérica'"></app-input-options>
 
     <app-button-save (click)="saveNewSchedule()"></app-button-save>
+
 </div>

@@ -38,6 +38,7 @@ import { FormProgramComponent } from './components/pages/forms/form-program/form
 import { FormPeriodComponent } from './components/pages/forms/form-period/form-period.component';
 import { InputDateComponent } from './components/inputs/input-date/input-date.component';
 import { ConfirmMessageComponent } from './components/others/confirm-message/confirm-message.component';
+import { SuccessMessageComponent } from './components/others/success-message/success-message.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { ConfirmMessageComponent } from './components/others/confirm-message/con
     FormProgramComponent,
     FormPeriodComponent,
     InputDateComponent,
-    ConfirmMessageComponent
+    ConfirmMessageComponent,
+    SuccessMessageComponent
   ],
   imports: [
     BrowserModule,

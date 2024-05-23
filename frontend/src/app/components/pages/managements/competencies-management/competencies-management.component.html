@@ -9,6 +9,9 @@
             (cancelAction)="cancelInactivate()">
         </app-confirm-message>
     </div>
+    <div class="fixed top-12 z-30 w-full">
+        <app-success-message *ngIf="success" [message]="success"></app-success-message>
+    </div>
     <h1 class="text-2xl font-semibold">Competencias Específicas</h1>
     <app-table-crud 
         [headers]="['Código', 'Código Programa', 'Nombre','Estado', 'Acciones']"

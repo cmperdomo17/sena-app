@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CompetenciesService } from '../../../../services/competencies.service';
 import { ProgramsService } from '../../../../services/programs.service';
 import { Competence } from '../../../../models/Compentence';
@@ -14,8 +14,9 @@ export class FormCompetenceComponent implements OnInit {
 
   edit: boolean = false;
   warning: string = '';
+  success: string = '';
 
-  constructor(private competenciesService: CompetenciesService, private router: Router, private activatedRoute: ActivatedRoute, private programsService: ProgramsService) { }
+  constructor(private competenciesService: CompetenciesService, private router: Router, private activatedRoute: ActivatedRoute, private programsService: ProgramsService, private cdr: ChangeDetectorRef) { }
 
   competence: Competence = {
     competence_id: 0,
@@ -65,6 +66,15 @@ export class FormCompetenceComponent implements OnInit {
     this.competenceType = selection;
   }
 
+  showSuccessMessage(message: string) {
+    this.success = message;
+    setTimeout(() => {
+      this.success = '';
+      this.cdr.detectChanges();
+      this.router.navigate(['/competencies']);
+    }, 2000);
+  }
+
   saveNewCompetence() {
     if (!this.competence.competence_name || !this.competenceType
     ) {
@@ -91,7 +101,7 @@ export class FormCompetenceComponent implements OnInit {
       subscribe(
         res => {
           console.log(res);
-          this.router.navigate(['/competencies']);
+          this.showSuccessMessage('Competencia creada correctamente');
         },
         err => console.log(err)
       )
@@ -134,7 +144,7 @@ export class FormCompetenceComponent implements OnInit {
         subscribe(
           res => {
             console.log(res);
-            this.router.navigate(['/competencies']);
+            this.showSuccessMessage('Competencia actualizada correctamente');
           },
           err => console.log(err)
         )
@@ -143,7 +153,7 @@ export class FormCompetenceComponent implements OnInit {
       this.competenciesService.updateCompetence(this.competence.competence_id, this.competence).subscribe(
         res => {
           console.log(res);
-          this.router.navigate(['/competencies']);
+          this.showSuccessMessage('Competencia actualizada correctamente');
         },
         err => console.log(err)
       )

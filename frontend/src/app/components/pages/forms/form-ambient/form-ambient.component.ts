@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Ambient } from '../../../../models/Ambient';
 import { AmbientsService } from '../../../../services/ambients.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -21,8 +21,9 @@ export class FormAmbientComponent implements OnInit {
 
   edit: boolean = false;
   warning: string = '';
+  success: string = '';
 
-  constructor(private ambientsService: AmbientsService, private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private ambientsService: AmbientsService, private router: Router, private activatedRoute: ActivatedRoute, private cdr: ChangeDetectorRef) {}
   
   ngOnInit() {
     const params = this.activatedRoute.snapshot.params;
@@ -42,6 +43,15 @@ export class FormAmbientComponent implements OnInit {
     this.ambient.ambient_type=selection;
   }
 
+  showSuccessMessage(message: string) {
+    this.success = message;
+    setTimeout(() => {
+      this.success = '';
+      this.cdr.detectChanges();
+      this.router.navigate(['/ambients']);
+    }, 2000);
+  }
+
   saveNewAmbient() {
     if(!this.ambient.ambient_id || !this.ambient.ambient_name || !this.ambient.ambient_location || !this.ambient.ambient_type || !this.ambient.ambient_capacity) {
       this.warning = 'Por favor ingresa todos los campos';
@@ -56,7 +66,7 @@ export class FormAmbientComponent implements OnInit {
     .subscribe(
       res => {
         console.log(res)
-        this.router.navigate(['/ambients']);
+        this.showSuccessMessage('Ambiente creado correctamente');
       },
       err => console.log(err)
     )
@@ -76,7 +86,7 @@ export class FormAmbientComponent implements OnInit {
     .subscribe(
       res => {
         console.log(res);
-        this.router.navigate(['/ambients']);
+        this.showSuccessMessage('Ambiente actualizado correctamente');
       },
       err => console.error(err)
     )

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Program } from '../../../../models/Program';
 import { ProgramsService } from '../../../../services/programs.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +12,7 @@ export class FormProgramComponent implements OnInit {
 
   edit: boolean = false;
   warning: string = '';
+  success: string = '';
   showInactivateMessage: boolean = false;
 
   program: Program = {
@@ -20,7 +21,7 @@ export class FormProgramComponent implements OnInit {
     program_state: 0
   }
 
-  constructor(private programsService: ProgramsService, private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private programsService: ProgramsService, private router: Router, private activatedRoute: ActivatedRoute, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
@@ -37,6 +38,15 @@ export class FormProgramComponent implements OnInit {
     }
   }
 
+  showSuccessMessage(message: string) {
+    this.success = message;
+    setTimeout(() => {
+      this.success = '';
+      this.cdr.detectChanges();
+      this.router.navigate(['/programs']);
+    }, 2000);
+  }
+
   saveNewProgram() {
     if(this.program.program_name=='') {
       this.warning = 'Por favor ingresa el nombre del programa';
@@ -46,7 +56,7 @@ export class FormProgramComponent implements OnInit {
     subscribe(
       res => {
         console.log(res);
-        this.router.navigate(['/programs']);
+        this.showSuccessMessage('Programa creado correctamente');
       },
       err => console.log(err)
     )
@@ -57,7 +67,7 @@ export class FormProgramComponent implements OnInit {
     .subscribe(
       res => {
         console.log(res);
-        this.router.navigate(['/programs']);
+        this.showSuccessMessage('Programa actualizado correctamente');
       },
       err => console.log(err)
     )

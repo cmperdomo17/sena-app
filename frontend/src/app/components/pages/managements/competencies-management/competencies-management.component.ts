@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CompetenciesService } from '../../../../services/competencies.service';
 
 @Component({
@@ -15,10 +15,11 @@ export class CompetenciesManagementComponent implements OnInit{
   type: number = 0;
 
   message: string = '';
+  success: string = '';
   showInactivateMessage: boolean = false;
   currentEvent: {id: number, state: number} = {id: 0, state: 0};
 
-  constructor(private competenciesService: CompetenciesService) {}
+  constructor(private competenciesService: CompetenciesService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.getCompetencies();
@@ -41,6 +42,14 @@ export class CompetenciesManagementComponent implements OnInit{
   }
   cancelInactivate() {
     this.showInactivateMessage = false;
+  }
+
+  showSuccessMessage(message: string) {
+    this.success = message;
+    setTimeout(() => {
+      this.success = '';
+      this.cdr.detectChanges();
+    }, 2000);
   }
 
   prepareChangeStateCompetenceGen (event: {id: number, state: number}) {
@@ -75,6 +84,11 @@ export class CompetenciesManagementComponent implements OnInit{
         console.log(res);
         this.getCompetencies();
         this.showInactivateMessage = false;
+        if (this.currentEvent.state === 1) {
+          this.showSuccessMessage('Competencia activada correctamente');
+        } else if (this.currentEvent.state === 0) {
+          this.showSuccessMessage('Competencia inactivada correctamente');
+        }
       },
       err => console.log(err)
     )

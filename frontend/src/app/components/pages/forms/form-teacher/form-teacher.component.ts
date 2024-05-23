@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Teacher } from '../../../../models/Teachers';
 import { TeachersService } from '../../../../services/teachers.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,6 +16,7 @@ export class FormTeacherComponent implements OnInit{
   defaultTeacherType: string = '';
   defaultTeacherContractType: string = '';
   warning: string = '';
+  success: string = '';
 
   teacher: Teacher = {
     teacher_id:0,
@@ -31,7 +32,7 @@ export class FormTeacherComponent implements OnInit{
     user_pwd:''
   }
 
-  constructor(private teacherService: TeachersService, private router: Router, private activatedRoute: ActivatedRoute){
+  constructor(private teacherService: TeachersService, private router: Router, private activatedRoute: ActivatedRoute, private cdr: ChangeDetectorRef) {
   }
 
   listTeachers: any = [];
@@ -82,6 +83,15 @@ export class FormTeacherComponent implements OnInit{
                   {typeName: "FOREIGN_NIT"}];
   }
 
+  showSuccessMessage(message: string) {
+    this.success = message;
+    setTimeout(() => {
+      this.success = '';
+      this.cdr.detectChanges();
+      this.router.navigate(['/teachers']);
+    }, 2000);
+  }
+
   saveNewTeacher(){
     console.log(this.teacher.teacher_type);
     console.log(this.teacher.teacher_contracttype);
@@ -124,7 +134,7 @@ export class FormTeacherComponent implements OnInit{
     this.teacherService.createTeacher(this.teacher).subscribe(
       res=>{
         console.log(res);
-        this.router.navigate(['/teachers']);
+        this.showSuccessMessage('Profesor creado correctamente');
       },
       err=>console.log(err)
     )
@@ -134,6 +144,7 @@ export class FormTeacherComponent implements OnInit{
     this.teacherService.updateTeacher(this.teacher.teacher_id,this.teacher).subscribe(
       res=>{
         console.log(res);
+        this.showSuccessMessage('Profesor actualizado correctamente');
       },
       err=>console.log(err)
     )

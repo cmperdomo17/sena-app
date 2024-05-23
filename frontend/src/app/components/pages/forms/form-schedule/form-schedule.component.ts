@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { Competence } from '../../../../models/Compentence';
 import { Program } from '../../../../models/Program';
 import { CompetenciesService } from '../../../../services/competencies.service';
@@ -21,7 +21,7 @@ import { AmbientsService } from '../../../../services/ambients.service';
 })
 
 export class FormScheduleComponent implements OnInit {
-  constructor(private schedulesService: ScheduleService, private competenciesService: CompetenciesService, private periodsService: PeriodsService, private teachersService: TeachersService, private ambientsService: AmbientsService, private activatedRoute: ActivatedRoute, private router: Router) { }
+  constructor(private schedulesService: ScheduleService, private competenciesService: CompetenciesService, private periodsService: PeriodsService, private teachersService: TeachersService, private ambientsService: AmbientsService, private activatedRoute: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
@@ -120,12 +120,23 @@ export class FormScheduleComponent implements OnInit {
 
   warning: string = '';
 
+  success: string = '';
+
   selectedOption: string = '';
 
   listSchedules: any=[];
 
   onSelectionChangeType(selection: string) {
     this.competenceType = selection;
+  }
+
+  showSuccessMessage(message: string) {
+    this.success = message;
+    setTimeout(() => {
+      this.success = '';
+      this.cdr.detectChanges();
+      this.router.navigate(['/schedules']);
+    }, 2000);
   }
 
   listCompetencies() {
@@ -246,18 +257,6 @@ export class FormScheduleComponent implements OnInit {
       const bandTeacher=schedule.teacher_id === this.schedule.teacher_id;
       const bandPeriod=schedule.period_id === this.schedule.period_id;
       if((bandAmbient || bandTeacher) && (schedule.schedule_day === this.schedule.schedule_day) && bandPeriod){
-        
-        //Se verifica que ese horario no ocupe ese ambiente o al docente en el horario actual
-        //1era condicion: si la hora de inicio del horario actual esta entre las horas de inicio y final del horario encontrado
-        //1era condicion: 
-        //    schedule.startHour  <=   this.schedule.startHour  <  schedule.endHour
-        //          7             <=                8           <          10
-        //2da condicion: si la hora de fin del horario actual esta entre las horas de inicio y final del horario encontrado
-        //2da condicion:
-        //    schedule.startHour  <   this.schedule.endHour  <=  schedule.endHour
-        //          7             <                9         <=            10
-        console.log('Horario encontrado: ',schedule);
-        console.log('Horario actual: ',this.schedule);
         if(((schedule.schedule_start_hour <= this.schedule.schedule_start_hour) && (this.schedule.schedule_start_hour < schedule.schedule_end_hour)) ||
             ((schedule.schedule_start_hour < this.schedule.schedule_end_hour) && (this.schedule.schedule_end_hour <= schedule.schedule_end_hour))){
             if(bandAmbient){
@@ -331,7 +330,7 @@ export class FormScheduleComponent implements OnInit {
     this.schedulesService.createSchedule(this.schedule).subscribe(
       res => {
         console.log(res);
-        this.router.navigate(['/schedules']);
+        this.showSuccessMessage('Horario creado correctamente');
       },
       err => console.log(err)
     )

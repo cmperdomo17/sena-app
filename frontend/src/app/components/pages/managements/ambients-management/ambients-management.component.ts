@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AmbientsService } from '../../../../services/ambients.service';
 
 @Component({
@@ -11,10 +11,11 @@ export class AmbientsManagementComponent implements OnInit{
 
   listAmbients: any = [];
   message: string = '';
+  success: string = '';
   showInactivateMessage: boolean = false;
   currentEvent: {id: string, state: number} = {id: '', state: 0};
 
-  constructor(private ambientsService: AmbientsService) {}
+  constructor(private ambientsService: AmbientsService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.getAmbients();
@@ -36,6 +37,14 @@ export class AmbientsManagementComponent implements OnInit{
     this.showInactivateMessage = false;
   }
 
+  showSuccessMessage(message: string) {
+    this.success = message;
+    setTimeout(() => {
+      this.success = '';
+      this.cdr.detectChanges();
+    }, 2000);
+  }
+
   prepareChangeStateAmbient (event: {id: string, state: number}) {
     this.currentEvent = event;
     if(event.state === 1) {
@@ -53,6 +62,11 @@ export class AmbientsManagementComponent implements OnInit{
         console.log(res);
         this.getAmbients();
         this.showInactivateMessage = false;
+        if (this.currentEvent.state === 1) {
+          this.showSuccessMessage('Ambiente activado correctamente');
+        } else if (this.currentEvent.state === 0) {
+          this.showSuccessMessage('Ambiente inactivado correctamente');
+        }
       },
       err => console.log(err)
     )

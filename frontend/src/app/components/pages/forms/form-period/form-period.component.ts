@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Period } from '../../../../models/Period';
 import { PeriodsService } from '../../../../services/periods.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -12,6 +12,7 @@ export class FormPeriodComponent implements OnInit{
 
   edit: boolean = false;
   warning: string = '';
+  success: string = '';
   durationSelected: boolean = false;
   
   period: Period = {
@@ -22,7 +23,7 @@ export class FormPeriodComponent implements OnInit{
     period_state: 0
   }
 
-  constructor(private periodsService: PeriodsService, private router: Router, private activatedRoute: ActivatedRoute) {}
+  constructor(private periodsService: PeriodsService, private router: Router, private activatedRoute: ActivatedRoute, private cdr: ChangeDetectorRef) {}
 
   listPeriods: any = [];
 
@@ -80,9 +81,17 @@ export class FormPeriodComponent implements OnInit{
     startDate.setMonth(startDate.getMonth() + durationInMonths);
     this.period.period_end_date = startDate.toISOString().split('T')[0];
   }
+
+  showSuccessMessage(message: string) {
+    this.success = message;
+    setTimeout(() => {
+      this.success = '';
+      this.cdr.detectChanges();
+      this.router.navigate(['/periods']);
+    }, 2000);
+  }
   
   saveNewPeriod() {
-
     if(this.period.period_name=='' || this.period.period_start_date=='' || this.period.period_end_date==''
     ){
       this.warning = 'Por favor ingresa todos los campos';
@@ -116,7 +125,7 @@ export class FormPeriodComponent implements OnInit{
     this.periodsService.createPeriod(this.period).subscribe(
       res => {
         console.log(res);
-        this.router.navigate(['/periods']);
+        this.showSuccessMessage('Periodo creado correctamente');
       },
       err => console.log(err)
     );
@@ -126,7 +135,7 @@ export class FormPeriodComponent implements OnInit{
     this.periodsService.updatePeriod(this.period.period_id,this.period).subscribe(
       res=>{
         console.log(res);
-        this.router.navigate(['/periods']);
+        this.showSuccessMessage('Periodo actualizado correctamente');
       },
       err=>console.log(err)
     )
