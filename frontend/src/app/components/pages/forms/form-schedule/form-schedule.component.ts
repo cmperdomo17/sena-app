@@ -240,7 +240,7 @@ export class FormScheduleComponent implements OnInit {
         console.log('Horario encontrado: ',schedule);
         console.log('Horario actual: ',this.schedule);
         if(((schedule.schedule_start_hour <= this.schedule.schedule_start_hour) && (this.schedule.schedule_start_hour < schedule.schedule_end_hour)) ||
-           ((schedule.schedule_start_hour < this.schedule.schedule_end_hour) && (this.schedule.schedule_end_hour <= schedule.schedule_end_hour))){
+            ((schedule.schedule_start_hour < this.schedule.schedule_end_hour) && (this.schedule.schedule_end_hour <= schedule.schedule_end_hour))){
             if(bandAmbient){
               ambientIsTaken=true;
             }else{
@@ -254,6 +254,73 @@ export class FormScheduleComponent implements OnInit {
       return;
     }else if(teacherIsBusy){
       this.warning='El docente ya esta ocupado en la franja horaria seleccionada';
+      return;
+    }
+
+    let countDay: number[] = [0,0,0,0,0,0];
+    let countWeek: number = 0;
+
+    this.listSchedules.forEach((schedule: Schedule) => {
+      // Validar el profesor de Planta cumpla con máximo 32 horas semanales y 8 diarias
+      if (schedule.teacher_id == this.teacher.teacher_id) {
+      
+        switch(schedule.schedule_day) {
+          case 'Lunes':
+            console.log(schedule.schedule_day);
+            countDay[0] += schedule.schedule_duration;
+            break;
+          case 'Martes':
+            countDay[1] += schedule.schedule_duration;
+            break;
+          case 'Miercoles':
+            countDay[2] += schedule.schedule_duration;
+            break;
+          case 'Jueves':
+            countDay[3] += schedule.schedule_duration;
+            break;
+          case 'Viernes':
+            countDay[4] += schedule.schedule_duration;
+            break;
+          case 'Sabado':
+            countDay[5] += schedule.schedule_duration;
+            break;
+        }
+      }
+    })
+
+    let exced: boolean = false;
+
+    if (this.teacher.teacher_contracttype == 'PT') {
+      countDay.forEach((count)=>{
+        countWeek += count;
+        if (count > 8) {
+          this.warning = 'El docente de tipo Planta excede las horas diarias';
+          exced = true;
+        }
+      })
+    }
+
+    if (this.teacher.teacher_contracttype == 'CNT') {
+      countDay.forEach((count)=>{
+        countWeek += count;
+        if (count > 10) {
+          this.warning = 'El docente de tipo Contratista excede las horas diarias';
+          exced = true;
+        }
+      })
+    }
+
+    if (exced) {
+      return;
+    }
+
+    if (this.teacher.teacher_contracttype == 'PT' && countWeek > 32) {
+      this.warning = 'El docente de tipo Planta excede las horas semanales';
+      return;
+    }
+
+    if (this.teacher.teacher_contracttype == 'PT' && countWeek > 40) {
+      this.warning = 'El docente de tipo Contratista excede las horas semanales';
       return;
     }
 

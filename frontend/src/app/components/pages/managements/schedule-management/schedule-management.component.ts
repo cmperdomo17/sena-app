@@ -177,7 +177,6 @@ export class ScheduleManagementComponent implements OnInit {
     for (let i=startHour - 7; i<endHour - 7; i++){
       this.scheduleTable[i][dayIndex] = auxSchedule;
     }
-
   }
 
   listAmbients() {

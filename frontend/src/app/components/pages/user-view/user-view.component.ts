@@ -3,6 +3,8 @@ import { Teacher } from '../../../models/Teachers';
 import { UserTeacherService } from '../../../services/user-teacher.service';
 import { Period } from '../../../models/Period';
 import { Schedule } from '../../../models/Schedule';
+import { Competence } from '../../../models/Compentence';
+import { Ambient } from '../../../models/Ambient';
 
 @Component({
   selector: 'app-user-view',
@@ -16,6 +18,11 @@ export class UserViewComponent implements AfterViewInit{
   listSchedules: any = [];
   warning: string = '';
   PeriodsList: any = [];
+  ambientsList: any = [];
+  programsList: any = [];
+  competenciesList: any = [];
+  competenciesGenList: any = [];
+  competenciesSpcList: any = [];
 
   period: Period = {
     period_id: 0,
@@ -41,6 +48,8 @@ export class UserViewComponent implements AfterViewInit{
 
   ngAfterViewInit(): void {
     this.listPeriods();
+    this.listAmbients();
+    this.listCompetencies();
     
     const hours = ['7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'];
     
@@ -71,39 +80,44 @@ export class UserViewComponent implements AfterViewInit{
     );
   }
 
-  listSchedulesByPeriod(): void{
-    if (this.period.period_name === '') {
-      this.warning = 'Por favor seleccione un periodo';
+  findScheduleByPeriodTeacher(): void {
+    if (this.teacher.teacher_fullname == '' || this.period.period_name == '') {
+      this.warning = 'Por favor seleccione un periodo y un docente';
       return;
     }
+    this.warning = '';
     for (let i=0; i<15; i++) {
       for (let j=1; j<7; j++){
         this.scheduleTable[i][j] = undefined;
       }
     }
 
-    for (let i=0;i<this.listSchedules.length;i++){
-      this.listSchedules[i]=undefined;
-    }
+    this.period = {...this.PeriodsList.find((period: Period) => period.period_name == this.period.period_name)}; 
 
-    this.period = {...this.PeriodsList.find((period: Period) => period.period_name === this.period.period_name)};
-
-    this.userTeacherService.getSchedules(this.period.period_id,this.teacher.teacher_id).subscribe(
+    this.userTeacherService.getSchedules(this.period.period_id, this.teacher.teacher_id).subscribe(
       res => {
         this.listSchedules = res;
+        let competence;
+        let ambient;
         this.listSchedules.forEach((schedule: Schedule) => {
-          this.fillTimeSlot(schedule.schedule_day, schedule.schedule_start_hour, schedule.schedule_end_hour, schedule);
+          if(schedule.competence_type == 0) {
+            competence = {...this.competenciesGenList.find((competence: Competence) => competence.competence_id == schedule.competence_id)};
+          }
+          else {
+            competence = {...this.competenciesSpcList.find((competence: Competence) => competence.competence_id == schedule.competence_id)};
+          }
+
+          ambient = {...this.ambientsList.find((ambient: Ambient) => ambient.ambient_id == schedule.ambient_id)};
+          this.fillTimeSlot(schedule.schedule_day, schedule.schedule_start_hour, schedule.schedule_end_hour, ambient.ambient_name, competence.competence_name);
         });
-        console.log(this.scheduleTable);
       },
       err => {
         console.log(err);
       }
     );
-
   }
 
-  fillTimeSlot(day: string, startHour: number, endHour: number, schedule: Schedule){
+  fillTimeSlot(day: string, startHour: number, endHour: number, ambient_name: string, competence_name:string){
     let dayIndex: number = 0;
     switch (day) {
       case 'Lunes':
@@ -125,9 +139,33 @@ export class UserViewComponent implements AfterViewInit{
         dayIndex = 6;
         break;
     }
-    
+    const auxSchedule = {schedule_start_hour: startHour,
+                          schedule_end_hour: endHour,
+                          ambient_name: ambient_name,
+                          competence_name:competence_name}
     for (let i=startHour - 7; i<endHour - 7; i++){
-      this.scheduleTable[i][dayIndex] = schedule;
+      this.scheduleTable[i][dayIndex] = auxSchedule;
     }
+  }
+
+  listAmbients() {
+    this.userTeacherService.listAmbients()
+    .subscribe(
+      res => {
+        this.ambientsList = res;
+      },
+      err => console.error(err)
+    );
+  }
+
+  listCompetencies() {
+    this.userTeacherService.listCompetencies().subscribe(
+      res => {
+        this.competenciesList = res;
+        this.competenciesSpcList = this.competenciesList.filter((competence: any) => competence.program_id);
+        this.competenciesGenList = this.competenciesList.filter((competence: any) => !competence.program_id);
+      },
+      err => console.log(err)
+    )
   }
 }

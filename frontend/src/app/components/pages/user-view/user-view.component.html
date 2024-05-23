@@ -27,7 +27,7 @@
     </div>
     <p class="text-lg">Selecciona un periodo para ver tu horario</p>
     <app-input-options ngDefaultControl [(ngModel)]="period.period_name" listId="PeriodsList" [options]="PeriodsList" [attributes]="['period_name']" placeholder="Periodo"></app-input-options>
-    <app-button-search (click)="listSchedulesByPeriod()"></app-button-search>
+    <app-button-search (click)="findScheduleByPeriodTeacher()"></app-button-search>
     <app-table-schedule
         [headers]="['Hora', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']"
         [table]="scheduleTable">

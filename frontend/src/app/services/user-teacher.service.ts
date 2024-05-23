@@ -24,4 +24,12 @@ export class UserTeacherService {
   listPeriods(){
     return this.http.get(`${this.API_URI}/userTeacher/periods`,{headers: {auth: this.auxToken}});
   }
+
+  listCompetencies() {
+    return this.http.get(`${this.API_URI}/userTeacher/competencies`,{headers: {auth: this.auxToken}});
+  }
+
+  listAmbients() {
+    return this.http.get(`${this.API_URI}/userTeacher/ambients`,{headers: {auth: this.auxToken}});
+  }
 }
