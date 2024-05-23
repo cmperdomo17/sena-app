@@ -244,7 +244,8 @@ export class FormScheduleComponent implements OnInit {
       //Si el ambiente esta ocupado ese mismo dia o si el docente esta ocupado ese mismo dia
       const bandAmbient=schedule.ambient_id === this.schedule.ambient_id;
       const bandTeacher=schedule.teacher_id === this.schedule.teacher_id;
-      if((bandAmbient || bandTeacher) && (schedule.schedule_day == this.schedule.schedule_day)){
+      const bandPeriod=schedule.period_id === this.schedule.period_id;
+      if((bandAmbient || bandTeacher) && (schedule.schedule_day === this.schedule.schedule_day) && bandPeriod){
         
         //Se verifica que ese horario no ocupe ese ambiente o al docente en el horario actual
         //1era condicion: si la hora de inicio del horario actual esta entre las horas de inicio y final del horario encontrado
