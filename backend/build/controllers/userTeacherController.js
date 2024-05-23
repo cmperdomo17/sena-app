@@ -53,6 +53,32 @@ class UserTeacherController {
             res.json(periodsList[0]);
         });
     }
+    ListCompetenciesT(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sql = `CALL listCompetencies()`;
+            const competenciesList = yield new Promise((resolve, reject) => {
+                database_1.default.query(sql, (err, rows, fields) => {
+                    if (err)
+                        reject(err); // En caso de error, resolvemos la Promise con error
+                    resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
+                });
+            });
+            res.json(competenciesList[0]);
+        });
+    }
+    ListAmbientsT(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sql = `CALL listAmbients()`;
+            const ambientsList = yield new Promise((resolve, reject) => {
+                database_1.default.query(sql, (err, rows, fields) => {
+                    if (err)
+                        reject(err); // En caso de error, resolvemos la Promise con error
+                    resolve(Object.values(JSON.parse(JSON.stringify(rows)))); // Si no, resolvemos con el resultado
+                });
+            });
+            res.json(ambientsList[0]);
+        });
+    }
 }
 const userTeacherController = new UserTeacherController();
 exports.default = userTeacherController;

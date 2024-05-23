@@ -14,6 +14,8 @@ class UserTeachersRoutes {
         this.router.get('/', userTeacherController_1.default.getTeacherT);
         this.router.post('/:Pid', userTeacherController_1.default.ListSchedulesPeriodTeacherT);
         this.router.get('/periods', userTeacherController_1.default.ListPeriodsT);
+        this.router.get('/competencies', userTeacherController_1.default.ListCompetenciesT);
+        this.router.get('/ambients', userTeacherController_1.default.ListAmbientsT);
     }
 }
 const userteachersRoutes = new UserTeachersRoutes();
